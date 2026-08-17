@@ -1,0 +1,143 @@
+{
+  "seed": 42,
+  "comparisons": [
+    {
+      "filename": "malignant (98)_mask.png",
+      "label": "Dataset_BUSI_with_GT/malignant",
+      "initial": {
+        "detected": 1,
+        "mean_area": 25648.0,
+        "mean_perimeter": 1122.4894585609436,
+        "mean_compactness": 2.9093195677183243,
+        "compatibility": "N/A",
+        "incompat_count": 0
+      },
+      "improved": {
+        "detected": 6,
+        "accepted": 4,
+        "rejected": 2,
+        "mean_area": 2169.75,
+        "mean_perimeter": 179.78565323352814,
+        "mean_compactness": 0.42720624742728996,
+        "compatibility": "Incompatible",
+        "incompat_count": 8,
+        "incompat_features": [
+          "mean compactness",
+          "mean symmetry",
+          "mean fractal dimension",
+          "radius error",
+          "perimeter error",
+          "area error",
+          "worst perimeter",
+          "worst area"
+        ]
+      }
+    },
+    {
+      "filename": "benign (2).png",
+      "label": "Dataset_BUSI_with_GT/benign",
+      "initial": {
+        "detected": 3,
+        "mean_area": 24332.666666666668,
+        "mean_perimeter": 2073.9141777356467,
+        "mean_compactness": 13.828162977483442,
+        "compatibility": "Incompatible",
+        "incompat_count": 21
+      },
+      "improved": {
+        "detected": 58,
+        "accepted": 3,
+        "rejected": 55,
+        "mean_area": 582.8333333333334,
+        "mean_perimeter": 87.05519302686055,
+        "mean_compactness": 0.33197601934110216,
+        "compatibility": "Incompatible",
+        "incompat_count": 6,
+        "incompat_features": [
+          "mean symmetry",
+          "mean fractal dimension",
+          "radius error",
+          "perimeter error",
+          "area error",
+          "symmetry error"
+        ]
+      }
+    },
+    {
+      "filename": "benign (121).png",
+      "label": "Dataset_BUSI_with_GT/benign",
+      "initial": {
+        "detected": 10,
+        "mean_area": 9108.2,
+        "mean_perimeter": 1075.8230232954024,
+        "mean_compactness": 12.256114020144178,
+        "compatibility": "Incompatible",
+        "incompat_count": 21
+      },
+      "improved": {
+        "detected": 96,
+        "accepted": 5,
+        "rejected": 91,
+        "mean_area": 109.6,
+        "mean_perimeter": 41.15076582431793,
+        "mean_compactness": 0.3548610801124536,
+        "compatibility": "Potentially Incompatible",
+        "incompat_count": 2,
+        "incompat_features": [
+          "mean symmetry",
+          "fractal dimension error"
+        ]
+      }
+    },
+    {
+      "filename": "normal (72).png",
+      "label": "Dataset_BUSI_with_GT/normal",
+      "initial": {
+        "detected": 18,
+        "mean_area": 8406.777777777777,
+        "mean_perimeter": 965.0403487947252,
+        "mean_compactness": 9.902952858550195,
+        "compatibility": "Incompatible",
+        "incompat_count": 18
+      },
+      "improved": {
+        "detected": 222,
+        "accepted": 7,
+        "rejected": 215,
+        "mean_area": 86.64285714285714,
+        "mean_perimeter": 37.458748527935576,
+        "mean_compactness": 0.31902779902138495,
+        "compatibility": "Incompatible",
+        "incompat_count": 3,
+        "incompat_features": [
+          "mean symmetry",
+          "fractal dimension error",
+          "worst fractal dimension"
+        ]
+      }
+    },
+    {
+      "filename": "benign (349).png",
+      "label": "Dataset_BUSI_with_GT/benign",
+      "initial": {
+        "detected": 8,
+        "mean_area": 9164.125,
+        "mean_perimeter": 1036.5013459026814,
+        "mean_compactness": 11.307144971074116,
+        "compatibility": "Incompatible",
+        "incompat_count": 17
+      },
+      "improved": {
+        "detected": 58,
+        "accepted": 0,
+        "rejected": 58,
+        "mean_area": 0.0,
+        "mean_perimeter": 0.0,
+        "mean_compactness": 0.0,
+        "compatibility": "N/A",
+        "incompat_count": 0,
+        "incompat_features": []
+      }
+    }
+  ]
+}

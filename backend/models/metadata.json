@@ -1,0 +1,180 @@
+{
+  "model_name": "SVM (RBF) + SMOTE",
+  "model_version": "1.1.0",
+  "dataset_name": "Local Breast Cancer Wisconsin Diagnostic",
+  "training_date": "2026-08-15T11:45:19.523344",
+  "random_seed": 42,
+  "feature_count": 30,
+  "feature_names": [
+    "mean radius",
+    "mean texture",
+    "mean perimeter",
+    "mean area",
+    "mean smoothness",
+    "mean compactness",
+    "mean concavity",
+    "mean concave points",
+    "mean symmetry",
+    "mean fractal dimension",
+    "radius error",
+    "texture error",
+    "perimeter error",
+    "area error",
+    "smoothness error",
+    "compactness error",
+    "concavity error",
+    "concave points error",
+    "symmetry error",
+    "fractal dimension error",
+    "worst radius",
+    "worst texture",
+    "worst perimeter",
+    "worst area",
+    "worst smoothness",
+    "worst compactness",
+    "worst concavity",
+    "worst concave points",
+    "worst symmetry",
+    "worst fractal dimension"
+  ],
+  "target_names": [
+    "malignant",
+    "benign"
+  ],
+  "metrics": {
+    "accuracy": 0.9754230709517155,
+    "precision": 0.9720620842572062,
+    "recall": 0.9624584717607974,
+    "specificity": 0.9831768388106417,
+    "f1_score": 0.9668788838647455,
+    "roc_auc": 0.9949855463530538,
+    "confusion_matrix": {
+      "tn": 351,
+      "fp": 6,
+      "fn": 8,
+      "tp": 204
+    }
+  },
+  "feature_importance": [
+    {
+      "feature": "worst texture",
+      "importance": 0.01687170474516696
+    },
+    {
+      "feature": "worst smoothness",
+      "importance": 0.007557117750439368
+    },
+    {
+      "feature": "concavity error",
+      "importance": 0.005975395430579944
+    },
+    {
+      "feature": "radius error",
+      "importance": 0.005799648506151134
+    },
+    {
+      "feature": "worst symmetry",
+      "importance": 0.004569420035149363
+    },
+    {
+      "feature": "worst concavity",
+      "importance": 0.004042179261862899
+    },
+    {
+      "feature": "worst area",
+      "importance": 0.004042179261862899
+    },
+    {
+      "feature": "perimeter error",
+      "importance": 0.0033391915641476254
+    },
+    {
+      "feature": "worst radius",
+      "importance": 0.0033391915641476145
+    },
+    {
+      "feature": "area error",
+      "importance": 0.003163444639718782
+    },
+    {
+      "feature": "worst concave points",
+      "importance": 0.0024604569420035084
+    },
+    {
+      "feature": "compactness error",
+      "importance": 0.002460456942003497
+    },
+    {
+      "feature": "worst perimeter",
+      "importance": 0.0019332161687170336
+    },
+    {
+      "feature": "fractal dimension error",
+      "importance": 0.0017574692442882123
+    },
+    {
+      "feature": "mean concavity",
+      "importance": 0.0012302284710017485
+    },
+    {
+      "feature": "mean texture",
+      "importance": 0.0010544815465729385
+    },
+    {
+      "feature": "mean concave points",
+      "importance": 0.0005272407732864637
+    },
+    {
+      "feature": "worst fractal dimension",
+      "importance": 0.00035149384885764247
+    },
+    {
+      "feature": "mean smoothness",
+      "importance": 0.0
+    },
+    {
+      "feature": "mean area",
+      "importance": -0.00017574692442882123
+    },
+    {
+      "feature": "mean radius",
+      "importance": -0.00035149384885764247
+    },
+    {
+      "feature": "mean compactness",
+      "importance": -0.00035149384885764247
+    },
+    {
+      "feature": "texture error",
+      "importance": -0.00035149384885764247
+    },
+    {
+      "feature": "smoothness error",
+      "importance": -0.0005272407732864637
+    },
+    {
+      "feature": "worst compactness",
+      "importance": -0.0005272407732864637
+    },
+    {
+      "feature": "mean perimeter",
+      "importance": -0.0008787346221441061
+    },
+    {
+      "feature": "mean symmetry",
+      "importance": -0.0010544815465729275
+    },
+    {
+      "feature": "symmetry error",
+      "importance": -0.0012302284710017485
+    },
+    {
+      "feature": "concave points error",
+      "importance": -0.0012302284710017485
+    },
+    {
+      "feature": "mean fractal dimension",
+      "importance": -0.0012302284710017485
+    }
+  ]
+}

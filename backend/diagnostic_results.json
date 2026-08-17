@@ -1,0 +1,60 @@
+{
+  "seed": 42,
+  "results": [
+    {
+      "filename": "P0_13.jpg",
+      "label": "MiDeSeC/train images",
+      "nuclei_detected": "Yes (55)",
+      "features_extracted": "Yes (30 features)",
+      "compatibility": "Incompatible",
+      "verdict_details": "Compatible: 11, Marginal: 3, Incompatible: 16 | Incompat: mean perimeter, mean area, mean compactness...",
+      "prediction": "Blocked",
+      "benign_prob": "N/A",
+      "malignant_prob": "N/A"
+    },
+    {
+      "filename": "P00_06.jpg",
+      "label": "MiDeSeC/test images",
+      "nuclei_detected": "Yes (107)",
+      "features_extracted": "Yes (30 features)",
+      "compatibility": "Incompatible",
+      "verdict_details": "Compatible: 14, Marginal: 5, Incompatible: 11 | Incompat: mean perimeter, mean compactness, mean symmetry...",
+      "prediction": "Blocked",
+      "benign_prob": "N/A",
+      "malignant_prob": "N/A"
+    },
+    {
+      "filename": "image_20.tif.tif",
+      "label": "NuSeC/test nuclei",
+      "nuclei_detected": "Yes (112)",
+      "features_extracted": "Yes (30 features)",
+      "compatibility": "Incompatible",
+      "verdict_details": "Compatible: 16, Marginal: 3, Incompatible: 11 | Incompat: mean perimeter, mean compactness, mean symmetry...",
+      "prediction": "Blocked",
+      "benign_prob": "N/A",
+      "malignant_prob": "N/A"
+    },
+    {
+      "filename": "image_12.tif.tif",
+      "label": "NuSeC/test nuclei",
+      "nuclei_detected": "Yes (164)",
+      "features_extracted": "Yes (30 features)",
+      "compatibility": "Incompatible",
+      "verdict_details": "Compatible: 18, Marginal: 3, Incompatible: 9 | Incompat: mean perimeter, mean compactness, mean symmetry...",
+      "prediction": "Blocked",
+      "benign_prob": "N/A",
+      "malignant_prob": "N/A"
+    },
+    {
+      "filename": "image_07.tif.tif",
+      "label": "NuSeC/test nuclei",
+      "nuclei_detected": "Yes (128)",
+      "features_extracted": "Yes (30 features)",
+      "compatibility": "Incompatible",
+      "verdict_details": "Compatible: 15, Marginal: 3, Incompatible: 12 | Incompat: mean perimeter, mean compactness, mean symmetry...",
+      "prediction": "Blocked",
+      "benign_prob": "N/A",
+      "malignant_prob": "N/A"
+    }
+  ]
+}

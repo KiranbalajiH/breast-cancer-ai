@@ -1,0 +1,18 @@
+{
+    "model_type": "MobileNetV2 Transfer Learning",
+    "classes": [
+        "benign",
+        "malignant",
+        "normal"
+    ],
+    "image_size": [
+        224,
+        224
+    ],
+    "test_accuracy": 0.811965823173523,
+    "class_counts": {
+        "benign": 437,
+        "malignant": 210,
+        "normal": 133
+    }
+}

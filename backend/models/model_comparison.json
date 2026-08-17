@@ -1,0 +1,128 @@
+{
+  "Logistic Regression": {
+    "accuracy": 0.9736686849868033,
+    "precision": 0.9862579281183933,
+    "recall": 0.9436323366555925,
+    "specificity": 0.9915884194053209,
+    "f1_score": 0.9633408685451746,
+    "roc_auc": 0.9953143278274297,
+    "confusion_matrix": {
+      "tn": 354,
+      "fp": 3,
+      "fn": 12,
+      "tp": 200
+    }
+  },
+  "Random Forest": {
+    "accuracy": 0.9560937742586555,
+    "precision": 0.946397254863237,
+    "recall": 0.9388704318936878,
+    "specificity": 0.9664710485133021,
+    "f1_score": 0.9407172122834773,
+    "roc_auc": 0.9885484634768126,
+    "confusion_matrix": {
+      "tn": 345,
+      "fp": 12,
+      "fn": 13,
+      "tp": 199
+    }
+  },
+  "KNN": {
+    "accuracy": 0.9630957925787922,
+    "precision": 0.9755244755244756,
+    "recall": 0.9245847176079736,
+    "specificity": 0.9860719874804381,
+    "f1_score": 0.9486688354886501,
+    "roc_auc": 0.9848645707145544,
+    "confusion_matrix": {
+      "tn": 352,
+      "fp": 5,
+      "fn": 16,
+      "tp": 196
+    }
+  },
+  "SVM (RBF)": {
+    "accuracy": 0.9771619313771154,
+    "precision": 0.9810472851028722,
+    "recall": 0.9575858250276855,
+    "specificity": 0.9887715179968701,
+    "f1_score": 0.9687770377752074,
+    "roc_auc": 0.9945250963143201,
+    "confusion_matrix": {
+      "tn": 353,
+      "fp": 4,
+      "fn": 9,
+      "tp": 203
+    }
+  },
+  "Naive Bayes": {
+    "accuracy": 0.9297314081664337,
+    "precision": 0.9228013256584685,
+    "recall": 0.8915836101882615,
+    "specificity": 0.9525039123630673,
+    "f1_score": 0.9045222591850999,
+    "roc_auc": 0.9847640537453837,
+    "confusion_matrix": {
+      "tn": 340,
+      "fp": 17,
+      "fn": 23,
+      "tp": 189
+    }
+  },
+  "Neural Network": {
+    "accuracy": 0.9771774569166277,
+    "precision": 0.9862579281183933,
+    "recall": 0.9529346622369876,
+    "specificity": 0.9915884194053209,
+    "f1_score": 0.968584770984199,
+    "roc_auc": 0.9960997899541955,
+    "confusion_matrix": {
+      "tn": 354,
+      "fp": 3,
+      "fn": 10,
+      "tp": 202
+    }
+  },
+  "LDA + Neural Network": {
+    "accuracy": 0.9701599130569786,
+    "precision": 0.9753130590339893,
+    "recall": 0.9434108527131781,
+    "specificity": 0.9860719874804381,
+    "f1_score": 0.9586079376954171,
+    "roc_auc": 0.9928788709864701,
+    "confusion_matrix": {
+      "tn": 352,
+      "fp": 5,
+      "fn": 12,
+      "tp": 200
+    }
+  },
+  "SVM (RBF) + SMOTE": {
+    "accuracy": 0.9754230709517155,
+    "precision": 0.9720620842572062,
+    "recall": 0.9624584717607974,
+    "specificity": 0.9831768388106417,
+    "f1_score": 0.9668788838647455,
+    "roc_auc": 0.9949855463530538,
+    "confusion_matrix": {
+      "tn": 351,
+      "fp": 6,
+      "fn": 8,
+      "tp": 204
+    }
+  },
+  "Random Forest + SMOTE": {
+    "accuracy": 0.9578326346840551,
+    "precision": 0.9333991894630194,
+    "recall": 0.9574750830564784,
+    "specificity": 0.9580203442879499,
+    "f1_score": 0.9443361610653213,
+    "roc_auc": 0.9898582385787595,
+    "confusion_matrix": {
+      "tn": 342,
+      "fp": 15,
+      "fn": 9,
+      "tp": 203
+    }
+  }
+}

@@ -1,0 +1,29 @@
+# Python virtual environments
+venv/
+backend/venv/
+
+# Python cache
+__pycache__/
+*.py[cod]
+.pytest_cache/
+
+# Node.js
+frontend/node_modules/
+frontend/.next/
+
+# Environment variables and secrets
+.env
+.env.*
+!.env.example
+
+# IDE
+.vscode/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Python diagnostic/generated files
+backend/diagnostics_test_outputs/
+backend/test_nuclei_overlay.png
+backend/test_synthetic_nuclei.png
