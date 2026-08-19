@@ -29,6 +29,19 @@ def predict(features: BreastCancerFeatures):
 def get_image_model_status():
     return image_classifier.get_status()
 
+@router.get("/model-status", response_model=Dict[str, Any])
+def get_unified_model_status():
+    tab_status = model_service.get_health_status()
+    img_status = image_classifier.get_status()
+    
+    overall_healthy = tab_status["model_loaded"] and img_status["model_loaded"]
+    
+    return {
+        "status": "healthy" if overall_healthy else "unhealthy",
+        "tabular_model": "model_loaded" if tab_status["model_loaded"] else "model_unavailable",
+        "image_model": "model_loaded" if img_status["model_loaded"] else "model_unavailable"
+    }
+
 @router.post("/image-predict", response_model=Dict[str, Any])
 async def image_predict(file: UploadFile = File(...)):
     if not file:

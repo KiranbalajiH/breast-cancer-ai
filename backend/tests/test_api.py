@@ -68,3 +68,15 @@ def test_predict_missing_features(sample_features):
         del sample_features["mean radius"]
         response = c.post("/api/predict", json=sample_features)
         assert response.status_code == 422 # Unprocessable Entity from FastAPI Validation
+
+def test_model_status_endpoint():
+    with TestClient(app) as c:
+        response = c.get("/api/model-status")
+        assert response.status_code == 200
+        data = response.json()
+        assert "status" in data
+        assert "tabular_model" in data
+        assert "image_model" in data
+        assert data["status"] in ["healthy", "unhealthy"]
+        assert data["tabular_model"] in ["model_loaded", "model_unavailable"]
+        assert data["image_model"] in ["model_loaded", "model_unavailable"]

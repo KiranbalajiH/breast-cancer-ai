@@ -27,3 +27,6 @@ Thumbs.db
 backend/diagnostics_test_outputs/
 backend/test_nuclei_overlay.png
 backend/test_synthetic_nuclei.png
+
+# Large local datasets
+dataset/
