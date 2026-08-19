@@ -7,6 +7,26 @@ This application provides a machine learning pipeline and a modern visual worksp
 
 ---
 
+## Repository Structure
+
+```
+breast-cancer-ai/
+├── backend/                       # FastAPI Backend Application
+│   ├── app/                       # Source files (lifespan, config, prediction api)
+│   ├── data/                      # Manifest metadata (no raw images at runtime)
+│   ├── models/                    # Stored ML weights (keras, joblib models)
+│   │   └── evaluation_reports/    # Independent model validation reports
+│   └── tests/                     # Automated unit and safety tests
+├── frontend/                      # Next.js Frontend (React, Tailwind CSS)
+│   ├── app/                       # Next.js Pages (prediction workspace, analytics)
+│   ├── components/                # Reusable UI widgets
+│   └── lib/                       # API fetching and type interfaces
+├── RMD/                           # R Markdown dataset analysis reports
+└── README.md                      # Main project documentation
+```
+
+---
+
 ## Supported Inputs & Outputs
 
 ### 1. Supported Input
@@ -75,18 +95,31 @@ The workspace UI opens at `http://localhost:3000`.
 ## Environment Variables
 
 ### Backend Configuration (`backend/.env`)
-* `BACKEND_CORS_ORIGINS`: Comma-separated allowed frontend origins (e.g. `"http://localhost:3000,https://my-app.vercel.app"`).
+* `BACKEND_CORS_ORIGINS`: Comma-separated allowed frontend origins (e.g. `"http://localhost:3000,https://breast-cancer-ai.vercel.app"`).
 
 ### Frontend Configuration (`frontend/.env.local`)
 * `NEXT_PUBLIC_API_URL`: Root URL of the running FastAPI server (e.g. `"http://localhost:8000"`).
 
 ---
 
-## Deployment Architecture
+## Production Deployment Workflow
 
-* **Frontend:** Deployed to Vercel or Netlify static hosts.
-* **Backend:** Deployed to a cloud hosting provider capable of running Python, FastAPI, and TensorFlow (e.g. Render, AWS App Runner, Heroku, or a VPS).
-* *Note: The system requires at least 1GB of memory (RAM) due to TensorFlow import size and MobileNetV2 parameter loads.*
+### 1. Backend Deployment (e.g., Render, Railway, or VPS)
+Connect your GitHub repository to your Python hosting platform of choice:
+1. **Repository root path:** Select `backend` as the base directory (or root if using Docker/monorepo build configs).
+2. **Build Command:** `pip install -r requirements.txt`
+3. **Start Command:** `uvicorn app.main:app --host 0.0.0.0 --port $PORT`
+4. **Environment Variables:** Configure `BACKEND_CORS_ORIGINS` to point to your Vercel frontend URL.
+5. **Memory Limit:** Ensure the hosting environment has $\ge$ 1GB of RAM to prevent out-of-memory issues during TensorFlow library initialization and model pre-loading.
+6. **Health Probe Paths:** Use `/api/health` or `/api/model-status` for health checks.
+
+### 2. Frontend Deployment (Vercel)
+1. Go to Vercel and import your GitHub repository.
+2. Select `frontend` as the **Root Directory**.
+3. In **Environment Variables**, add:
+   * **Key:** `NEXT_PUBLIC_API_URL`
+   * **Value:** `<your-deployed-backend-url>` (e.g. `https://breast-cancer-backend.onrender.com`)
+4. Click **Deploy**. Vercel will automatically compile, optimize, and serve the application statically.
 
 ---
 
