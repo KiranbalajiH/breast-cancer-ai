@@ -12,3 +12,4 @@ pydantic-settings
 opencv-python
 scipy
 python-multipart
+tensorflow-cpu>=2.16.0
