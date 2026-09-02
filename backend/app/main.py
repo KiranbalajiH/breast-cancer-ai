@@ -19,7 +19,7 @@ async def lifespan(app: FastAPI):
         print(f"Tabular model loading failed at startup: {e}")
         
     try:
-        image_classifier.load_model()
+        image_classifier.load_model(load_v14=True)
     except Exception as e:
         print(f"Image classifier loading failed at startup: {e}")
     yield

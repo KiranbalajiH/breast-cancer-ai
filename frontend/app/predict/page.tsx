@@ -105,10 +105,12 @@ export default function Predict() {
   // Image State
   const [imageFile, setImageFile] = useState<File | null>(null);
   const [imagePreview, setImagePreview] = useState<string | null>(null);
+  const [selectedImageModel, setSelectedImageModel] = useState<"v5b" | "v14">("v5b");
   const [imageProcessState, setImageProcessState] = useState<"idle" | "running" | "complete" | "error">("idle");
   const [imageResult, setImageResult] = useState<ImagePredictionResponse | null>(null);
   const [imageErrorMsg, setImageErrorMsg] = useState<string | null>(null);
   const [dragActive, setDragActive] = useState(false);
+  const [viewOverlay, setViewOverlay] = useState<boolean>(false);
 
   // Validations
   const getFieldError = useCallback((key: string, val: string | number): string | null => {
@@ -188,6 +190,7 @@ export default function Predict() {
     setImageErrorMsg(null);
     setImageResult(null);
     setImageProcessState("idle");
+    setViewOverlay(false);
   };
 
   const handleImagePredict = async () => {
@@ -196,15 +199,23 @@ export default function Predict() {
     setImageProcessState("running");
     setImageErrorMsg(null);
     setImageResult(null);
+    setViewOverlay(false);
 
     try {
-      const res = await predictImage(imageFile);
+      const res = await predictImage(imageFile, selectedImageModel);
       setImageResult(res);
       setImageProcessState("complete");
     } catch (err: any) {
       setImageErrorMsg(err.message || "Unable to analyze the image.");
       setImageProcessState("error");
     }
+  };
+
+  const handleModelChange = (m: "v5b" | "v14") => {
+    setSelectedImageModel(m);
+    setImageResult(null);
+    setImageProcessState("idle");
+    setViewOverlay(false);
   };
 
   return (
@@ -249,9 +260,35 @@ export default function Predict() {
           {/* Left Column: Upload & Preview */}
           <div className="space-y-6">
             <div className="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm flex flex-col h-full">
-              <h2 className="text-xl font-bold text-slate-900 mb-4 flex items-center">
-                <ImageIcon className="w-5 h-5 mr-2 text-medical-600" /> Image Input
-              </h2>
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between mb-4 gap-2">
+                <h2 className="text-xl font-bold text-slate-900 flex items-center">
+                  <ImageIcon className="w-5 h-5 mr-2 text-medical-600" /> Image Input
+                </h2>
+
+                {/* Subtle Research Model Selector Toggle */}
+                <div className="flex bg-slate-100 p-1 rounded-lg border border-slate-200 text-xs">
+                  <button
+                    onClick={() => handleModelChange("v5b")}
+                    className={`px-3 py-1 font-bold rounded-md transition ${
+                      selectedImageModel === "v5b"
+                        ? "bg-white text-slate-900 shadow-sm"
+                        : "text-slate-500 hover:text-slate-800"
+                    }`}
+                  >
+                    V5-B (Production)
+                  </button>
+                  <button
+                    onClick={() => handleModelChange("v14")}
+                    className={`px-3 py-1 font-bold rounded-md transition ${
+                      selectedImageModel === "v14"
+                        ? "bg-white text-medical-700 shadow-sm"
+                        : "text-slate-500 hover:text-slate-800"
+                    }`}
+                  >
+                    V14 Ensemble
+                  </button>
+                </div>
+              </div>
               
               {!imageFile ? (
                 <div 
@@ -287,15 +324,36 @@ export default function Predict() {
                       </div>
                     </div>
                     <button 
-                      onClick={() => { setImageFile(null); setImagePreview(null); setImageResult(null); setImageProcessState("idle"); }} 
+                      onClick={() => { setImageFile(null); setImagePreview(null); setImageResult(null); setImageProcessState("idle"); setViewOverlay(false); }} 
                       className="text-xs font-bold text-red-600 hover:text-red-700 bg-red-50 hover:bg-red-100 px-3 py-1.5 rounded-lg transition"
                     >
                       Remove
                     </button>
                   </div>
 
-                  <div className="flex-grow bg-slate-50 border border-slate-100 rounded-xl p-2 flex items-center justify-center min-h-[300px]">
-                    {imagePreview && <img src={imagePreview} alt="Preview" className="max-h-[300px] object-contain rounded-lg shadow-sm" />}
+                  <div className="flex-grow bg-slate-50 border border-slate-100 rounded-xl p-2 flex flex-col items-center justify-center min-h-[300px] relative">
+                    {imageResult?.explanation?.available && (
+                      <div className="absolute top-3 right-3 z-10 bg-white/90 backdrop-blur-sm p-1 rounded-lg shadow-sm border border-slate-200 flex gap-1">
+                        <button
+                          onClick={() => setViewOverlay(false)}
+                          className={`px-2.5 py-1 text-xs font-bold rounded-md transition ${!viewOverlay ? "bg-slate-900 text-white" : "text-slate-600 hover:bg-slate-100"}`}
+                        >
+                          Original
+                        </button>
+                        <button
+                          onClick={() => setViewOverlay(true)}
+                          className={`px-2.5 py-1 text-xs font-bold rounded-md transition ${viewOverlay ? "bg-medical-600 text-white" : "text-slate-600 hover:bg-slate-100"}`}
+                        >
+                          Grad-CAM
+                        </button>
+                      </div>
+                    )}
+
+                    {viewOverlay && imageResult?.explanation?.overlay ? (
+                      <img src={imageResult.explanation.overlay} alt="Grad-CAM Overlay" className="max-h-[300px] object-contain rounded-lg shadow-sm" />
+                    ) : (
+                      imagePreview && <img src={imagePreview} alt="Preview" className="max-h-[300px] object-contain rounded-lg shadow-sm" />
+                    )}
                   </div>
 
                   <button
@@ -303,7 +361,7 @@ export default function Predict() {
                     disabled={imageProcessState === "running"}
                     className="w-full py-4 bg-medical-600 text-white rounded-xl font-bold text-lg shadow-md hover:bg-medical-700 disabled:opacity-50 transition flex items-center justify-center"
                   >
-                    {imageProcessState === "running" ? <><Loader2 className="w-6 h-6 animate-spin mr-2" /> Analyzing...</> : <><PlayCircle className="w-6 h-6 mr-2" /> Analyze Image</>}
+                    {imageProcessState === "running" ? <><Loader2 className="w-6 h-6 animate-spin mr-2" /> Analyzing...</> : <><PlayCircle className="w-6 h-6 mr-2" /> Analyze Image ({selectedImageModel.toUpperCase()})</>}
                   </button>
                 </div>
               )}
@@ -319,9 +377,16 @@ export default function Predict() {
 
           {/* Right Column: Prediction Results */}
           <div className="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm flex flex-col min-h-[500px]">
-            <h2 className="text-xl font-bold text-slate-900 mb-6 border-b border-slate-100 pb-4 flex items-center">
-              <Activity className="w-5 h-5 mr-2 text-medical-600" /> Prediction Results
-            </h2>
+            <div className="flex items-center justify-between mb-6 border-b border-slate-100 pb-4">
+              <h2 className="text-xl font-bold text-slate-900 flex items-center">
+                <Activity className="w-5 h-5 mr-2 text-medical-600" /> Prediction Results
+              </h2>
+              {imageResult?.model_version && (
+                <span className="text-xs font-bold px-2.5 py-1 bg-slate-100 text-slate-700 rounded-md border border-slate-200">
+                  Model: {imageResult.model_version}
+                </span>
+              )}
+            </div>
             
             {imageProcessState === "idle" && (
               <div className="flex-grow flex flex-col items-center justify-center text-center">
@@ -336,7 +401,9 @@ export default function Predict() {
             {imageProcessState === "running" && (
               <div className="flex-grow flex flex-col items-center justify-center text-center">
                 <Loader2 className="w-12 h-12 text-medical-500 animate-spin mb-6" />
-                <h3 className="text-lg font-bold text-slate-700 mb-1">Applying MobileNetV2...</h3>
+                <h3 className="text-lg font-bold text-slate-700 mb-1">
+                  {selectedImageModel === "v14" ? "Applying V14 Frozen Ensemble..." : "Applying MobileNetV2..."}
+                </h3>
                 <p className="text-sm text-slate-500">Extracting deep visual features</p>
               </div>
             )}
@@ -344,15 +411,25 @@ export default function Predict() {
             {imageProcessState === "complete" && imageResult && (
               <AnimatePresence>
                 <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="flex-grow flex flex-col">
-                  <div className={`p-8 rounded-2xl text-center mb-8 border shadow-sm ${
+                  <div className={`p-6 rounded-2xl text-center mb-6 border shadow-sm ${
                     imageResult.predicted_class.toLowerCase() === "malignant" ? "bg-red-50 border-red-100" : "bg-teal-50 border-teal-100"
                   }`}>
-                    <p className="text-sm font-bold uppercase tracking-wider text-slate-500 mb-2">Primary Prediction</p>
+                    <div className="flex justify-between items-center mb-2 px-2">
+                      <p className="text-xs font-bold uppercase tracking-wider text-slate-500">Primary Prediction</p>
+                      <span className={`text-xs font-bold px-2 py-0.5 rounded-full ${
+                        imageResult.status === "high_confidence" ? "bg-teal-100 text-teal-800" : "bg-amber-100 text-amber-800"
+                      }`}>
+                        {(imageResult.confidence * 100).toFixed(1)}% Confidence
+                      </span>
+                    </div>
                     <h3 className={`text-4xl md:text-5xl font-black tracking-tight ${
                       imageResult.predicted_class.toLowerCase() === "malignant" ? "text-red-700" : "text-teal-700"
                     }`}>
                       {imageResult.predicted_class.toUpperCase()}
                     </h3>
+                    {imageResult.message && (
+                      <p className="text-xs text-slate-600 mt-2 font-medium px-4">{imageResult.message}</p>
+                    )}
                   </div>
 
                   <div className="space-y-5 mb-8 flex-grow">

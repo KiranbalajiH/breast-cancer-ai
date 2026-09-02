@@ -1,4 +1,8 @@
-const API_URL = process.env.NEXT_PUBLIC_API_URL || process.env.NEXT_PUBLIC_API_BASE_URL || "http://127.0.0.1:8000";
+const getApiUrl = () => {
+  const url = process.env.NEXT_PUBLIC_API_URL || process.env.NEXT_PUBLIC_API_BASE_URL || "http://127.0.0.1:8000";
+  return url.endsWith("/") ? url.slice(0, -1) : url;
+};
+const API_URL = getApiUrl();
 
 export interface BreastCancerFeatures {
   "mean radius": number;
@@ -169,17 +173,36 @@ export async function predictFromImage(file: File): Promise<ImageAnalysisRespons
   return res.json();
 }
 
-export interface ImagePredictionResponse {
-  predicted_class: string;
-  confidence: number;
-  probabilities: Record<string, number>;
+export interface ImageExplanation {
+  available: boolean;
+  type?: string;
+  heatmap?: string;
+  overlay?: string;
+  disclaimer?: string;
 }
 
-export async function predictImage(file: File): Promise<ImagePredictionResponse> {
+export interface ImagePredictionResponse {
+  predicted_class: string;
+  prediction?: string;
+  confidence: number;
+  probabilities: Record<string, number>;
+  status?: string;
+  message?: string;
+  image_quality?: string;
+  quality_warnings?: string[];
+  model_version?: string;
+  explanation?: ImageExplanation;
+}
+
+export async function predictImage(file: File, model: string = "v5b"): Promise<ImagePredictionResponse> {
   const formData = new FormData();
   formData.append("file", file);
 
-  const res = await fetch(`${API_URL}/api/image-predict`, {
+  const endpoint = model && model.toLowerCase() === "v14"
+    ? `${API_URL}/api/image-predict?model=v14`
+    : `${API_URL}/api/image-predict`;
+
+  const res = await fetch(endpoint, {
     method: "POST",
     body: formData,
   });
