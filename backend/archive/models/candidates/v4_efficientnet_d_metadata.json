@@ -1,0 +1,78 @@
+{
+    "model_version": "4.0.0",
+    "variant_id": "v4_efficientnet_d",
+    "variant_name": "V4-D: EfficientNetB0 (Mild Weighting / Lightweight Alt)",
+    "architecture": "EfficientNetB0",
+    "class_mapping": [
+        "benign",
+        "malignant",
+        "normal"
+    ],
+    "image_size": [
+        224,
+        224
+    ],
+    "split_counts": {
+        "train": {
+            "benign": 304,
+            "malignant": 146,
+            "normal": 93
+        },
+        "validation": {
+            "benign": 65,
+            "malignant": 31,
+            "normal": 20
+        },
+        "test": {
+            "benign": 65,
+            "malignant": 32,
+            "normal": 20
+        }
+    },
+    "weight_configuration": "{0: 1.0, 1: 1.25, 2: 1.1}",
+    "validation_metrics": {
+        "accuracy": 0.6896551724137931,
+        "macro_precision": 0.7205613830613831,
+        "macro_recall": 0.6665425971877584,
+        "macro_f1": 0.6718706047819971,
+        "benign": {
+            "precision": 0.8363636363636363,
+            "recall": 0.7076923076923077,
+            "f1": 0.7666666666666667,
+            "support": 65
+        },
+        "malignant": {
+            "precision": 0.4791666666666667,
+            "recall": 0.7419354838709677,
+            "f1": 0.5822784810126582,
+            "support": 31
+        },
+        "normal": {
+            "precision": 0.8461538461538461,
+            "recall": 0.55,
+            "f1": 0.6666666666666666,
+            "support": 20
+        },
+        "false_negatives": 8,
+        "false_positives": 25,
+        "total_incorrect": 36,
+        "confusion_matrix": [
+            [
+                46,
+                19,
+                0
+            ],
+            [
+                6,
+                23,
+                2
+            ],
+            [
+                3,
+                6,
+                11
+            ]
+        ]
+    },
+    "training_date": "2026-08-27T20:00:37.088185"
+}

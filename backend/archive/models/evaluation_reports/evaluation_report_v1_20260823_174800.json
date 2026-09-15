@@ -1,0 +1,159 @@
+{
+    "model_version": "v1.0.0",
+    "model_architecture": "MobileNetV2 Transfer Learning",
+    "evaluation_dataset_source": "BUSI Dataset (Held-out 15% split)",
+    "external_dataset_available": false,
+    "external_dataset_note": "No independent external validation dataset is currently available.",
+    "untouched_data_confirmation": true,
+    "leakage_check_results": {
+        "test_train_overlap_files": 0,
+        "test_val_overlap_files": 0,
+        "masks_in_test_files": 0,
+        "clean_split_verified": true
+    },
+    "total_evaluation_images": 117,
+    "class_distribution": {
+        "benign": 65,
+        "malignant": 32,
+        "normal": 20
+    },
+    "metrics": {
+        "accuracy": 0.5384615384615384,
+        "precision_per_class": {
+            "benign": 0.9,
+            "malignant": 0.37662337662337664,
+            "normal": 0.7
+        },
+        "recall_per_class": {
+            "benign": 0.4153846153846154,
+            "malignant": 0.90625,
+            "normal": 0.35
+        },
+        "f1_per_class": {
+            "benign": 0.5684210526315789,
+            "malignant": 0.5321100917431193,
+            "normal": 0.4666666666666667
+        },
+        "confusion_matrix": [
+            [
+                27,
+                36,
+                2
+            ],
+            [
+                2,
+                29,
+                1
+            ],
+            [
+                1,
+                12,
+                7
+            ]
+        ]
+    },
+    "malignant_metrics": {
+        "sensitivity": 0.90625,
+        "precision": 0.37662337662337664,
+        "f1_score": 0.5321100917431193,
+        "false_negatives": 3,
+        "false_positives": 48
+    },
+    "confidence_analysis": {
+        "avg_confidence_correct": 0.7759145053606185,
+        "avg_confidence_incorrect": 0.63658749891652,
+        "highly_confident_incorrect_count": 19,
+        "highly_confident_incorrect_examples": [
+            {
+                "filename": "benign (404).png",
+                "true_class": "benign",
+                "pred_class": "malignant",
+                "confidence": 0.9686611890792847
+            },
+            {
+                "filename": "benign (216).png",
+                "true_class": "benign",
+                "pred_class": "malignant",
+                "confidence": 0.96060711145401
+            },
+            {
+                "filename": "benign (141).png",
+                "true_class": "benign",
+                "pred_class": "malignant",
+                "confidence": 0.9564423561096191
+            },
+            {
+                "filename": "benign (97).png",
+                "true_class": "benign",
+                "pred_class": "malignant",
+                "confidence": 0.9283457398414612
+            },
+            {
+                "filename": "normal (81).png",
+                "true_class": "normal",
+                "pred_class": "malignant",
+                "confidence": 0.9174045920372009
+            }
+        ]
+    },
+    "uncertainty_safety_analysis": {
+        "status_distribution": {
+            "review_required": 25,
+            "low_confidence": 14,
+            "high_confidence": 54,
+            "moderate_confidence": 24
+        },
+        "incorrect_flagged_count": 18,
+        "incorrect_total_count": 54,
+        "incorrect_flagged_pct": 0.3333333333333333,
+        "incorrect_remaining_high_confidence": 13,
+        "malignant_fn_flagged": 2,
+        "malignant_fn_total": 3,
+        "malignant_fn_high_conf": 0
+    },
+    "gradcam_technical_spot_check": {
+        "correct_benign": {
+            "success": true,
+            "heatmap_present": true,
+            "overlay_present": true,
+            "dims_match_input": true,
+            "message": "Successfully verified Grad-CAM overlay for benign (135).png."
+        },
+        "correct_malignant": {
+            "success": true,
+            "heatmap_present": true,
+            "overlay_present": true,
+            "dims_match_input": true,
+            "message": "Successfully verified Grad-CAM overlay for malignant (138).png."
+        },
+        "correct_normal": {
+            "success": true,
+            "heatmap_present": true,
+            "overlay_present": true,
+            "dims_match_input": true,
+            "message": "Successfully verified Grad-CAM overlay for normal (44).png."
+        },
+        "incorrect_malignant": {
+            "success": true,
+            "heatmap_present": true,
+            "overlay_present": true,
+            "dims_match_input": true,
+            "message": "Successfully verified Grad-CAM overlay for benign (402).png."
+        },
+        "malignant_false_negative": {
+            "success": true,
+            "heatmap_present": true,
+            "overlay_present": true,
+            "dims_match_input": true,
+            "message": "Successfully verified Grad-CAM overlay for malignant (12).png."
+        }
+    },
+    "project_maturity_status": "Experimental decision-support prototype",
+    "safety_assessment_justification": "Classified as an 'Experimental decision-support prototype' because while the model has reasonable accuracy (approx 81%), its raw recall for malignant cases is 61.29% on the test split, resulting in a significant number of false negatives if left unflagged. However, the safety threshold layer successfully identifies and flags a majority of these errors as 'review_required' (preventing false negatives from going unnoticed), making it suitable as a decision-support prototype.",
+    "known_limitations": [
+        "No independent external dataset was available; validation was performed on the local held-out test split.",
+        "Visual explanations (Grad-CAM) are for highlighting influence, not indicating actual tumour boundaries.",
+        "Safety heuristics (e.g. saturation check) assume grayscale inputs and might flag color annotations."
+    ],
+    "eval_date": "2026-08-23T17:48:00.456059"
+}

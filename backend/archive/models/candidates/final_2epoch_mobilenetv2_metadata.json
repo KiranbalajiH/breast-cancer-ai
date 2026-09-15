@@ -1,0 +1,19 @@
+{
+    "model_version": "final_2epoch_candidate",
+    "model_type": "MobileNetV2 (2-Epoch Controlled Candidate)",
+    "epochs_trained": 2,
+    "input_shape": [
+        224,
+        224,
+        3
+    ],
+    "classes": [
+        "benign",
+        "malignant",
+        "normal"
+    ],
+    "training_samples": 546,
+    "validation_samples": 114,
+    "sha256": "3B31161E4311D657E07BFED8139EEC7E58017AFD87BC9690CAF781DB86E03C10",
+    "file_size_bytes": 18015776
+}

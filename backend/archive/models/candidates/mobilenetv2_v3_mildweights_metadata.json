@@ -1,0 +1,380 @@
+{
+    "model_version": "3.0.0",
+    "architecture": "MobileNetV2",
+    "weight_configuration": "mildweights",
+    "class_mapping": [
+        "benign",
+        "malignant",
+        "normal"
+    ],
+    "image_size": [
+        224,
+        224
+    ],
+    "preprocessing_method": "Keras MobileNetV2 Native Preprocessing",
+    "dataset_sources_used": [
+        "BUSI"
+    ],
+    "split_counts": {
+        "train": 543,
+        "validation": 116,
+        "test": 117
+    },
+    "augmentation_summary": {
+        "horizontal_flip": true,
+        "max_rotation": 0.05,
+        "max_translation": 0.05,
+        "max_zoom": 0.05
+    },
+    "dropout_rate": 0.3,
+    "staged_training": {
+        "stage1_warmup_epochs": 8,
+        "stage1_lr": 0.0005,
+        "stage2_finetune_epochs": 30,
+        "stage2_lr": 1e-05,
+        "early_stopping_patience": 7,
+        "lr_reduction_patience": 3
+    },
+    "class_balancing_method": "Mild/None Loss Weighting",
+    "validation_evaluation": {
+        "accuracy": 0.5689655172413793,
+        "precision": [
+            0.7017543859649122,
+            0.3684210526315789,
+            0.5714285714285714
+        ],
+        "recall": [
+            0.6153846153846154,
+            0.45161290322580644,
+            0.6
+        ],
+        "f1": [
+            0.6557377049180327,
+            0.4057971014492754,
+            0.5853658536585366
+        ],
+        "confusion_matrix": [
+            [
+                40,
+                18,
+                7
+            ],
+            [
+                15,
+                14,
+                2
+            ],
+            [
+                2,
+                6,
+                12
+            ]
+        ],
+        "false_negatives": 17,
+        "false_positives": 24,
+        "incorrect_count": 50,
+        "misclassifications": [
+            {
+                "filename": "benign (302).png",
+                "true_class": "benign",
+                "predicted_class": "normal",
+                "confidence": 0.6390780210494995
+            },
+            {
+                "filename": "benign (377).png",
+                "true_class": "benign",
+                "predicted_class": "normal",
+                "confidence": 0.37849414348602295
+            },
+            {
+                "filename": "benign (337).png",
+                "true_class": "benign",
+                "predicted_class": "malignant",
+                "confidence": 0.4029413163661957
+            },
+            {
+                "filename": "malignant (166).png",
+                "true_class": "malignant",
+                "predicted_class": "benign",
+                "confidence": 0.5980958938598633
+            },
+            {
+                "filename": "benign (147).png",
+                "true_class": "benign",
+                "predicted_class": "malignant",
+                "confidence": 0.43534234166145325
+            },
+            {
+                "filename": "malignant (119).png",
+                "true_class": "malignant",
+                "predicted_class": "benign",
+                "confidence": 0.5797390341758728
+            },
+            {
+                "filename": "benign (378).png",
+                "true_class": "benign",
+                "predicted_class": "malignant",
+                "confidence": 0.45864561200141907
+            },
+            {
+                "filename": "normal (46).png",
+                "true_class": "normal",
+                "predicted_class": "benign",
+                "confidence": 0.45098355412483215
+            },
+            {
+                "filename": "benign (359).png",
+                "true_class": "benign",
+                "predicted_class": "malignant",
+                "confidence": 0.8754813075065613
+            },
+            {
+                "filename": "benign (405).png",
+                "true_class": "benign",
+                "predicted_class": "malignant",
+                "confidence": 0.8193271160125732
+            },
+            {
+                "filename": "malignant (190).png",
+                "true_class": "malignant",
+                "predicted_class": "benign",
+                "confidence": 0.5237800478935242
+            },
+            {
+                "filename": "normal (3).png",
+                "true_class": "normal",
+                "predicted_class": "malignant",
+                "confidence": 0.5067996978759766
+            },
+            {
+                "filename": "benign (333).png",
+                "true_class": "benign",
+                "predicted_class": "malignant",
+                "confidence": 0.9398685693740845
+            },
+            {
+                "filename": "malignant (57).png",
+                "true_class": "malignant",
+                "predicted_class": "benign",
+                "confidence": 0.6080980896949768
+            },
+            {
+                "filename": "malignant (109).png",
+                "true_class": "malignant",
+                "predicted_class": "benign",
+                "confidence": 0.47809460759162903
+            },
+            {
+                "filename": "malignant (10).png",
+                "true_class": "malignant",
+                "predicted_class": "benign",
+                "confidence": 0.8059689402580261
+            },
+            {
+                "filename": "benign (393).png",
+                "true_class": "benign",
+                "predicted_class": "malignant",
+                "confidence": 0.6426163911819458
+            },
+            {
+                "filename": "benign (214).png",
+                "true_class": "benign",
+                "predicted_class": "malignant",
+                "confidence": 0.45796433091163635
+            },
+            {
+                "filename": "benign (362).png",
+                "true_class": "benign",
+                "predicted_class": "normal",
+                "confidence": 0.4780900478363037
+            },
+            {
+                "filename": "normal (105).png",
+                "true_class": "normal",
+                "predicted_class": "malignant",
+                "confidence": 0.42296871542930603
+            },
+            {
+                "filename": "malignant (14).png",
+                "true_class": "malignant",
+                "predicted_class": "benign",
+                "confidence": 0.44686463475227356
+            },
+            {
+                "filename": "benign (245).png",
+                "true_class": "benign",
+                "predicted_class": "malignant",
+                "confidence": 0.4530913829803467
+            },
+            {
+                "filename": "normal (100).png",
+                "true_class": "normal",
+                "predicted_class": "malignant",
+                "confidence": 0.4594694972038269
+            },
+            {
+                "filename": "malignant (137).png",
+                "true_class": "malignant",
+                "predicted_class": "normal",
+                "confidence": 0.36673831939697266
+            },
+            {
+                "filename": "malignant (27).png",
+                "true_class": "malignant",
+                "predicted_class": "benign",
+                "confidence": 0.7542476654052734
+            },
+            {
+                "filename": "normal (113).png",
+                "true_class": "normal",
+                "predicted_class": "malignant",
+                "confidence": 0.6022703647613525
+            },
+            {
+                "filename": "benign (348).png",
+                "true_class": "benign",
+                "predicted_class": "normal",
+                "confidence": 0.6746231317520142
+            },
+            {
+                "filename": "normal (65).png",
+                "true_class": "normal",
+                "predicted_class": "malignant",
+                "confidence": 0.5085940957069397
+            },
+            {
+                "filename": "benign (138).png",
+                "true_class": "benign",
+                "predicted_class": "malignant",
+                "confidence": 0.4695606529712677
+            },
+            {
+                "filename": "benign (64).png",
+                "true_class": "benign",
+                "predicted_class": "malignant",
+                "confidence": 0.7566535472869873
+            },
+            {
+                "filename": "malignant (55).png",
+                "true_class": "malignant",
+                "predicted_class": "benign",
+                "confidence": 0.4120815694332123
+            },
+            {
+                "filename": "benign (85).png",
+                "true_class": "benign",
+                "predicted_class": "malignant",
+                "confidence": 0.5691591501235962
+            },
+            {
+                "filename": "benign (375).png",
+                "true_class": "benign",
+                "predicted_class": "malignant",
+                "confidence": 0.6754609942436218
+            },
+            {
+                "filename": "benign (293).png",
+                "true_class": "benign",
+                "predicted_class": "normal",
+                "confidence": 0.3950411379337311
+            },
+            {
+                "filename": "benign (269).png",
+                "true_class": "benign",
+                "predicted_class": "malignant",
+                "confidence": 0.48242896795272827
+            },
+            {
+                "filename": "malignant (88).png",
+                "true_class": "malignant",
+                "predicted_class": "benign",
+                "confidence": 0.5501822829246521
+            },
+            {
+                "filename": "benign (233).png",
+                "true_class": "benign",
+                "predicted_class": "malignant",
+                "confidence": 0.4566159248352051
+            },
+            {
+                "filename": "malignant (210).png",
+                "true_class": "malignant",
+                "predicted_class": "benign",
+                "confidence": 0.5471946001052856
+            },
+            {
+                "filename": "benign (90).png",
+                "true_class": "benign",
+                "predicted_class": "malignant",
+                "confidence": 0.5687634348869324
+            },
+            {
+                "filename": "malignant (72).png",
+                "true_class": "malignant",
+                "predicted_class": "normal",
+                "confidence": 0.359765887260437
+            },
+            {
+                "filename": "normal (27).png",
+                "true_class": "normal",
+                "predicted_class": "benign",
+                "confidence": 0.6469916701316833
+            },
+            {
+                "filename": "benign (292).png",
+                "true_class": "benign",
+                "predicted_class": "normal",
+                "confidence": 0.4649244546890259
+            },
+            {
+                "filename": "malignant (16).png",
+                "true_class": "malignant",
+                "predicted_class": "benign",
+                "confidence": 0.6283649802207947
+            },
+            {
+                "filename": "benign (381).png",
+                "true_class": "benign",
+                "predicted_class": "malignant",
+                "confidence": 0.5692642331123352
+            },
+            {
+                "filename": "normal (130).png",
+                "true_class": "normal",
+                "predicted_class": "malignant",
+                "confidence": 0.4208347201347351
+            },
+            {
+                "filename": "malignant (128).png",
+                "true_class": "malignant",
+                "predicted_class": "benign",
+                "confidence": 0.5387871861457825
+            },
+            {
+                "filename": "malignant (37).png",
+                "true_class": "malignant",
+                "predicted_class": "benign",
+                "confidence": 0.5014133453369141
+            },
+            {
+                "filename": "benign (426).png",
+                "true_class": "benign",
+                "predicted_class": "malignant",
+                "confidence": 0.5099568963050842
+            },
+            {
+                "filename": "malignant (129).png",
+                "true_class": "malignant",
+                "predicted_class": "benign",
+                "confidence": 0.5679532289505005
+            },
+            {
+                "filename": "benign (243).png",
+                "true_class": "benign",
+                "predicted_class": "normal",
+                "confidence": 0.49185508489608765
+            }
+        ]
+    },
+    "training_date": "2026-08-23T18:07:49.960664"
+}

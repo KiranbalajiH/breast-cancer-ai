@@ -1,0 +1,850 @@
+{
+    "V5-B": {
+        "model_name": "V5-B Production Baseline",
+        "fitted_temperature_T": 1.1819897980285217,
+        "validation_selected_params": {
+            "policy_b_threshold": 0.64,
+            "policy_c_threshold": 0.6,
+            "policy_d_bounds": [
+                0.55,
+                0.65
+            ]
+        },
+        "historical_test_117": {
+            "policy_a_argmax": {
+                "accuracy": 0.811965811965812,
+                "macro_precision": 0.7917261904761904,
+                "macro_recall": 0.8607371794871795,
+                "macro_f1": 0.8019351119894598,
+                "benign": {
+                    "precision": 0.96,
+                    "recall": 0.7384615384615385,
+                    "f1": 0.8347826086956521,
+                    "support": 65
+                },
+                "malignant": {
+                    "precision": 0.84375,
+                    "recall": 0.84375,
+                    "f1": 0.84375,
+                    "support": 32
+                },
+                "normal": {
+                    "precision": 0.5714285714285714,
+                    "recall": 1.0,
+                    "f1": 0.7272727272727273,
+                    "support": 20
+                },
+                "false_negatives": 5,
+                "false_positives": 5,
+                "total_incorrect": 22,
+                "confusion_matrix": [
+                    [
+                        48,
+                        5,
+                        12
+                    ],
+                    [
+                        2,
+                        27,
+                        3
+                    ],
+                    [
+                        0,
+                        0,
+                        20
+                    ]
+                ],
+                "review_count": 0,
+                "review_rate": 0.0,
+                "total_samples": 117,
+                "evaluated_samples": 117,
+                "mal_threshold_used": 0.5,
+                "low_bound": null,
+                "high_bound": null
+            },
+            "policy_b_threshold": {
+                "accuracy": 0.7863247863247863,
+                "macro_precision": 0.7697677393417758,
+                "macro_recall": 0.8294871794871795,
+                "macro_f1": 0.7720752795877011,
+                "benign": {
+                    "precision": 0.9411764705882353,
+                    "recall": 0.7384615384615385,
+                    "f1": 0.8275862068965517,
+                    "support": 65
+                },
+                "malignant": {
+                    "precision": 0.8275862068965517,
+                    "recall": 0.75,
+                    "f1": 0.7868852459016393,
+                    "support": 32
+                },
+                "normal": {
+                    "precision": 0.5405405405405406,
+                    "recall": 1.0,
+                    "f1": 0.7017543859649122,
+                    "support": 20
+                },
+                "false_negatives": 8,
+                "false_positives": 5,
+                "total_incorrect": 25,
+                "confusion_matrix": [
+                    [
+                        48,
+                        5,
+                        12
+                    ],
+                    [
+                        3,
+                        24,
+                        5
+                    ],
+                    [
+                        0,
+                        0,
+                        20
+                    ]
+                ],
+                "review_count": 0,
+                "review_rate": 0.0,
+                "total_samples": 117,
+                "evaluated_samples": 117,
+                "mal_threshold_used": 0.64,
+                "low_bound": null,
+                "high_bound": null
+            },
+            "policy_c_temperature_calibrated": {
+                "accuracy": 0.7863247863247863,
+                "macro_precision": 0.7697677393417758,
+                "macro_recall": 0.8294871794871795,
+                "macro_f1": 0.7720752795877011,
+                "benign": {
+                    "precision": 0.9411764705882353,
+                    "recall": 0.7384615384615385,
+                    "f1": 0.8275862068965517,
+                    "support": 65
+                },
+                "malignant": {
+                    "precision": 0.8275862068965517,
+                    "recall": 0.75,
+                    "f1": 0.7868852459016393,
+                    "support": 32
+                },
+                "normal": {
+                    "precision": 0.5405405405405406,
+                    "recall": 1.0,
+                    "f1": 0.7017543859649122,
+                    "support": 20
+                },
+                "false_negatives": 8,
+                "false_positives": 5,
+                "total_incorrect": 25,
+                "confusion_matrix": [
+                    [
+                        48,
+                        5,
+                        12
+                    ],
+                    [
+                        3,
+                        24,
+                        5
+                    ],
+                    [
+                        0,
+                        0,
+                        20
+                    ]
+                ],
+                "review_count": 0,
+                "review_rate": 0.0,
+                "total_samples": 117,
+                "evaluated_samples": 117,
+                "mal_threshold_used": 0.6,
+                "low_bound": null,
+                "high_bound": null
+            },
+            "policy_d_selective_prediction": {
+                "accuracy": 0.7964601769911505,
+                "macro_precision": 0.7758066189438738,
+                "macro_recall": 0.8413919413919414,
+                "macro_f1": 0.7849529780564263,
+                "benign": {
+                    "precision": 0.9411764705882353,
+                    "recall": 0.7384615384615385,
+                    "f1": 0.8275862068965517,
+                    "support": 65
+                },
+                "malignant": {
+                    "precision": 0.8148148148148148,
+                    "recall": 0.7857142857142857,
+                    "f1": 0.8,
+                    "support": 28
+                },
+                "normal": {
+                    "precision": 0.5714285714285714,
+                    "recall": 1.0,
+                    "f1": 0.7272727272727273,
+                    "support": 20
+                },
+                "false_negatives": 6,
+                "false_positives": 5,
+                "total_incorrect": 23,
+                "confusion_matrix": [
+                    [
+                        48,
+                        5,
+                        12
+                    ],
+                    [
+                        3,
+                        22,
+                        3
+                    ],
+                    [
+                        0,
+                        0,
+                        20
+                    ]
+                ],
+                "review_count": 4,
+                "review_rate": 0.03418803418803419,
+                "total_samples": 117,
+                "evaluated_samples": 113,
+                "mal_threshold_used": 0.5,
+                "low_bound": 0.55,
+                "high_bound": 0.65
+            }
+        },
+        "grouped_test": {
+            "policy_a_argmax": {
+                "accuracy": 0.7102803738317757,
+                "macro_precision": 0.6835821835821836,
+                "macro_recall": 0.7472635855873241,
+                "macro_f1": 0.6983030737695847,
+                "benign": {
+                    "precision": 0.8636363636363636,
+                    "recall": 0.6440677966101694,
+                    "f1": 0.7378640776699029,
+                    "support": 59
+                },
+                "malignant": {
+                    "precision": 0.6486486486486487,
+                    "recall": 0.7741935483870968,
+                    "f1": 0.7058823529411765,
+                    "support": 31
+                },
+                "normal": {
+                    "precision": 0.5384615384615384,
+                    "recall": 0.8235294117647058,
+                    "f1": 0.6511627906976745,
+                    "support": 17
+                },
+                "false_negatives": 7,
+                "false_positives": 13,
+                "total_incorrect": 31,
+                "confusion_matrix": [
+                    [
+                        38,
+                        13,
+                        8
+                    ],
+                    [
+                        3,
+                        24,
+                        4
+                    ],
+                    [
+                        3,
+                        0,
+                        14
+                    ]
+                ],
+                "review_count": 0,
+                "review_rate": 0.0,
+                "total_samples": 107,
+                "evaluated_samples": 107,
+                "mal_threshold_used": 0.5,
+                "low_bound": null,
+                "high_bound": null
+            },
+            "policy_b_threshold": {
+                "accuracy": 0.6915887850467289,
+                "macro_precision": 0.6664796633941094,
+                "macro_recall": 0.7206552385853193,
+                "macro_f1": 0.6715716887848036,
+                "benign": {
+                    "precision": 0.8478260869565217,
+                    "recall": 0.6610169491525424,
+                    "f1": 0.7428571428571429,
+                    "support": 59
+                },
+                "malignant": {
+                    "precision": 0.7,
+                    "recall": 0.6774193548387096,
+                    "f1": 0.6885245901639344,
+                    "support": 31
+                },
+                "normal": {
+                    "precision": 0.45161290322580644,
+                    "recall": 0.8235294117647058,
+                    "f1": 0.5833333333333334,
+                    "support": 17
+                },
+                "false_negatives": 10,
+                "false_positives": 9,
+                "total_incorrect": 33,
+                "confusion_matrix": [
+                    [
+                        39,
+                        9,
+                        11
+                    ],
+                    [
+                        4,
+                        21,
+                        6
+                    ],
+                    [
+                        3,
+                        0,
+                        14
+                    ]
+                ],
+                "review_count": 0,
+                "review_rate": 0.0,
+                "total_samples": 107,
+                "evaluated_samples": 107,
+                "mal_threshold_used": 0.64,
+                "low_bound": null,
+                "high_bound": null
+            },
+            "policy_c_temperature_calibrated": {
+                "accuracy": 0.6915887850467289,
+                "macro_precision": 0.6664796633941094,
+                "macro_recall": 0.7206552385853193,
+                "macro_f1": 0.6715716887848036,
+                "benign": {
+                    "precision": 0.8478260869565217,
+                    "recall": 0.6610169491525424,
+                    "f1": 0.7428571428571429,
+                    "support": 59
+                },
+                "malignant": {
+                    "precision": 0.7,
+                    "recall": 0.6774193548387096,
+                    "f1": 0.6885245901639344,
+                    "support": 31
+                },
+                "normal": {
+                    "precision": 0.45161290322580644,
+                    "recall": 0.8235294117647058,
+                    "f1": 0.5833333333333334,
+                    "support": 17
+                },
+                "false_negatives": 10,
+                "false_positives": 9,
+                "total_incorrect": 33,
+                "confusion_matrix": [
+                    [
+                        39,
+                        9,
+                        11
+                    ],
+                    [
+                        4,
+                        21,
+                        6
+                    ],
+                    [
+                        3,
+                        0,
+                        14
+                    ]
+                ],
+                "review_count": 0,
+                "review_rate": 0.0,
+                "total_samples": 107,
+                "evaluated_samples": 107,
+                "mal_threshold_used": 0.6,
+                "low_bound": null,
+                "high_bound": null
+            },
+            "policy_d_selective_prediction": {
+                "accuracy": 0.7156862745098039,
+                "macro_precision": 0.6854406130268199,
+                "macro_recall": 0.7455613152029649,
+                "macro_f1": 0.697929829968665,
+                "benign": {
+                    "precision": 0.8666666666666667,
+                    "recall": 0.6724137931034483,
+                    "f1": 0.7572815533980582,
+                    "support": 58
+                },
+                "malignant": {
+                    "precision": 0.6896551724137931,
+                    "recall": 0.7407407407407407,
+                    "f1": 0.7142857142857143,
+                    "support": 27
+                },
+                "normal": {
+                    "precision": 0.5,
+                    "recall": 0.8235294117647058,
+                    "f1": 0.6222222222222222,
+                    "support": 17
+                },
+                "false_negatives": 7,
+                "false_positives": 9,
+                "total_incorrect": 29,
+                "confusion_matrix": [
+                    [
+                        39,
+                        9,
+                        10
+                    ],
+                    [
+                        3,
+                        20,
+                        4
+                    ],
+                    [
+                        3,
+                        0,
+                        14
+                    ]
+                ],
+                "review_count": 5,
+                "review_rate": 0.04672897196261682,
+                "total_samples": 107,
+                "evaluated_samples": 102,
+                "mal_threshold_used": 0.5,
+                "low_bound": 0.55,
+                "high_bound": 0.65
+            }
+        }
+    },
+    "V11-B": {
+        "model_name": "V11-B Sensitivity Candidate",
+        "fitted_temperature_T": 1.4385424436272796,
+        "validation_selected_params": {
+            "policy_b_threshold": 0.4,
+            "policy_c_threshold": 0.7,
+            "policy_d_bounds": [
+                0.65,
+                0.75
+            ]
+        },
+        "historical_test_117": {
+            "policy_a_argmax": {
+                "accuracy": 0.7777777777777778,
+                "macro_precision": 0.7581018518518517,
+                "macro_recall": 0.8392628205128204,
+                "macro_f1": 0.7727143227143228,
+                "benign": {
+                    "precision": 0.9555555555555556,
+                    "recall": 0.6615384615384615,
+                    "f1": 0.7818181818181819,
+                    "support": 65
+                },
+                "malignant": {
+                    "precision": 0.725,
+                    "recall": 0.90625,
+                    "f1": 0.8055555555555556,
+                    "support": 32
+                },
+                "normal": {
+                    "precision": 0.59375,
+                    "recall": 0.95,
+                    "f1": 0.7307692307692307,
+                    "support": 20
+                },
+                "false_negatives": 3,
+                "false_positives": 11,
+                "total_incorrect": 26,
+                "confusion_matrix": [
+                    [
+                        43,
+                        11,
+                        11
+                    ],
+                    [
+                        1,
+                        29,
+                        2
+                    ],
+                    [
+                        1,
+                        0,
+                        19
+                    ]
+                ],
+                "review_count": 0,
+                "review_rate": 0.0,
+                "total_samples": 117,
+                "evaluated_samples": 117,
+                "mal_threshold_used": 0.5,
+                "low_bound": null,
+                "high_bound": null
+            },
+            "policy_b_threshold": {
+                "accuracy": 0.7863247863247863,
+                "macro_precision": 0.7715409913084331,
+                "macro_recall": 0.8549679487179486,
+                "macro_f1": 0.7845224171539961,
+                "benign": {
+                    "precision": 0.9767441860465116,
+                    "recall": 0.6461538461538462,
+                    "f1": 0.7777777777777778,
+                    "support": 65
+                },
+                "malignant": {
+                    "precision": 0.7045454545454546,
+                    "recall": 0.96875,
+                    "f1": 0.8157894736842105,
+                    "support": 32
+                },
+                "normal": {
+                    "precision": 0.6333333333333333,
+                    "recall": 0.95,
+                    "f1": 0.76,
+                    "support": 20
+                },
+                "false_negatives": 1,
+                "false_positives": 13,
+                "total_incorrect": 25,
+                "confusion_matrix": [
+                    [
+                        42,
+                        13,
+                        10
+                    ],
+                    [
+                        0,
+                        31,
+                        1
+                    ],
+                    [
+                        1,
+                        0,
+                        19
+                    ]
+                ],
+                "review_count": 0,
+                "review_rate": 0.0,
+                "total_samples": 117,
+                "evaluated_samples": 117,
+                "mal_threshold_used": 0.4,
+                "low_bound": null,
+                "high_bound": null
+            },
+            "policy_c_temperature_calibrated": {
+                "accuracy": 0.811965811965812,
+                "macro_precision": 0.7884729649435531,
+                "macro_recall": 0.8544871794871796,
+                "macro_f1": 0.8020352668368282,
+                "benign": {
+                    "precision": 0.9411764705882353,
+                    "recall": 0.7384615384615385,
+                    "f1": 0.8275862068965517,
+                    "support": 65
+                },
+                "malignant": {
+                    "precision": 0.8484848484848485,
+                    "recall": 0.875,
+                    "f1": 0.8615384615384616,
+                    "support": 32
+                },
+                "normal": {
+                    "precision": 0.5757575757575758,
+                    "recall": 0.95,
+                    "f1": 0.7169811320754716,
+                    "support": 20
+                },
+                "false_negatives": 4,
+                "false_positives": 5,
+                "total_incorrect": 22,
+                "confusion_matrix": [
+                    [
+                        48,
+                        5,
+                        12
+                    ],
+                    [
+                        2,
+                        28,
+                        2
+                    ],
+                    [
+                        1,
+                        0,
+                        19
+                    ]
+                ],
+                "review_count": 0,
+                "review_rate": 0.0,
+                "total_samples": 117,
+                "evaluated_samples": 117,
+                "mal_threshold_used": 0.7,
+                "low_bound": null,
+                "high_bound": null
+            },
+            "policy_d_selective_prediction": {
+                "accuracy": 0.8141592920353983,
+                "macro_precision": 0.7941414141414141,
+                "macro_recall": 0.8542328042328041,
+                "macro_f1": 0.8051687352739281,
+                "benign": {
+                    "precision": 0.94,
+                    "recall": 0.746031746031746,
+                    "f1": 0.831858407079646,
+                    "support": 63
+                },
+                "malignant": {
+                    "precision": 0.8666666666666667,
+                    "recall": 0.8666666666666667,
+                    "f1": 0.8666666666666667,
+                    "support": 30
+                },
+                "normal": {
+                    "precision": 0.5757575757575758,
+                    "recall": 0.95,
+                    "f1": 0.7169811320754716,
+                    "support": 20
+                },
+                "false_negatives": 4,
+                "false_positives": 4,
+                "total_incorrect": 21,
+                "confusion_matrix": [
+                    [
+                        47,
+                        4,
+                        12
+                    ],
+                    [
+                        2,
+                        26,
+                        2
+                    ],
+                    [
+                        1,
+                        0,
+                        19
+                    ]
+                ],
+                "review_count": 4,
+                "review_rate": 0.03418803418803419,
+                "total_samples": 117,
+                "evaluated_samples": 113,
+                "mal_threshold_used": 0.5,
+                "low_bound": 0.65,
+                "high_bound": 0.75
+            }
+        },
+        "grouped_test": {
+            "policy_a_argmax": {
+                "accuracy": 0.7102803738317757,
+                "macro_precision": 0.7067750677506774,
+                "macro_recall": 0.7625724975610803,
+                "macro_f1": 0.7157894736842105,
+                "benign": {
+                    "precision": 0.8536585365853658,
+                    "recall": 0.5932203389830508,
+                    "f1": 0.7,
+                    "support": 59
+                },
+                "malignant": {
+                    "precision": 0.6,
+                    "recall": 0.8709677419354839,
+                    "f1": 0.7105263157894737,
+                    "support": 31
+                },
+                "normal": {
+                    "precision": 0.6666666666666666,
+                    "recall": 0.8235294117647058,
+                    "f1": 0.7368421052631579,
+                    "support": 17
+                },
+                "false_negatives": 4,
+                "false_positives": 18,
+                "total_incorrect": 31,
+                "confusion_matrix": [
+                    [
+                        35,
+                        18,
+                        6
+                    ],
+                    [
+                        3,
+                        27,
+                        1
+                    ],
+                    [
+                        3,
+                        0,
+                        14
+                    ]
+                ],
+                "review_count": 0,
+                "review_rate": 0.0,
+                "total_samples": 107,
+                "evaluated_samples": 107,
+                "mal_threshold_used": 0.5,
+                "low_bound": null,
+                "high_bound": null
+            },
+            "policy_b_threshold": {
+                "accuracy": 0.6915887850467289,
+                "macro_precision": 0.700986700986701,
+                "macro_recall": 0.7563760331907504,
+                "macro_f1": 0.7011695906432749,
+                "benign": {
+                    "precision": 0.8648648648648649,
+                    "recall": 0.5423728813559322,
+                    "f1": 0.6666666666666666,
+                    "support": 59
+                },
+                "malignant": {
+                    "precision": 0.5714285714285714,
+                    "recall": 0.9032258064516129,
+                    "f1": 0.7,
+                    "support": 31
+                },
+                "normal": {
+                    "precision": 0.6666666666666666,
+                    "recall": 0.8235294117647058,
+                    "f1": 0.7368421052631579,
+                    "support": 17
+                },
+                "false_negatives": 3,
+                "false_positives": 21,
+                "total_incorrect": 33,
+                "confusion_matrix": [
+                    [
+                        32,
+                        21,
+                        6
+                    ],
+                    [
+                        2,
+                        28,
+                        1
+                    ],
+                    [
+                        3,
+                        0,
+                        14
+                    ]
+                ],
+                "review_count": 0,
+                "review_rate": 0.0,
+                "total_samples": 107,
+                "evaluated_samples": 107,
+                "mal_threshold_used": 0.4,
+                "low_bound": null,
+                "high_bound": null
+            },
+            "policy_c_temperature_calibrated": {
+                "accuracy": 0.7009345794392523,
+                "macro_precision": 0.6711344763348174,
+                "macro_recall": 0.7314079267573623,
+                "macro_f1": 0.6853812853812854,
+                "benign": {
+                    "precision": 0.8478260869565217,
+                    "recall": 0.6610169491525424,
+                    "f1": 0.7428571428571429,
+                    "support": 59
+                },
+                "malignant": {
+                    "precision": 0.6470588235294118,
+                    "recall": 0.7096774193548387,
+                    "f1": 0.676923076923077,
+                    "support": 31
+                },
+                "normal": {
+                    "precision": 0.5185185185185185,
+                    "recall": 0.8235294117647058,
+                    "f1": 0.6363636363636364,
+                    "support": 17
+                },
+                "false_negatives": 9,
+                "false_positives": 12,
+                "total_incorrect": 32,
+                "confusion_matrix": [
+                    [
+                        39,
+                        12,
+                        8
+                    ],
+                    [
+                        4,
+                        22,
+                        5
+                    ],
+                    [
+                        3,
+                        0,
+                        14
+                    ]
+                ],
+                "review_count": 0,
+                "review_rate": 0.0,
+                "total_samples": 107,
+                "evaluated_samples": 107,
+                "mal_threshold_used": 0.7,
+                "low_bound": null,
+                "high_bound": null
+            },
+            "policy_d_selective_prediction": {
+                "accuracy": 0.7474747474747475,
+                "macro_precision": 0.7183760683760684,
+                "macro_recall": 0.7652505446623094,
+                "macro_f1": 0.7296805261921541,
+                "benign": {
+                    "precision": 0.8666666666666667,
+                    "recall": 0.7222222222222222,
+                    "f1": 0.7878787878787878,
+                    "support": 54
+                },
+                "malignant": {
+                    "precision": 0.75,
+                    "recall": 0.75,
+                    "f1": 0.75,
+                    "support": 28
+                },
+                "normal": {
+                    "precision": 0.5384615384615384,
+                    "recall": 0.8235294117647058,
+                    "f1": 0.6511627906976745,
+                    "support": 17
+                },
+                "false_negatives": 7,
+                "false_positives": 7,
+                "total_incorrect": 25,
+                "confusion_matrix": [
+                    [
+                        39,
+                        7,
+                        8
+                    ],
+                    [
+                        3,
+                        21,
+                        4
+                    ],
+                    [
+                        3,
+                        0,
+                        14
+                    ]
+                ],
+                "review_count": 8,
+                "review_rate": 0.07476635514018691,
+                "total_samples": 107,
+                "evaluated_samples": 99,
+                "mal_threshold_used": 0.5,
+                "low_bound": 0.65,
+                "high_bound": 0.75
+            }
+        }
+    }
+}

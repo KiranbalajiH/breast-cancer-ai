@@ -2075,11 +2075,6 @@
         "class_label": "benign"
     },
     {
-        "image_path": "dataset/BUSI/benign/benign (8).png",
-        "source_dataset": "BUSI",
-        "class_label": "benign"
-    },
-    {
         "image_path": "dataset/BUSI/benign/benign (80).png",
         "source_dataset": "BUSI",
         "class_label": "benign"
@@ -2126,11 +2121,6 @@
     },
     {
         "image_path": "dataset/BUSI/benign/benign (89).png",
-        "source_dataset": "BUSI",
-        "class_label": "benign"
-    },
-    {
-        "image_path": "dataset/BUSI/benign/benign (9).png",
         "source_dataset": "BUSI",
         "class_label": "benign"
     },

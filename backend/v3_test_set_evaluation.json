@@ -1,0 +1,194 @@
+{
+  "test_set_size": 117,
+  "test_set_class_counts": {
+    "benign": 65,
+    "malignant": 32,
+    "normal": 20
+  },
+  "model_results": [
+    {
+      "name": "V1 Baseline (MobileNetV2)",
+      "path": "c:\\Users\\kiran\\BCD\\backend\\models\\breast_image_classifier.keras",
+      "accuracy": 0.8461538461538461,
+      "macro_precision": 0.8590465872156012,
+      "macro_recall": 0.8317307692307692,
+      "macro_f1": 0.8420892494929006,
+      "benign": {
+        "precision": 0.8309859154929577,
+        "recall": 0.9076923076923077,
+        "f1": 0.8676470588235294,
+        "support": 65
+      },
+      "malignant": {
+        "precision": 0.8461538461538461,
+        "recall": 0.6875,
+        "f1": 0.7586206896551724,
+        "support": 32
+      },
+      "normal": {
+        "precision": 0.9,
+        "recall": 0.9,
+        "f1": 0.9,
+        "support": 20
+      },
+      "false_negatives": 10,
+      "false_positives": 4,
+      "total_incorrect": 18,
+      "confusion_matrix": [
+        [
+          59,
+          4,
+          2
+        ],
+        [
+          10,
+          22,
+          0
+        ],
+        [
+          2,
+          0,
+          18
+        ]
+      ]
+    },
+    {
+      "name": "V2 Model (DenseNet121 / Candidate)",
+      "path": "c:\\Users\\kiran\\BCD\\backend\\models\\breast_image_classifier_v2.keras",
+      "accuracy": 0.5384615384615384,
+      "macro_precision": 0.658874458874459,
+      "macro_recall": 0.5572115384615385,
+      "macro_f1": 0.5223992703471216,
+      "benign": {
+        "precision": 0.9,
+        "recall": 0.4153846153846154,
+        "f1": 0.5684210526315789,
+        "support": 65
+      },
+      "malignant": {
+        "precision": 0.37662337662337664,
+        "recall": 0.90625,
+        "f1": 0.5321100917431193,
+        "support": 32
+      },
+      "normal": {
+        "precision": 0.7,
+        "recall": 0.35,
+        "f1": 0.4666666666666667,
+        "support": 20
+      },
+      "false_negatives": 3,
+      "false_positives": 48,
+      "total_incorrect": 54,
+      "confusion_matrix": [
+        [
+          27,
+          36,
+          2
+        ],
+        [
+          2,
+          29,
+          1
+        ],
+        [
+          1,
+          12,
+          7
+        ]
+      ]
+    },
+    {
+      "name": "V3 Candidate: mobilenetv2_v3_mildweights.keras",
+      "path": "c:\\Users\\kiran\\BCD\\backend\\models\\candidates\\mobilenetv2_v3_mildweights.keras",
+      "accuracy": 0.6923076923076923,
+      "macro_precision": 0.6500294724432656,
+      "macro_recall": 0.6639423076923078,
+      "macro_f1": 0.6540383220733615,
+      "benign": {
+        "precision": 0.8103448275862069,
+        "recall": 0.7230769230769231,
+        "f1": 0.7642276422764228,
+        "support": 65
+      },
+      "malignant": {
+        "precision": 0.5897435897435898,
+        "recall": 0.71875,
+        "f1": 0.647887323943662,
+        "support": 32
+      },
+      "normal": {
+        "precision": 0.55,
+        "recall": 0.55,
+        "f1": 0.55,
+        "support": 20
+      },
+      "false_negatives": 9,
+      "false_positives": 16,
+      "total_incorrect": 36,
+      "confusion_matrix": [
+        [
+          47,
+          10,
+          8
+        ],
+        [
+          8,
+          23,
+          1
+        ],
+        [
+          3,
+          6,
+          11
+        ]
+      ]
+    },
+    {
+      "name": "V3 Candidate: mobilenetv2_v3_noweights.keras",
+      "path": "c:\\Users\\kiran\\BCD\\backend\\models\\candidates\\mobilenetv2_v3_noweights.keras",
+      "accuracy": 0.7094017094017094,
+      "macro_precision": 0.6717741935483871,
+      "macro_recall": 0.6616987179487179,
+      "macro_f1": 0.6601279006790818,
+      "benign": {
+        "precision": 0.7903225806451613,
+        "recall": 0.7538461538461538,
+        "f1": 0.7716535433070866,
+        "support": 65
+      },
+      "malignant": {
+        "precision": 0.625,
+        "recall": 0.78125,
+        "f1": 0.6944444444444444,
+        "support": 32
+      },
+      "normal": {
+        "precision": 0.6,
+        "recall": 0.45,
+        "f1": 0.5142857142857142,
+        "support": 20
+      },
+      "false_negatives": 7,
+      "false_positives": 15,
+      "total_incorrect": 34,
+      "confusion_matrix": [
+        [
+          49,
+          11,
+          5
+        ],
+        [
+          6,
+          25,
+          1
+        ],
+        [
+          7,
+          4,
+          9
+        ]
+      ]
+    }
+  ]
+}

@@ -1,0 +1,78 @@
+{
+    "model_version": "4.0.0",
+    "variant_id": "v4_mobilenetv2_a",
+    "variant_name": "V4-A: MobileNetV2 (No Weights / Conservative Fine-Tuning)",
+    "architecture": "MobileNetV2",
+    "class_mapping": [
+        "benign",
+        "malignant",
+        "normal"
+    ],
+    "image_size": [
+        224,
+        224
+    ],
+    "split_counts": {
+        "train": {
+            "benign": 304,
+            "malignant": 146,
+            "normal": 93
+        },
+        "validation": {
+            "benign": 65,
+            "malignant": 31,
+            "normal": 20
+        },
+        "test": {
+            "benign": 65,
+            "malignant": 32,
+            "normal": 20
+        }
+    },
+    "weight_configuration": "None",
+    "validation_metrics": {
+        "accuracy": 0.75,
+        "macro_precision": 0.714569209039548,
+        "macro_recall": 0.7488833746898264,
+        "macro_f1": 0.7280764635603346,
+        "benign": {
+            "precision": 0.847457627118644,
+            "recall": 0.7692307692307693,
+            "f1": 0.8064516129032258,
+            "support": 65
+        },
+        "malignant": {
+            "precision": 0.65625,
+            "recall": 0.6774193548387096,
+            "f1": 0.6666666666666666,
+            "support": 31
+        },
+        "normal": {
+            "precision": 0.64,
+            "recall": 0.8,
+            "f1": 0.7111111111111111,
+            "support": 20
+        },
+        "false_negatives": 10,
+        "false_positives": 11,
+        "total_incorrect": 29,
+        "confusion_matrix": [
+            [
+                50,
+                9,
+                6
+            ],
+            [
+                7,
+                21,
+                3
+            ],
+            [
+                2,
+                2,
+                16
+            ]
+        ]
+    },
+    "training_date": "2026-08-27T19:51:38.333258"
+}

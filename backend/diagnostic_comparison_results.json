@@ -2,40 +2,33 @@
   "seed": 42,
   "comparisons": [
     {
-      "filename": "malignant (98)_mask.png",
-      "label": "Dataset_BUSI_with_GT/malignant",
+      "filename": "normal (10).png",
+      "label": "BUSI/normal",
       "initial": {
-        "detected": 1,
-        "mean_area": 25648.0,
-        "mean_perimeter": 1122.4894585609436,
-        "mean_compactness": 2.9093195677183243,
-        "compatibility": "N/A",
-        "incompat_count": 0
+        "detected": 13,
+        "mean_area": 6430.846153846154,
+        "mean_perimeter": 718.6448056147649,
+        "mean_compactness": 6.477783689149454,
+        "compatibility": "Incompatible",
+        "incompat_count": 18
       },
       "improved": {
-        "detected": 6,
-        "accepted": 4,
-        "rejected": 2,
-        "mean_area": 2169.75,
-        "mean_perimeter": 179.78565323352814,
-        "mean_compactness": 0.42720624742728996,
-        "compatibility": "Incompatible",
-        "incompat_count": 8,
+        "detected": 93,
+        "accepted": 10,
+        "rejected": 83,
+        "mean_area": 201.2,
+        "mean_perimeter": 55.68590247631073,
+        "mean_compactness": 0.3609562944429626,
+        "compatibility": "Potentially Incompatible",
+        "incompat_count": 1,
         "incompat_features": [
-          "mean compactness",
-          "mean symmetry",
-          "mean fractal dimension",
-          "radius error",
-          "perimeter error",
-          "area error",
-          "worst perimeter",
-          "worst area"
+          "mean fractal dimension"
         ]
       }
     },
     {
       "filename": "benign (2).png",
-      "label": "Dataset_BUSI_with_GT/benign",
+      "label": "BUSI/benign",
       "initial": {
         "detected": 3,
         "mean_area": 24332.666666666668,
@@ -65,7 +58,7 @@
     },
     {
       "filename": "benign (121).png",
-      "label": "Dataset_BUSI_with_GT/benign",
+      "label": "BUSI/benign",
       "initial": {
         "detected": 10,
         "mean_area": 9108.2,
@@ -90,35 +83,31 @@
       }
     },
     {
-      "filename": "normal (72).png",
-      "label": "Dataset_BUSI_with_GT/normal",
+      "filename": "normal (74)_mask.png",
+      "label": "BUSI/normal",
       "initial": {
-        "detected": 18,
-        "mean_area": 8406.777777777777,
-        "mean_perimeter": 965.0403487947252,
-        "mean_compactness": 9.902952858550195,
-        "compatibility": "Incompatible",
-        "incompat_count": 18
+        "detected": 0,
+        "mean_area": 0.0,
+        "mean_perimeter": 0.0,
+        "mean_compactness": 0.0,
+        "compatibility": "N/A",
+        "incompat_count": 0
       },
       "improved": {
-        "detected": 222,
-        "accepted": 7,
-        "rejected": 215,
-        "mean_area": 86.64285714285714,
-        "mean_perimeter": 37.458748527935576,
-        "mean_compactness": 0.31902779902138495,
-        "compatibility": "Incompatible",
-        "incompat_count": 3,
-        "incompat_features": [
-          "mean symmetry",
-          "fractal dimension error",
-          "worst fractal dimension"
-        ]
+        "detected": 0,
+        "accepted": 0,
+        "rejected": 0,
+        "mean_area": 0.0,
+        "mean_perimeter": 0.0,
+        "mean_compactness": 0.0,
+        "compatibility": "N/A",
+        "incompat_count": 0,
+        "incompat_features": []
       }
     },
     {
       "filename": "benign (349).png",
-      "label": "Dataset_BUSI_with_GT/benign",
+      "label": "BUSI/benign",
       "initial": {
         "detected": 8,
         "mean_area": 9164.125,

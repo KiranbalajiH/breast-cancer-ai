@@ -1,0 +1,23 @@
+{
+    "total_trainable": 778,
+    "total_masks": 795,
+    "class_counts": {
+        "benign": 435,
+        "malignant": 210,
+        "normal": 133
+    },
+    "mask_counts": {
+        "benign": 451,
+        "malignant": 211,
+        "normal": 133
+    },
+    "exact_raw_duplicates": 1,
+    "exact_pixel_duplicates": 1,
+    "label_conflicts": 1,
+    "quality_summary": {
+        "dark": 4,
+        "bright": 1,
+        "low_contrast": 3,
+        "blurry": 239
+    }
+}

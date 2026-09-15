@@ -1,0 +1,308 @@
+{
+    "model_version": "3.0.0",
+    "architecture": "MobileNetV2",
+    "weight_configuration": "noweights",
+    "class_mapping": [
+        "benign",
+        "malignant",
+        "normal"
+    ],
+    "image_size": [
+        224,
+        224
+    ],
+    "preprocessing_method": "Keras MobileNetV2 Native Preprocessing",
+    "dataset_sources_used": [
+        "BUSI"
+    ],
+    "split_counts": {
+        "train": 543,
+        "validation": 116,
+        "test": 117
+    },
+    "augmentation_summary": {
+        "horizontal_flip": true,
+        "max_rotation": 0.05,
+        "max_translation": 0.05,
+        "max_zoom": 0.05
+    },
+    "dropout_rate": 0.3,
+    "staged_training": {
+        "stage1_warmup_epochs": 8,
+        "stage1_lr": 0.0005,
+        "stage2_finetune_epochs": 30,
+        "stage2_lr": 1e-05,
+        "early_stopping_patience": 7,
+        "lr_reduction_patience": 3
+    },
+    "class_balancing_method": "None",
+    "validation_evaluation": {
+        "accuracy": 0.6724137931034483,
+        "precision": [
+            0.8363636363636363,
+            0.5,
+            0.5789473684210527
+        ],
+        "recall": [
+            0.7076923076923077,
+            0.6774193548387096,
+            0.55
+        ],
+        "f1": [
+            0.7666666666666667,
+            0.5753424657534246,
+            0.5641025641025641
+        ],
+        "confusion_matrix": [
+            [
+                46,
+                14,
+                5
+            ],
+            [
+                7,
+                21,
+                3
+            ],
+            [
+                2,
+                7,
+                11
+            ]
+        ],
+        "false_negatives": 10,
+        "false_positives": 21,
+        "incorrect_count": 38,
+        "misclassifications": [
+            {
+                "filename": "benign (302).png",
+                "true_class": "benign",
+                "predicted_class": "normal",
+                "confidence": 0.6291212439537048
+            },
+            {
+                "filename": "benign (377).png",
+                "true_class": "benign",
+                "predicted_class": "malignant",
+                "confidence": 0.5770416855812073
+            },
+            {
+                "filename": "malignant (166).png",
+                "true_class": "malignant",
+                "predicted_class": "normal",
+                "confidence": 0.41997119784355164
+            },
+            {
+                "filename": "benign (147).png",
+                "true_class": "benign",
+                "predicted_class": "malignant",
+                "confidence": 0.4184642434120178
+            },
+            {
+                "filename": "benign (378).png",
+                "true_class": "benign",
+                "predicted_class": "normal",
+                "confidence": 0.3848574161529541
+            },
+            {
+                "filename": "normal (46).png",
+                "true_class": "normal",
+                "predicted_class": "benign",
+                "confidence": 0.5003737807273865
+            },
+            {
+                "filename": "benign (405).png",
+                "true_class": "benign",
+                "predicted_class": "malignant",
+                "confidence": 0.8051806092262268
+            },
+            {
+                "filename": "malignant (190).png",
+                "true_class": "malignant",
+                "predicted_class": "benign",
+                "confidence": 0.46538400650024414
+            },
+            {
+                "filename": "normal (3).png",
+                "true_class": "normal",
+                "predicted_class": "benign",
+                "confidence": 0.37692245841026306
+            },
+            {
+                "filename": "benign (333).png",
+                "true_class": "benign",
+                "predicted_class": "malignant",
+                "confidence": 0.7634533643722534
+            },
+            {
+                "filename": "malignant (109).png",
+                "true_class": "malignant",
+                "predicted_class": "benign",
+                "confidence": 0.5629379749298096
+            },
+            {
+                "filename": "normal (57).png",
+                "true_class": "normal",
+                "predicted_class": "malignant",
+                "confidence": 0.3886861801147461
+            },
+            {
+                "filename": "malignant (10).png",
+                "true_class": "malignant",
+                "predicted_class": "benign",
+                "confidence": 0.8038120865821838
+            },
+            {
+                "filename": "benign (393).png",
+                "true_class": "benign",
+                "predicted_class": "malignant",
+                "confidence": 0.8940304517745972
+            },
+            {
+                "filename": "benign (214).png",
+                "true_class": "benign",
+                "predicted_class": "malignant",
+                "confidence": 0.5864055156707764
+            },
+            {
+                "filename": "benign (362).png",
+                "true_class": "benign",
+                "predicted_class": "normal",
+                "confidence": 0.4380245804786682
+            },
+            {
+                "filename": "normal (105).png",
+                "true_class": "normal",
+                "predicted_class": "malignant",
+                "confidence": 0.5977734327316284
+            },
+            {
+                "filename": "normal (100).png",
+                "true_class": "normal",
+                "predicted_class": "malignant",
+                "confidence": 0.5696367621421814
+            },
+            {
+                "filename": "malignant (27).png",
+                "true_class": "malignant",
+                "predicted_class": "benign",
+                "confidence": 0.6039208769798279
+            },
+            {
+                "filename": "normal (113).png",
+                "true_class": "normal",
+                "predicted_class": "malignant",
+                "confidence": 0.5244420170783997
+            },
+            {
+                "filename": "benign (348).png",
+                "true_class": "benign",
+                "predicted_class": "malignant",
+                "confidence": 0.5509647727012634
+            },
+            {
+                "filename": "normal (65).png",
+                "true_class": "normal",
+                "predicted_class": "malignant",
+                "confidence": 0.4691787362098694
+            },
+            {
+                "filename": "benign (64).png",
+                "true_class": "benign",
+                "predicted_class": "malignant",
+                "confidence": 0.5116321444511414
+            },
+            {
+                "filename": "malignant (55).png",
+                "true_class": "malignant",
+                "predicted_class": "benign",
+                "confidence": 0.36232444643974304
+            },
+            {
+                "filename": "benign (85).png",
+                "true_class": "benign",
+                "predicted_class": "malignant",
+                "confidence": 0.5666137933731079
+            },
+            {
+                "filename": "benign (342).png",
+                "true_class": "benign",
+                "predicted_class": "malignant",
+                "confidence": 0.38598158955574036
+            },
+            {
+                "filename": "benign (269).png",
+                "true_class": "benign",
+                "predicted_class": "malignant",
+                "confidence": 0.5987059473991394
+            },
+            {
+                "filename": "malignant (8).png",
+                "true_class": "malignant",
+                "predicted_class": "normal",
+                "confidence": 0.41118502616882324
+            },
+            {
+                "filename": "benign (233).png",
+                "true_class": "benign",
+                "predicted_class": "normal",
+                "confidence": 0.42571985721588135
+            },
+            {
+                "filename": "malignant (210).png",
+                "true_class": "malignant",
+                "predicted_class": "benign",
+                "confidence": 0.5045000910758972
+            },
+            {
+                "filename": "benign (90).png",
+                "true_class": "benign",
+                "predicted_class": "malignant",
+                "confidence": 0.48683810234069824
+            },
+            {
+                "filename": "malignant (72).png",
+                "true_class": "malignant",
+                "predicted_class": "normal",
+                "confidence": 0.4841235280036926
+            },
+            {
+                "filename": "malignant (185).png",
+                "true_class": "malignant",
+                "predicted_class": "benign",
+                "confidence": 0.5293644070625305
+            },
+            {
+                "filename": "normal (27).png",
+                "true_class": "normal",
+                "predicted_class": "malignant",
+                "confidence": 0.43221515417099
+            },
+            {
+                "filename": "normal (130).png",
+                "true_class": "normal",
+                "predicted_class": "malignant",
+                "confidence": 0.44088074564933777
+            },
+            {
+                "filename": "benign (171).png",
+                "true_class": "benign",
+                "predicted_class": "normal",
+                "confidence": 0.538828432559967
+            },
+            {
+                "filename": "benign (408).png",
+                "true_class": "benign",
+                "predicted_class": "malignant",
+                "confidence": 0.54344242811203
+            },
+            {
+                "filename": "benign (426).png",
+                "true_class": "benign",
+                "predicted_class": "malignant",
+                "confidence": 0.4639078974723816
+            }
+        ]
+    },
+    "training_date": "2026-08-23T17:59:09.260858"
+}

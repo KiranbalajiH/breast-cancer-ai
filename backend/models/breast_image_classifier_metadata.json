@@ -1,5 +1,7 @@
 {
-    "model_type": "MobileNetV2 Transfer Learning",
+    "model_version": "v5.0.0-b",
+    "model_type": "MobileNetV2 Transfer Learning (Aspect-Ratio Letterboxed)",
+    "preprocessing": "letterbox",
     "classes": [
         "benign",
         "malignant",
@@ -9,9 +11,13 @@
         224,
         224
     ],
-    "test_accuracy": 0.811965823173523,
+    "historical_test_accuracy": 0.8034,
+    "historical_malignant_recall": 0.8750,
+    "historical_malignant_precision": 0.7778,
+    "grouped_test_accuracy": 0.7009,
+    "grouped_malignant_recall": 0.8065,
     "class_counts": {
-        "benign": 437,
+        "benign": 435,
         "malignant": 210,
         "normal": 133
     }

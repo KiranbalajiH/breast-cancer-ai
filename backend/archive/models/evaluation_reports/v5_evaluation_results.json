@@ -1,0 +1,550 @@
+{
+    "v5_mobilenetv2_a": {
+        "id": "v5_mobilenetv2_a",
+        "name": "V5-A: MobileNetV2 Baseline (Square Resize / Unweighted)",
+        "model_path": "C:\\Users\\kiran\\BCD\\backend\\models\\candidates\\v5_mobilenetv2_a.keras",
+        "validation": {
+            "accuracy": 0.8617886178861789,
+            "macro_precision": 0.8414783427495292,
+            "macro_recall": 0.8804759552042162,
+            "macro_f1": 0.8552485909822867,
+            "benign": {
+                "precision": 0.9661016949152542,
+                "recall": 0.8260869565217391,
+                "f1": 0.890625,
+                "support": 69
+            },
+            "malignant": {
+                "precision": 0.725,
+                "recall": 0.90625,
+                "f1": 0.8055555555555556,
+                "support": 32
+            },
+            "normal": {
+                "precision": 0.8333333333333334,
+                "recall": 0.9090909090909091,
+                "f1": 0.8695652173913043,
+                "support": 22
+            },
+            "false_negatives": 3,
+            "false_positives": 11,
+            "total_incorrect": 17,
+            "confusion_matrix": [
+                [
+                    57,
+                    10,
+                    2
+                ],
+                [
+                    1,
+                    29,
+                    2
+                ],
+                [
+                    1,
+                    1,
+                    20
+                ]
+            ]
+        },
+        "historical_test_117": {
+            "accuracy": 0.7948717948717948,
+            "macro_precision": 0.7696728558797524,
+            "macro_recall": 0.8389423076923078,
+            "macro_f1": 0.7910155515197532,
+            "benign": {
+                "precision": 0.9038461538461539,
+                "recall": 0.7230769230769231,
+                "f1": 0.8034188034188035,
+                "support": 65
+            },
+            "malignant": {
+                "precision": 0.75,
+                "recall": 0.84375,
+                "f1": 0.7941176470588235,
+                "support": 32
+            },
+            "normal": {
+                "precision": 0.6551724137931034,
+                "recall": 0.95,
+                "f1": 0.7755102040816326,
+                "support": 20
+            },
+            "false_negatives": 5,
+            "false_positives": 9,
+            "total_incorrect": 24,
+            "confusion_matrix": [
+                [
+                    47,
+                    9,
+                    9
+                ],
+                [
+                    4,
+                    27,
+                    1
+                ],
+                [
+                    1,
+                    0,
+                    19
+                ]
+            ]
+        },
+        "grouped_test": {
+            "accuracy": 0.6915887850467289,
+            "macro_precision": 0.6714576074332171,
+            "macro_recall": 0.7322119662517822,
+            "macro_f1": 0.6821583695289007,
+            "benign": {
+                "precision": 0.8536585365853658,
+                "recall": 0.5932203389830508,
+                "f1": 0.7,
+                "support": 59
+            },
+            "malignant": {
+                "precision": 0.6190476190476191,
+                "recall": 0.8387096774193549,
+                "f1": 0.7123287671232876,
+                "support": 31
+            },
+            "normal": {
+                "precision": 0.5416666666666666,
+                "recall": 0.7647058823529411,
+                "f1": 0.6341463414634146,
+                "support": 17
+            },
+            "false_negatives": 5,
+            "false_positives": 16,
+            "total_incorrect": 33,
+            "confusion_matrix": [
+                [
+                    35,
+                    16,
+                    8
+                ],
+                [
+                    2,
+                    26,
+                    3
+                ],
+                [
+                    4,
+                    0,
+                    13
+                ]
+            ]
+        }
+    },
+    "v5_mobilenetv2_b": {
+        "id": "v5_mobilenetv2_b",
+        "name": "V5-B: MobileNetV2 (Letterbox Preprocessing / Unweighted)",
+        "model_path": "C:\\Users\\kiran\\BCD\\backend\\models\\candidates\\v5_mobilenetv2_b.keras",
+        "validation": {
+            "accuracy": 0.7804878048780488,
+            "macro_precision": 0.7626356589147286,
+            "macro_recall": 0.8313158761528326,
+            "macro_f1": 0.7781383322559794,
+            "benign": {
+                "precision": 0.96,
+                "recall": 0.6956521739130435,
+                "f1": 0.8067226890756303,
+                "support": 69
+            },
+            "malignant": {
+                "precision": 0.627906976744186,
+                "recall": 0.84375,
+                "f1": 0.72,
+                "support": 32
+            },
+            "normal": {
+                "precision": 0.7,
+                "recall": 0.9545454545454546,
+                "f1": 0.8076923076923077,
+                "support": 22
+            },
+            "false_negatives": 5,
+            "false_positives": 16,
+            "total_incorrect": 27,
+            "confusion_matrix": [
+                [
+                    48,
+                    15,
+                    6
+                ],
+                [
+                    2,
+                    27,
+                    3
+                ],
+                [
+                    0,
+                    1,
+                    21
+                ]
+            ]
+        },
+        "historical_test_117": {
+            "accuracy": 0.8034188034188035,
+            "macro_precision": 0.7807239057239057,
+            "macro_recall": 0.860897435897436,
+            "macro_f1": 0.7974685616440599,
+            "benign": {
+                "precision": 0.9583333333333334,
+                "recall": 0.7076923076923077,
+                "f1": 0.8141592920353983,
+                "support": 65
+            },
+            "malignant": {
+                "precision": 0.7777777777777778,
+                "recall": 0.875,
+                "f1": 0.8235294117647058,
+                "support": 32
+            },
+            "normal": {
+                "precision": 0.6060606060606061,
+                "recall": 1.0,
+                "f1": 0.7547169811320755,
+                "support": 20
+            },
+            "false_negatives": 4,
+            "false_positives": 8,
+            "total_incorrect": 23,
+            "confusion_matrix": [
+                [
+                    46,
+                    8,
+                    11
+                ],
+                [
+                    2,
+                    28,
+                    2
+                ],
+                [
+                    0,
+                    0,
+                    20
+                ]
+            ]
+        },
+        "grouped_test": {
+            "accuracy": 0.7009345794392523,
+            "macro_precision": 0.6807142857142857,
+            "macro_recall": 0.7467168387311185,
+            "macro_f1": 0.6945877686360186,
+            "benign": {
+                "precision": 0.8571428571428571,
+                "recall": 0.6101694915254238,
+                "f1": 0.7128712871287128,
+                "support": 59
+            },
+            "malignant": {
+                "precision": 0.625,
+                "recall": 0.8064516129032258,
+                "f1": 0.704225352112676,
+                "support": 31
+            },
+            "normal": {
+                "precision": 0.56,
+                "recall": 0.8235294117647058,
+                "f1": 0.6666666666666666,
+                "support": 17
+            },
+            "false_negatives": 6,
+            "false_positives": 15,
+            "total_incorrect": 32,
+            "confusion_matrix": [
+                [
+                    36,
+                    15,
+                    8
+                ],
+                [
+                    3,
+                    25,
+                    3
+                ],
+                [
+                    3,
+                    0,
+                    14
+                ]
+            ]
+        }
+    },
+    "v5_mobilenetv2_c": {
+        "id": "v5_mobilenetv2_c",
+        "name": "V5-C: MobileNetV2 (Letterbox + Grayscale Standardization / Unweighted)",
+        "model_path": "C:\\Users\\kiran\\BCD\\backend\\models\\candidates\\v5_mobilenetv2_c.keras",
+        "validation": {
+            "accuracy": 0.7804878048780488,
+            "macro_precision": 0.7625886063352573,
+            "macro_recall": 0.8369016249451032,
+            "macro_f1": 0.7785765554489572,
+            "benign": {
+                "precision": 0.9591836734693877,
+                "recall": 0.6811594202898551,
+                "f1": 0.7966101694915254,
+                "support": 69
+            },
+            "malignant": {
+                "precision": 0.6511627906976745,
+                "recall": 0.875,
+                "f1": 0.7466666666666667,
+                "support": 32
+            },
+            "normal": {
+                "precision": 0.6774193548387096,
+                "recall": 0.9545454545454546,
+                "f1": 0.7924528301886793,
+                "support": 22
+            },
+            "false_negatives": 4,
+            "false_positives": 15,
+            "total_incorrect": 27,
+            "confusion_matrix": [
+                [
+                    47,
+                    15,
+                    7
+                ],
+                [
+                    1,
+                    28,
+                    3
+                ],
+                [
+                    1,
+                    0,
+                    21
+                ]
+            ]
+        },
+        "historical_test_117": {
+            "accuracy": 0.717948717948718,
+            "macro_precision": 0.700462962962963,
+            "macro_recall": 0.7759615384615385,
+            "macro_f1": 0.7139342139342139,
+            "benign": {
+                "precision": 0.8888888888888888,
+                "recall": 0.6153846153846154,
+                "f1": 0.7272727272727273,
+                "support": 65
+            },
+            "malignant": {
+                "precision": 0.65,
+                "recall": 0.8125,
+                "f1": 0.7222222222222222,
+                "support": 32
+            },
+            "normal": {
+                "precision": 0.5625,
+                "recall": 0.9,
+                "f1": 0.6923076923076923,
+                "support": 20
+            },
+            "false_negatives": 6,
+            "false_positives": 14,
+            "total_incorrect": 33,
+            "confusion_matrix": [
+                [
+                    40,
+                    13,
+                    12
+                ],
+                [
+                    4,
+                    26,
+                    2
+                ],
+                [
+                    1,
+                    1,
+                    18
+                ]
+            ]
+        },
+        "grouped_test": {
+            "accuracy": 0.6261682242990654,
+            "macro_precision": 0.630357142857143,
+            "macro_recall": 0.6875609729949934,
+            "macro_f1": 0.6280263368214075,
+            "benign": {
+                "precision": 0.8285714285714286,
+                "recall": 0.4915254237288136,
+                "f1": 0.6170212765957447,
+                "support": 59
+            },
+            "malignant": {
+                "precision": 0.5208333333333334,
+                "recall": 0.8064516129032258,
+                "f1": 0.6329113924050633,
+                "support": 31
+            },
+            "normal": {
+                "precision": 0.5416666666666666,
+                "recall": 0.7647058823529411,
+                "f1": 0.6341463414634146,
+                "support": 17
+            },
+            "false_negatives": 6,
+            "false_positives": 23,
+            "total_incorrect": 40,
+            "confusion_matrix": [
+                [
+                    29,
+                    22,
+                    8
+                ],
+                [
+                    3,
+                    25,
+                    3
+                ],
+                [
+                    3,
+                    1,
+                    13
+                ]
+            ]
+        }
+    },
+    "v5_mobilenetv2_d": {
+        "id": "v5_mobilenetv2_d",
+        "name": "V5-D: MobileNetV2 (Letterbox + Grayscale + Mild Weights {1.0, 1.25, 1.1})",
+        "model_path": "C:\\Users\\kiran\\BCD\\backend\\models\\candidates\\v5_mobilenetv2_d.keras",
+        "validation": {
+            "accuracy": 0.8211382113821138,
+            "macro_precision": 0.7890661674149918,
+            "macro_recall": 0.8442989679402723,
+            "macro_f1": 0.8070195331398162,
+            "benign": {
+                "precision": 0.9322033898305084,
+                "recall": 0.7971014492753623,
+                "f1": 0.859375,
+                "support": 69
+            },
+            "malignant": {
+                "precision": 0.7575757575757576,
+                "recall": 0.78125,
+                "f1": 0.7692307692307693,
+                "support": 32
+            },
+            "normal": {
+                "precision": 0.6774193548387096,
+                "recall": 0.9545454545454546,
+                "f1": 0.7924528301886793,
+                "support": 22
+            },
+            "false_negatives": 7,
+            "false_positives": 8,
+            "total_incorrect": 22,
+            "confusion_matrix": [
+                [
+                    55,
+                    8,
+                    6
+                ],
+                [
+                    3,
+                    25,
+                    4
+                ],
+                [
+                    1,
+                    0,
+                    21
+                ]
+            ]
+        },
+        "historical_test_117": {
+            "accuracy": 0.7350427350427351,
+            "macro_precision": 0.7226890756302521,
+            "macro_recall": 0.7766025641025641,
+            "macro_f1": 0.7214559386973179,
+            "benign": {
+                "precision": 0.8823529411764706,
+                "recall": 0.6923076923076923,
+                "f1": 0.7758620689655172,
+                "support": 65
+            },
+            "malignant": {
+                "precision": 0.7857142857142857,
+                "recall": 0.6875,
+                "f1": 0.7333333333333333,
+                "support": 32
+            },
+            "normal": {
+                "precision": 0.5,
+                "recall": 0.95,
+                "f1": 0.6551724137931034,
+                "support": 20
+            },
+            "false_negatives": 10,
+            "false_positives": 6,
+            "total_incorrect": 31,
+            "confusion_matrix": [
+                [
+                    45,
+                    5,
+                    15
+                ],
+                [
+                    6,
+                    22,
+                    4
+                ],
+                [
+                    0,
+                    1,
+                    19
+                ]
+            ]
+        },
+        "grouped_test": {
+            "accuracy": 0.6355140186915887,
+            "macro_precision": 0.609508247743542,
+            "macro_recall": 0.6840553607993224,
+            "macro_f1": 0.6158213394006017,
+            "benign": {
+                "precision": 0.8222222222222222,
+                "recall": 0.6271186440677966,
+                "f1": 0.7115384615384616,
+                "support": 59
+            },
+            "malignant": {
+                "precision": 0.5357142857142857,
+                "recall": 0.4838709677419355,
+                "f1": 0.5084745762711864,
+                "support": 31
+            },
+            "normal": {
+                "precision": 0.47058823529411764,
+                "recall": 0.9411764705882353,
+                "f1": 0.6274509803921569,
+                "support": 17
+            },
+            "false_negatives": 16,
+            "false_positives": 13,
+            "total_incorrect": 39,
+            "confusion_matrix": [
+                [
+                    37,
+                    12,
+                    10
+                ],
+                [
+                    8,
+                    15,
+                    8
+                ],
+                [
+                    0,
+                    1,
+                    16
+                ]
+            ]
+        }
+    }
+}

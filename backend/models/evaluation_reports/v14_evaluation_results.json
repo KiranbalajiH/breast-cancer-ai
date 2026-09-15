@@ -1,0 +1,198 @@
+{
+    "v14_ensemble_selected": {
+        "name": "V14 Selected Ensemble (w_v11=0.5, w_v13=0.50, t=0.58)",
+        "weights": {
+            "v11_b": 0.5,
+            "v13_b0": 0.5
+        },
+        "threshold": 0.58,
+        "grouped_test": {
+            "accuracy": 0.8037383177570093,
+            "macro_precision": 0.7758241758241757,
+            "macro_recall": 0.8139667020444045,
+            "macro_f1": 0.7911547911547911,
+            "benign": {
+                "precision": 0.8846153846153846,
+                "recall": 0.7796610169491526,
+                "f1": 0.8288288288288288,
+                "support": 59
+            },
+            "malignant": {
+                "precision": 0.7428571428571429,
+                "recall": 0.8387096774193549,
+                "f1": 0.7878787878787878,
+                "support": 31
+            },
+            "normal": {
+                "precision": 0.7,
+                "recall": 0.8235294117647058,
+                "f1": 0.7567567567567568,
+                "support": 17
+            },
+            "false_negatives": 5,
+            "false_positives": 9,
+            "total_incorrect": 21,
+            "confusion_matrix": [
+                [
+                    46,
+                    9,
+                    4
+                ],
+                [
+                    3,
+                    26,
+                    2
+                ],
+                [
+                    3,
+                    0,
+                    14
+                ]
+            ],
+            "mal_threshold_used": 0.58
+        },
+        "historical_test_117": {
+            "accuracy": 0.8632478632478633,
+            "macro_precision": 0.8394678797904604,
+            "macro_recall": 0.8799679487179487,
+            "macro_f1": 0.8544099378881987,
+            "benign": {
+                "precision": 0.9166666666666666,
+                "recall": 0.8461538461538461,
+                "f1": 0.88,
+                "support": 65
+            },
+            "malignant": {
+                "precision": 0.8709677419354839,
+                "recall": 0.84375,
+                "f1": 0.8571428571428571,
+                "support": 32
+            },
+            "normal": {
+                "precision": 0.7307692307692307,
+                "recall": 0.95,
+                "f1": 0.8260869565217391,
+                "support": 20
+            },
+            "false_negatives": 5,
+            "false_positives": 4,
+            "total_incorrect": 16,
+            "confusion_matrix": [
+                [
+                    55,
+                    4,
+                    6
+                ],
+                [
+                    4,
+                    27,
+                    1
+                ],
+                [
+                    1,
+                    0,
+                    19
+                ]
+            ],
+            "mal_threshold_used": 0.58
+        }
+    },
+    "v14_ensemble_ref_50_50": {
+        "name": "V14 Reference Ensemble (50/50, t=0.50)",
+        "weights": {
+            "v11_b": 0.5,
+            "v13_b0": 0.5
+        },
+        "threshold": 0.5,
+        "grouped_test": {
+            "accuracy": 0.7570093457943925,
+            "macro_precision": 0.7407801418439716,
+            "macro_recall": 0.7857181144737829,
+            "macro_f1": 0.7542453428714392,
+            "benign": {
+                "precision": 0.8723404255319149,
+                "recall": 0.6949152542372882,
+                "f1": 0.7735849056603774,
+                "support": 59
+            },
+            "malignant": {
+                "precision": 0.65,
+                "recall": 0.8387096774193549,
+                "f1": 0.7323943661971831,
+                "support": 31
+            },
+            "normal": {
+                "precision": 0.7,
+                "recall": 0.8235294117647058,
+                "f1": 0.7567567567567568,
+                "support": 17
+            },
+            "false_negatives": 5,
+            "false_positives": 14,
+            "total_incorrect": 26,
+            "confusion_matrix": [
+                [
+                    41,
+                    14,
+                    4
+                ],
+                [
+                    3,
+                    26,
+                    2
+                ],
+                [
+                    3,
+                    0,
+                    14
+                ]
+            ],
+            "mal_threshold_used": 0.5
+        },
+        "historical_test_117": {
+            "accuracy": 0.8632478632478633,
+            "macro_precision": 0.8367628540042333,
+            "macro_recall": 0.8852564102564102,
+            "macro_f1": 0.8552247328493352,
+            "benign": {
+                "precision": 0.9310344827586207,
+                "recall": 0.8307692307692308,
+                "f1": 0.8780487804878049,
+                "support": 65
+            },
+            "malignant": {
+                "precision": 0.8484848484848485,
+                "recall": 0.875,
+                "f1": 0.8615384615384616,
+                "support": 32
+            },
+            "normal": {
+                "precision": 0.7307692307692307,
+                "recall": 0.95,
+                "f1": 0.8260869565217391,
+                "support": 20
+            },
+            "false_negatives": 4,
+            "false_positives": 5,
+            "total_incorrect": 16,
+            "confusion_matrix": [
+                [
+                    54,
+                    5,
+                    6
+                ],
+                [
+                    3,
+                    28,
+                    1
+                ],
+                [
+                    1,
+                    0,
+                    19
+                ]
+            ],
+            "mal_threshold_used": 0.5
+        }
+    }
+}

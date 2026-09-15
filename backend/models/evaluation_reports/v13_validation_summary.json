@@ -1,0 +1,97 @@
+{
+    "v13_efficientnet_b0": {
+        "id": "v13_efficientnet_b0",
+        "name": "V13: EfficientNet-B0 Pretrained Backbone",
+        "validation_standard": {
+            "accuracy": 0.8292682926829268,
+            "macro_precision": 0.825925925925926,
+            "macro_recall": 0.7777366051822573,
+            "macro_f1": 0.7920843246250006,
+            "benign": {
+                "precision": 0.8611111111111112,
+                "recall": 0.8985507246376812,
+                "f1": 0.8794326241134752,
+                "support": 69
+            },
+            "malignant": {
+                "precision": 0.75,
+                "recall": 0.84375,
+                "f1": 0.7941176470588235,
+                "support": 32
+            },
+            "normal": {
+                "precision": 0.8666666666666667,
+                "recall": 0.5909090909090909,
+                "f1": 0.7027027027027027,
+                "support": 22
+            },
+            "false_negatives": 5,
+            "false_positives": 9,
+            "total_incorrect": 21,
+            "confusion_matrix": [
+                [
+                    62,
+                    7,
+                    0
+                ],
+                [
+                    3,
+                    27,
+                    2
+                ],
+                [
+                    7,
+                    2,
+                    13
+                ]
+            ],
+            "mal_threshold_used": null
+        },
+        "best_val_threshold": 0.58,
+        "validation_calibrated": {
+            "accuracy": 0.8699186991869918,
+            "macro_precision": 0.8773809523809524,
+            "macro_recall": 0.812211791831357,
+            "macro_f1": 0.8373064787465792,
+            "benign": {
+                "precision": 0.8571428571428571,
+                "recall": 0.9565217391304348,
+                "f1": 0.9041095890410958,
+                "support": 69
+            },
+            "malignant": {
+                "precision": 0.9,
+                "recall": 0.84375,
+                "f1": 0.8709677419354839,
+                "support": 32
+            },
+            "normal": {
+                "precision": 0.875,
+                "recall": 0.6363636363636364,
+                "f1": 0.7368421052631579,
+                "support": 22
+            },
+            "false_negatives": 5,
+            "false_positives": 3,
+            "total_incorrect": 16,
+            "confusion_matrix": [
+                [
+                    66,
+                    3,
+                    0
+                ],
+                [
+                    3,
+                    27,
+                    2
+                ],
+                [
+                    8,
+                    0,
+                    14
+                ]
+            ],
+            "mal_threshold_used": 0.58
+        }
+    }
+}

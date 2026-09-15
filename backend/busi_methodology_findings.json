@@ -1,0 +1,35 @@
+{
+    "total_scans": 778,
+    "clusters_by_class": {
+        "benign": 368,
+        "malignant": 204,
+        "normal": 110
+    },
+    "ar_distribution": {
+        "tall": 15,
+        "square": 394,
+        "mod_wide": 303,
+        "ext_wide": 66
+    },
+    "avg_stretching_distortion_pct": 19.398147026020514,
+    "train_counts": {
+        "benign": 304,
+        "malignant": 146,
+        "normal": 93
+    },
+    "balanced_weights": {
+        "benign": 0.5953947368421053,
+        "malignant": 1.2397260273972603,
+        "normal": 1.946236559139785
+    },
+    "sqrt_weights": {
+        "benign": 0.7716182584945132,
+        "malignant": 1.1134298484400624,
+        "normal": 1.3950758255879088
+    },
+    "mild_weights": {
+        "benign": 1.0,
+        "malignant": 1.25,
+        "normal": 1.1
+    }
+}
