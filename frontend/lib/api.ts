@@ -4,50 +4,9 @@ const getApiUrl = () => {
 };
 const API_URL = getApiUrl();
 
-export interface BreastCancerFeatures {
-  "mean radius": number;
-  "mean texture": number;
-  "mean perimeter": number;
-  "mean area": number;
-  "mean smoothness": number;
-  "mean compactness": number;
-  "mean concavity": number;
-  "mean concave points": number;
-  "mean symmetry": number;
-  "mean fractal dimension": number;
-  "radius error": number;
-  "texture error": number;
-  "perimeter error": number;
-  "area error": number;
-  "smoothness error": number;
-  "compactness error": number;
-  "concavity error": number;
-  "concave points error": number;
-  "symmetry error": number;
-  "fractal dimension error": number;
-  "worst radius": number;
-  "worst texture": number;
-  "worst perimeter": number;
-  "worst area": number;
-  "worst smoothness": number;
-  "worst compactness": number;
-  "worst concavity": number;
-  "worst concave points": number;
-  "worst symmetry": number;
-  "worst fractal dimension": number;
-}
-
 export interface ModelMetadata {
   name: string;
   version: string;
-}
-
-export interface PredictionResponse {
-  prediction: string;
-  prediction_code: string;
-  confidence: number;
-  probabilities: Record<string, number>;
-  model: ModelMetadata;
 }
 
 export async function checkHealth() {
@@ -61,36 +20,9 @@ export async function checkHealth() {
   }
 }
 
-export async function predictCancer(features: BreastCancerFeatures): Promise<PredictionResponse> {
-  const res = await fetch(`${API_URL}/api/predict`, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(features),
-  });
-  
-  if (!res.ok) {
-    const errData = await res.json().catch(() => ({}));
-    throw new Error(errData.detail || "Prediction failed");
-  }
-  
-  return res.json();
-}
-
 export async function getModelMetadata() {
   const res = await fetch(`${API_URL}/api/model/metadata`, { cache: 'no-store' });
   if (!res.ok) throw new Error("Failed to fetch model metadata");
-  return res.json();
-}
-
-export async function getModelComparison() {
-  const res = await fetch(`${API_URL}/api/model/comparison`, { cache: 'no-store' });
-  if (!res.ok) throw new Error("Failed to fetch model comparison");
-  return res.json();
-}
-
-export async function getModelFeatures() {
-  const res = await fetch(`${API_URL}/api/model/features`, { cache: 'no-store' });
-  if (!res.ok) throw new Error("Failed to fetch features");
   return res.json();
 }
 

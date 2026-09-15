@@ -9,16 +9,15 @@
 
 ## 1. Project Overview
 
-- **Project Purpose**: To provide a production-grade, multimodal clinical decision support platform for breast cancer detection and risk assessment. The system combines deep learning analysis of breast ultrasound scans with machine learning risk evaluation of fine-needle aspirate (FNA) cell nuclei measurements.
+- **Project Type**: **Image-Only Breast Cancer Detection** using breast ultrasound images.
+- **Project Purpose**: To provide a production-grade, image-based clinical decision support platform for breast cancer detection. The system combines deep learning visual analysis of breast ultrasound scans with class-specific Grad-CAM heatmaps.
 - **Main Capabilities**:
   1. **Ultrasound Image AI**: Classifies ultrasound scans into three diagnostic categories (`benign`, `malignant`, `normal`) using aspect-ratio letterboxed deep learning and provides class-specific Grad-CAM visual heatmaps.
-  2. **Tabular FNA Risk AI**: Evaluates 30 continuous numerical cell nuclei features using a Support Vector Machine (SVM) pipeline to output binary risk predictions (`B` vs `M`) and probability scores.
-  3. **Experimental CV Pipeline**: Feature extraction engine (`/api/image-analysis/extract` and `/predict`) to segment cell nuclei from microscopy images and extract 30 Wisconsin-style features.
-  4. **Interactive Web Studio**: Next.js single-page application with dual-mode workspaces (Image Classification & Tabular SVM), model selector toggle (V5-B Production vs V14 Research Ensemble), image dropzone, and Grad-CAM overlay viewer.
-- **Current Architecture**: Decoupled micro-service design featuring a FastAPI backend serving TensorFlow/Keras and Scikit-learn models, interacting via REST APIs with a Next.js (TypeScript/Tailwind CSS) frontend.
-- **Image AI + Tabular AI Roles**:
-  - **Image AI**: Non-invasive initial triage and visual localization of sonographic breast lesions.
-  - **Tabular AI**: High-precision quantitative risk scoring for diagnostic biopsy FNA measurements.
+  2. **Interactive Web Studio**: Next.js single-page application with an ultrasound workspace, model selector toggle (V5-B Production vs V14 Research Ensemble), image dropzone, and Grad-CAM overlay viewer.
+- **Current Architecture**: Decoupled micro-service design featuring a FastAPI backend serving TensorFlow/Keras models, interacting via REST APIs with a Next.js (TypeScript/Tailwind CSS) frontend.
+- **Image AI Production & Research Models**:
+  - **Production Image Model**: V5-B (`v5.0.0-b`) MobileNetV2 Transfer Learning with Aspect-Ratio Letterboxing.
+  - **Research Image Model**: V14 Ensemble (Dynamic composition of V11-B MobileNetV2 + V13-B0 EfficientNetB0).
 
 ---
 
@@ -36,14 +35,6 @@
 - **Frozen Test Sets**: Locked Historical 117-Image Test Set and Grouped 107-Image Test Set.
 - **Random Seeds**: Fixed seed `42` across all data splitters, feature extractors, and model initializations.
 - **Exact Paths / Scripts Used**: Data located at `dataset/BUSI/`; training scripts located at `backend/training/train_v11.py`, `train_v13.py`, `train_v14.py`.
-
-### Tabular Dataset
-- **Dataset Name / Location**: Wisconsin Breast Cancer Diagnostic Dataset (`data.csv`, previously stored at `C:\Users\kiran\Downloads\data.csv` / `backend/data/breast_cancer.csv`).
-- **Number of Rows / Features**: 569 rows, 33 total columns (30 numerical ML features, 1 target `diagnosis`, 2 excluded columns).
-- **Target Classes and Counts**: `B` (Benign: 357 samples / 62.74%), `M` (Malignant: 212 samples / 37.26%).
-- **Features Used**: 30 numerical cell nuclei features (Mean, Standard Error, and Worst for 10 structural attributes: radius, texture, perimeter, area, smoothness, compactness, concavity, concave points, symmetry, fractal dimension).
-- **Features Excluded and Why**: `id` (patient identifier, excluded to prevent arbitrary ID memorization/leakage) and `Unnamed: 32` (trailing empty CSV column containing 100% NaN values).
-- **Train / Test Methodology**: Stratified 80/20 train/test split (`random_state=42`). 455 training samples, 114 held-out test samples (72 Benign, 42 Malignant).
 
 ---
 
@@ -81,11 +72,7 @@ Chronological summary of all major image model iterations across the project lif
 - **SHA256 Hash**: `93B3C106CFF51993B605220C98CFAF54C8FA404BB581656FA11337A26B32E03C`.
 - **Current Prediction Logic**: Decodes image bytes $\rightarrow$ Non-blocking image quality assessment $\rightarrow$ Aspect-ratio letterbox padding to $224\times224\times3$ $\rightarrow$ MobileNetV2 preprocessing $\rightarrow$ Softmax probability inference $\rightarrow$ Grad-CAM heatmap generation $\rightarrow$ Status threshold formatting.
 - **Why It Is Production**: V5-B achieved the optimal clinical safety balance on the locked historical test set (**87.50% Malignant Recall**, reducing false negatives to **only 4 FN** vs 10 FN in V1) while maintaining **70.09% accuracy** on unseen patient lesion clusters without slice leakage.
-- **Replacement Confirmation**: **CONFIRMED**. V5-B has NOT been automatically replaced by research candidate models. `breast_image_classifier.keras` remains active as the production default.
-
----
-
-## 5. Research / Candidate Image Models
+- **Replacement Confirmation**: **CONFIRMED**. V5-B has NOT been automatically replaced by research candidate models. `breast_image_classifier.keras` remains active as the production default.## 5. Research / Candidate Image Models
 
 - **V14 Ensemble**: Frozen 50/50 probability ensemble combining **V11-B** (MobileNetV2, 96.88% recall) + **V13-B0** (EfficientNetB0, 89.29% precision) operating at decision threshold $t^*=0.58$. Delivered **86.32% accuracy** and **84.38% malignant recall** on historical test set. Status: **RESEARCH CHAMPION** (accessible via UI toggle or `model=v14` query param).
 - **V11-B**: MobileNetV2 candidate model trained with 50% data augmentation. Path: `backend/models/candidates/v11_mobilenetv2_b.keras` (18,015,776 bytes). Metrics: 96.88% Hist Recall, 90.32% Grouped Recall. Status: **RESEARCH / CANDIDATE**.
@@ -95,7 +82,6 @@ Chronological summary of all major image model iterations across the project lif
   - **PRODUCTION**: `backend/models/breast_image_classifier.keras` (V5-B)
   - **RESEARCH CHAMPION**: V14 Ensemble (Dynamic composition of V11-B + V13-B0)
   - **REJECTED**: Final 2-Epoch MobileNetV2 (`backend/archive/models/candidates/final_2epoch_mobilenetv2.keras`)
-  - **TABULAR PRODUCTION**: RBF SVM (`backend/models/breast_cancer_model.joblib`)
   - **RESEARCH / CANDIDATE**: `backend/models/candidates/v11_mobilenetv2_b.keras` (V11-B) & `backend/models/candidates/v13_efficientnet_b0.keras` (V13-B0)
   - **ARCHIVED**: All historical models in `backend/archive/models/candidates/`
 
@@ -145,78 +131,38 @@ Chronological summary of all major image model iterations across the project lif
 
 ---
 
-## 7. Tabular AI
-
-- **Dataset**: Wisconsin Breast Cancer Diagnostic Dataset (`data.csv`, 569 samples, 30 continuous ML features).
-- **Preprocessing**: Exclude `id` and `Unnamed: 32`. Column headers renamed to standard backend feature names.
-- **Feature Order**: 30 features ordered strictly as defined in `backend/models/metadata.json` (`mean radius`, `mean texture`, ..., `worst fractal dimension`).
-- **Final SVM Architecture**: `scikit-learn` `Pipeline` consisting of:
-  ```python
-  Pipeline([
-      ('scaler', StandardScaler()),
-      ('svm', SVC(kernel='rbf', C=1.0, gamma='scale', probability=True, random_state=42))
-  ])
-  ```
-- **Training Configuration**: Stratified 80/20 train/test split (`random_state=42`). 455 train, 114 held-out test samples.
-- **Evaluation Metrics (Held-Out Test Set: 114 Samples)**:
-  - **Accuracy**: **97.37%** (0.9737)
-  - **ROC-AUC**: **0.9947**
-  - **Macro Precision**: 0.9800
-  - **Macro Recall**: 0.9643
-  - **Macro F1-Score**: 0.9713
-- **Confusion Matrix**:
-  - True Negatives (TN): 72
-  - False Positives (FP): 0
-  - False Negatives (FN): 3
-  - True Positives (TP): 39
-- **Malignant Class Performance**:
-  - Malignant Precision: **100.00%** (1.0000)
-  - Malignant Recall (Sensitivity): **92.86%** (0.9286)
-  - Malignant F1-Score: **0.9630**
-- **Model Path**: `backend/models/breast_cancer_model.joblib`.
-- **Metadata Path**: `backend/models/metadata.json`.
-- **SHA256 Hash**: `C5CFADE06DA37519CFB30DE3BA8DD914AF7D0C580B392944079B3711FC056F16`.
-- **API Integration**: Integrated into `POST /api/predict` via `ModelService` singleton in `backend/app/services/model_service.py`.
-- **Compatibility Status**: **100% VERIFIED & PASS**.
-
----
-
-## 8. Backend
+## 7. Backend
 
 - **Framework**: FastAPI (`uvicorn app.main:app`).
 - **Main Application Entry Point**: [`backend/app/main.py`](file:///c:/Users/kiran/BCD/backend/app/main.py).
 - **Important Routes**:
-  - `POST /api/predict`: Tabular SVM risk prediction.
   - `POST /api/image-predict`: Image classification (`model=v5b` default, `model=v14` for ensemble).
   - `POST /api/image-predict-v14`: Dedicated V14 ensemble inference endpoint.
-  - `GET /api/health` & `GET /api/model-status`: Unified system diagnostics and model health status.
-  - `POST /api/image-analysis/extract` & `POST /api/image-analysis/predict`: Experimental cell microscopy CV feature extraction.
+  - `GET /api/health` & `GET /api/model-status`: System diagnostics and image classifier health status.
+  - `POST /api/image-analysis/extract` & `POST /api/image-analysis/predict`: Cell microscopy feature extraction.
 - **V5-B / V14 Model Selection Behavior**: `ImageClassifier` in `app/image_model.py` defaults to loading V5-B production model; query parameter `model=v14` triggers parallel inference across V11-B and V13-B0 candidates.
-- **Tabular Prediction Route**: Validates payload against `BreastCancerFeatures` Pydantic model, re-orders columns into 1-row DataFrame, executes Scikit-learn Pipeline, returns `PredictionResponse`.
-- **Model Loading Behavior**: Lifespan context manager (`@asynccontextmanager`) in `main.py` loads `ModelService` and `ImageClassifier` at startup.
+- **Model Loading Behavior**: Lifespan context manager (`@asynccontextmanager`) in `main.py` loads `ImageClassifier` at startup.
 - **Error / Fallback Behavior**: Catches missing files, empty image uploads, invalid dimensions (<50x50), returns structured HTTP 400/500 JSON details.
 - **Important Backend Files**:
   - `backend/app/main.py`
   - `backend/app/image_model.py`
-  - `backend/app/services/model_service.py`
   - `backend/app/api/prediction.py`
   - `backend/app/api/image_analysis.py`
   - `backend/app/core/config.py`
 
 ---
 
-## 9. Frontend
+## 8. Frontend
 
 - **Framework**: Next.js 14+ App Router (React, TypeScript, Tailwind CSS, Framer Motion, Lucide icons).
 - **Main Pages**:
   - `/` ([`frontend/app/page.tsx`](file:///c:/Users/kiran/BCD/frontend/app/page.tsx)): Landing page & feature overview.
-  - `/predict` ([`frontend/app/predict/page.tsx`](file:///c:/Users/kiran/BCD/frontend/app/predict/page.tsx)): Dual-mode workspace for Image Classification & Tabular SVM.
-  - `/image-analysis` ([`frontend/app/image-analysis/page.tsx`](file:///c:/Users/kiran/BCD/frontend/app/image-analysis/page.tsx)): Experimental cell microscopy feature extraction workspace.
+  - `/predict` ([`frontend/app/predict/page.tsx`](file:///c:/Users/kiran/BCD/frontend/app/predict/page.tsx)): Image Classification Workspace.
+  - `/image-analysis` ([`frontend/app/image-analysis/page.tsx`](file:///c:/Users/kiran/BCD/frontend/app/image-analysis/page.tsx)): Cell microscopy feature extraction workspace.
   - `/analytics` & `/about`: System performance breakdown and methodology documentation.
-- **Image Prediction UI**: Drag-and-drop dropzone, image preview, subtle model selector toggle (`V5-B (Production)` vs `V14 Ensemble`), prediction verdict card, probability progress bars, and Grad-CAM overlay viewer.
-- **Tabular SVM UI**: 30 numerical input fields organized into Mean Values, Standard Errors, Worst Values with dataset range warnings, pre-filled sample buttons (`Load Benign`, `Load Malignant`), clear form button, execution progress steps, and prediction verdict card.
+- **Image Prediction UI**: Drag-and-drop dropzone, image preview, model selector toggle (`V5-B (Production)` vs `V14 Ensemble`), prediction verdict card, probability progress bars, and Grad-CAM overlay viewer.
 - **Model Selector**: Toggle buttons for V5-B and V14 on `/predict` page.
-- **V5-B Default Behavior**: Default active tab and default active model on page load.
+- **V5-B Default Behavior**: Default active model on page load.
 - **V14 Behavior**: Clicking `V14 Ensemble` clears previous state to `idle` and routes request to `/api/image-predict?model=v14`.
 - **Grad-CAM**: Renders Original vs Grad-CAM toggle buttons when `explanation.available == true`.
 - **Loading / Error States**: Animated loaders (`Loader2`, `RefreshCw`), error alert boxes with warning details.
@@ -228,7 +174,7 @@ Chronological summary of all major image model iterations across the project lif
 
 ---
 
-## 10. Testing & Verification
+## 9. Testing & Verification
 
 Summary of all verified test reports present in the repository:
 
@@ -238,15 +184,13 @@ Summary of all verified test reports present in the repository:
 | **V14 Runtime Smoke Test** | Python import, memory load, and tensor inference for V14 | **PASS** | `backend/models/evaluation_reports/v14_runtime_smoke_test.md` |
 | **V14 API Integration Audit**| FastAPI routing for `/api/image-predict?model=v14` | **PASS** | `backend/models/evaluation_reports/v14_integration_audit.md` |
 | **Final End-to-End UI Test** | Full browser E2E test (Next.js + FastAPI + Grad-CAM) | **PASS** | `backend/models/evaluation_reports/final_end_to_end_ui_test.md` |
-| **Tabular Dataset Audit** | Wisconsin `data.csv` integrity, class distribution, features | **PASS** | `backend/models/evaluation_reports/tabular_svm_dataset_audit.md` |
-| **Tabular Training Report** | SVM training metrics (97.37% acc, 0.9947 ROC-AUC) | **PASS** | `backend/models/evaluation_reports/tabular_svm_training_report.md` |
-| **Tabular API Audit** | FastAPI `POST /api/predict` feature order & response schema | **PASS** | `backend/models/evaluation_reports/tabular_svm_api_audit.md` |
 | **Project Cleanup Audit** | Categorization of repository files & space impact analysis | **PASS** | `backend/models/evaluation_reports/project_cleanup_audit.md` |
 | **Release Checkpoint Audit**| Verification of production model locks & dataset integrity | **PASS** | `backend/models/evaluation_reports/release_checkpoint_audit.md` |
+| **Tabular SVM Removal Audit**| Verification of Tabular SVM component removal | **PASS** | `backend/models/evaluation_reports/tabular_svm_removal_audit.md` |
 
 ---
 
-## 11. Project Structure
+## 10. Project Structure
 
 ```
 BCD/
@@ -255,26 +199,23 @@ BCD/
 │   │   ├── main.py                            # Application Entry Point & Lifespan
 │   │   ├── image_model.py                     # Image Classifier Service & Grad-CAM
 │   │   ├── api/                               # API Route Handlers
-│   │   │   ├── prediction.py                  # Core Prediction Endpoints
-│   │   │   ├── model.py                       # Metadata & Comparison Endpoints
-│   │   │   └── image_analysis.py              # Experimental CV Feature Extraction
+│   │   │   ├── prediction.py                  # Image Prediction Endpoints
+│   │   │   ├── model.py                       # Metadata Endpoints
+│   │   │   └── image_analysis.py              # Cell Microscopy CV Feature Extraction
 │   │   ├── core/                              # App Configuration (config.py)
-│   │   ├── schemas/                           # Pydantic Schemas (prediction.py)
-│   │   └── services/                          # ModelService Singleton
+│   │   └── schemas/                           # Pydantic Schemas (prediction.py)
 │   ├── models/                                # Model Registry
 │   │   ├── breast_image_classifier.keras        # V5-B Active Production Image Model
 │   │   ├── breast_image_classifier_metadata.json # Production Image Metadata
-│   │   ├── breast_cancer_model.joblib            # Production Tabular SVM Model
-│   │   ├── metadata.json                         # Tabular Model Metadata
 │   │   ├── candidates/                        # Research Candidates (V11-B, V13-B0)
 │   │   └── evaluation_reports/                # Audit & Verification Reports
-│   ├── training/                              # Model Training Scripts (v11, v13, v14, tabular)
-│   └── archive/                               # Historical Experiments (V1–V10/V12)
+│   ├── training/                              # Image Model Training Scripts (v11, v13, v14)
+│   └── archive/                               # Historical Experiments (V1–V10/V12, tabular)
 ├── dataset/
 │   └── BUSI/                                  # 776 Clean Ultrasound Scans
 ├── frontend/                                  # Next.js React Web Application
 │   ├── app/                                   # Next.js App Router Pages
-│   │   ├── predict/                           # Main Dual-Mode Workspace
+│   │   ├── predict/                           # Image Workspace
 │   │   ├── image-analysis/                    # Experimental CV Workspace
 │   │   └── page.tsx                           # Landing Page
 │   ├── components/                            # UI Components & Layout
@@ -285,24 +226,18 @@ BCD/
 
 ---
 
-## 12. Git / Release State
+## 11. Git / Release State
 
 - **Current Branch**: `main`
 - **Current Commit**: `58641c7 Integrate V14 ensemble image prediction`
-- **Recent Relevant Commits**:
-  - `58641c7` Integrate V14 ensemble image prediction
-  - `5e0fe39` Add imbalanced-learn dependency for ML model
-  - `dac489a` Add TensorFlow runtime dependency
-  - `b8c2a55` Update README with repository structure and deployment guides
-  - `308c8b3` Finalize breast cancer AI prediction system
-- **Working Tree Cleanliness**: Working tree contains uncommitted changes (modified `dataset_manifest.json`, `metadata.json`, deleted unused helper scripts, untracked evaluation reports and candidate models).
+- **Working Tree Cleanliness**: Working tree contains uncommitted changes for Tabular SVM removal audit and image-only consolidation.
 - **Local vs Remote**: Local branch `main` is up to date with `origin/main`.
-- **Commit Status of Artifacts**: Core production models and FastAPI backend are committed; recent V14 candidate models and audit reports are present as working tree files.
-- **Git Operations Performed**: **ZERO** git commits or pushes performed during this summary audit.
+- **Commit Status of Artifacts**: Core production image models and FastAPI backend are committed; recent V14 candidate models and audit reports are present in repository structure.
+- **Git Operations Performed**: **ZERO** git commits or pushes performed.
 
 ---
 
-## 13. Current System Status
+## 12. Current System Status
 
 | Component | Status |
 | :--- | :--- |
@@ -310,47 +245,33 @@ BCD/
 | **Image production model** | **VERIFIED** (V5-B MobileNetV2 Letterbox, 80.34% Hist Acc, 87.50% Hist Recall) |
 | **V14 research model** | **VERIFIED** (50/50 Ensemble V11-B + V13-B0, 86.32% Hist Acc, 84.38% Hist Recall) |
 | **Final candidate** | **VERIFIED** (V14 Ensemble is active research champion; V5-B is production) |
-| **Tabular dataset** | **VERIFIED** (Wisconsin `data.csv`, 569 rows, 30 numerical ML features) |
-| **Tabular SVM** | **VERIFIED** (StandardScaler + RBF SVC, 97.37% Acc, 0.9947 ROC-AUC) |
 | **Backend** | **VERIFIED** (FastAPI `http://127.0.0.1:8000`, status: healthy) |
 | **Frontend** | **VERIFIED** (Next.js `http://localhost:3000`, status: healthy) |
-| **API** | **VERIFIED** (`/api/predict`, `/api/image-predict`, `/api/health` passing) |
+| **API** | **VERIFIED** (`/api/image-predict`, `/api/health` passing) |
 | **Grad-CAM** | **VERIFIED** (Color-mapped JET heatmap overlay generated & rendered) |
-| **Testing** | **VERIFIED** (All 9 evaluation reports & browser E2E tests passing) |
+| **Testing** | **VERIFIED** (Evaluation reports & browser tests passing) |
 | **Git** | **VERIFIED** (Branch `main`, up to date with `origin/main`) |
 
 ---
 
-## 14. Remaining Work
-
-### Required Before Final Release
-1. **Git Working Tree Consolidation**: Stage and commit the final audit reports (`BCD_PROJECT_MASTER_SUMMARY.md`, `project_cleanup_audit.md`, etc.) and V14 research candidate models to ensure 100% repository tracking.
-
-### Optional / Future Work
-1. **Multi-Center Clinical Validation**: Evaluate model performance on external multi-center ultrasound datasets beyond BUSI to verify cross-hospital generalization.
-2. **Containerized Deployment**: Create production `Dockerfile` and `docker-compose.yml` for unified one-click cloud deployment of FastAPI backend and Next.js frontend.
-
----
-
-## 15. Final Architecture
+## 13. Final Architecture
 
 ```
                        ┌─────────────────────────┐
-                       │   Raw Data Sources      │
-                       │ dataset/BUSI / data.csv │
+                       │    Raw Data Source      │
+                       │      dataset/BUSI       │
                        └────────────┬────────────┘
                                     │
                                     ▼
                        ┌─────────────────────────┐
                        │ Preprocessing Pipeline  │
-                       │  Aspect Letterboxing /  │
-                       │     StandardScaler      │
+                       │  Aspect Letterboxing    │
                        └────────────┬────────────┘
                                     │
                                     ▼
                        ┌─────────────────────────┐
                        │   Training Pipeline     │
-                       │ MobileNetV2 / SVM RBF   │
+                       │ MobileNetV2 / EffNetB0  │
                        └────────────┬────────────┘
                                     │
                                     ▼
@@ -370,33 +291,29 @@ BCD/
   │                        Inference Pipeline                         │
   │  ├── V5-B MobileNetV2 Inference                                   │
   │  ├── V14 Ensemble Inference (50/50 V11-B + V13-B0)                │
-  │  ├── Grad-CAM Heatmap Generator (Conv_1 Layer)                    │
-  │  └── Tabular SVM Pipeline Inference                               │
+  │  └── Grad-CAM Heatmap Generator (Conv_1 Layer)                    │
   └─────────────────────────────────┬─────────────────────────────────┘
                                     │
                                     ▼
                        ┌─────────────────────────┐
                        │    FastAPI Backend      │
-                       │   POST /api/predict     │
                        │ POST /api/image-predict │
                        └────────────┬────────────┘
                                     │
                                     ▼
                        ┌─────────────────────────┐
                        │    Next.js UI Frontend  │
-                       │  Dual-Mode Workspace    │
+                       │   Image AI Workspace    │
                        └────────────┬────────────┘
                                     │
                                     ▼
-                               ┌───────────┐
-                               │   User    │
-                               └───────────┘
+                                ┌───────────┐
+                                │   User    │
+                                └───────────┘
 ```
 
 ---
 
-## 16. Final Executive Summary
+## 14. Final Executive Summary
 
-The Breast Cancer Detection (BCD) platform is a production-ready, clinical decision support system combining deep learning ultrasound classification with tabular FNA risk assessment. The active production image model is **V5-B** (`v5.0.0-b`), a MobileNetV2 architecture with aspect-ratio letterboxed preprocessing that prioritizes clinical safety by capturing **87.50% of malignant tumors** (only 4 false negatives on the locked historical test set). The active tabular model is a **StandardScaler + RBF SVM** pipeline achieving **97.37% accuracy** and **0.9947 ROC-AUC** with 100% malignant precision.
-
-In research, the **V14 Ensemble** (combining MobileNetV2 V11-B and EfficientNetB0 V13-B0) serves as the research champion, achieving **86.32% historical accuracy** and **80.37% grouped generalization accuracy**. Both models are integrated into a FastAPI backend and served via an interactive Next.js web studio featuring dynamic model selection and Grad-CAM visual heatmaps. All dataset splits, API contracts, model hashes, and UI flows have been audited, reproduced, and verified with 100% passing status.
+The Breast Cancer Detection (BCD) platform is an **image-only** clinical decision support system utilizing deep learning breast ultrasound classification. The active production image model is **V5-B** (`v5.0.0-b`), a MobileNetV2 architecture with aspect-ratio letterboxed preprocessing that prioritizes clinical safety by capturing **87.50% of malignant tumors** (only 4 false negatives on the locked historical test set).In research, the **V14 Ensemble** (combining MobileNetV2 V11-B and EfficientNetB0 V13-B0) serves as the research champion, achieving **86.32% historical accuracy** and **80.37% grouped generalization accuracy**. Both models are integrated into a FastAPI backend and served via an interactive Next.js web studio featuring dynamic model selection and Grad-CAM visual heatmaps. All dataset splits, API contracts, model hashes, and UI flows have been audited, reproduced, and verified with 100% passing status.

@@ -1,4 +1,4 @@
-import { Info, Database, Layers, ShieldAlert, CheckCircle2 } from "lucide-react";
+import { Database, Layers, ShieldAlert, CheckCircle2 } from "lucide-react";
 
 export default function About() {
   return (
@@ -6,7 +6,7 @@ export default function About() {
       <div className="mb-12 border-b border-slate-200 pb-8">
         <h1 className="text-4xl lg:text-5xl font-extrabold text-slate-900 tracking-tight mb-4">About OncoAI</h1>
         <p className="text-lg text-slate-500 max-w-3xl font-medium leading-relaxed">
-          OncoAI is a modern machine learning application designed to classify breast cancer tumors based on cellular diagnostic measurements and medical ultrasound imaging. The system provides rapid, data-driven insights utilizing highly optimized AI models to support research and preliminary diagnostic evaluation.
+          OncoAI is a production-grade deep learning decision support application designed to classify breast ultrasound scans. The system provides rapid, data-driven insights utilizing fine-tuned computer vision architectures and visual Grad-CAM explanations to support diagnostic evaluation.
         </p>
       </div>
       
@@ -19,21 +19,14 @@ export default function About() {
               <div className="bg-medical-50 w-10 h-10 rounded-xl flex items-center justify-center mr-4 text-medical-600">
                 <Database className="w-5 h-5" />
               </div>
-              The Datasets
+              The Image Dataset
             </h2>
             <div className="space-y-6 text-slate-600 leading-relaxed font-medium">
               <div className="flex gap-4">
                 <CheckCircle2 className="w-6 h-6 text-teal-500 shrink-0" />
                 <div>
-                  <strong className="text-slate-900 block mb-1">Tabular Data</strong>
-                  Uses the established Breast Cancer Wisconsin Diagnostic dataset. It contains 569 instances of diagnostic measurements, representing features computed from digitized images of a fine needle aspirate (FNA) of a breast mass.
-                </div>
-              </div>
-              <div className="flex gap-4">
-                <CheckCircle2 className="w-6 h-6 text-teal-500 shrink-0" />
-                <div>
-                  <strong className="text-slate-900 block mb-1">Image Data</strong>
-                  Uses the Breast Ultrasound Images Dataset (BUSI), containing images categorized into normal, benign, and malignant classes, allowing for direct visual pattern recognition.
+                  <strong className="text-slate-900 block mb-1">Breast Ultrasound Images (BUSI)</strong>
+                  Trained on cleaned breast ultrasound scans categorized into benign, malignant, and normal diagnostic classes, providing direct visual pattern recognition across unique patient lesion clusters.
                 </div>
               </div>
             </div>
@@ -50,15 +43,15 @@ export default function About() {
               <div className="flex gap-4">
                 <CheckCircle2 className="w-6 h-6 text-medical-500 shrink-0" />
                 <div>
-                  <strong className="text-slate-900 block mb-1">Tabular SVM Analysis</strong>
-                  The selected model is a Support Vector Machine (SVM) with an RBF kernel and SMOTE oversampling, chosen for its superior ability to maximize recall (minimizing false negatives) while maintaining a high F1 score and ROC-AUC.
+                  <strong className="text-slate-900 block mb-1">Production V5-B Model</strong>
+                  A MobileNetV2 architecture with aspect-ratio letterbox preprocessing ($224\times224\times3$), optimized for high sensitivity (87.50% historical recall) while preserving clinical safety.
                 </div>
               </div>
               <div className="flex gap-4">
                 <CheckCircle2 className="w-6 h-6 text-medical-500 shrink-0" />
                 <div>
-                  <strong className="text-slate-900 block mb-1">Image Classification</strong>
-                  A MobileNetV2 Transfer Learning architecture is employed to extract deep visual features, providing a fast and efficient classification suitable for web deployment.
+                  <strong className="text-slate-900 block mb-1">V14 Research Ensemble</strong>
+                  A 50/50 probability ensemble combining MobileNetV2 (V11-B) and EfficientNetB0 (V13-B0) operating at threshold $t^*=0.58$ for advanced research evaluations.
                 </div>
               </div>
             </div>
@@ -80,11 +73,11 @@ export default function About() {
             <ul className="space-y-5 text-slate-700 text-base font-medium">
               <li className="flex items-start bg-white p-4 rounded-xl border border-slate-100 shadow-sm">
                 <span className="mr-3 text-amber-500 text-lg leading-none">•</span> 
-                <span>This system is trained using specific historical datasets.</span>
+                <span>This system is trained strictly on historical breast ultrasound imaging datasets.</span>
               </li>
               <li className="flex items-start bg-white p-4 rounded-xl border border-slate-100 shadow-sm">
                 <span className="mr-3 text-amber-500 text-lg leading-none">•</span> 
-                <span>Results may not necessarily generalize to all clinical populations.</span>
+                <span>Results may not necessarily generalize to all clinical populations or imaging devices.</span>
               </li>
               <li className="flex items-start bg-white p-4 rounded-xl border border-slate-100 shadow-sm">
                 <span className="mr-3 text-amber-500 text-lg leading-none">•</span> 
@@ -92,10 +85,10 @@ export default function About() {
               </li>
               <li className="flex items-start bg-white p-4 rounded-xl border border-slate-100 shadow-sm">
                 <span className="mr-3 text-amber-500 text-lg leading-none">•</span> 
-                <span>A high confidence score does <strong>not</strong> equal clinical or medical certainty.</span>
+                <span>A high confidence score or Grad-CAM heatmap does <strong>not</strong> equal clinical certainty.</span>
               </li>
               <li className="flex items-start bg-amber-50 p-4 rounded-xl border border-amber-200 shadow-sm">
-                <span className="mr-3 text-amber-600 text-lg leading-none mt-1"><Info className="w-5 h-5" /></span> 
+                <span className="mr-3 text-amber-600 text-lg leading-none mt-1"><ShieldAlert className="w-5 h-5" /></span> 
                 <span className="text-amber-900 font-bold">This application does NOT replace professional healthcare evaluation, diagnosis, or treatment. It is for educational and research purposes only.</span>
               </li>
             </ul>

@@ -24,8 +24,6 @@ from image_processing.segmentation import segment_nuclei
 from image_processing.feature_extraction import extract_all_nuclei_features
 from image_processing.aggregation import aggregate_features, FEATURE_NAMES_ORDERED
 from image_processing.compatibility import validate_compatibility
-from app.schemas.prediction import BreastCancerFeatures
-from app.services.model_service import model_service
 
 router = APIRouter(tags=["Image Analysis (Experimental)"])
 
@@ -197,38 +195,9 @@ async def predict_from_image(file: UploadFile = File(...)) -> Dict[str, Any]:
     
     compatibility = result["compatibility"]
     
-    if not compatibility["prediction_allowed"]:
-        return {
-            **result,
-            "prediction": None,
-            "prediction_blocked": True,
-            "block_reason": compatibility["message"],
-        }
-    
-    # Run prediction through existing model
-    try:
-        features_input = BreastCancerFeatures(**result["features"])
-        prediction = model_service.predict(features_input)
-        
-        return {
-            **result,
-            "prediction": {
-                "prediction": prediction.prediction,
-                "prediction_code": prediction.prediction_code,
-                "confidence": prediction.confidence,
-                "probabilities": prediction.probabilities,
-                "model": {
-                    "name": prediction.model.name,
-                    "version": prediction.model.version,
-                },
-            },
-            "prediction_blocked": False,
-            "block_reason": None,
-        }
-    except Exception as e:
-        return {
-            **result,
-            "prediction": None,
-            "prediction_blocked": True,
-            "block_reason": f"Model prediction failed: {str(e)}",
-        }
+    return {
+        **result,
+        "prediction": None,
+        "prediction_blocked": True,
+        "block_reason": "Tabular prediction pipeline has been halted. Use ultrasound image prediction (/api/image-predict).",
+    }

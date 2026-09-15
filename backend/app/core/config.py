@@ -4,12 +4,12 @@ from pydantic_settings import BaseSettings
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 class Settings(BaseSettings):
-    PROJECT_NAME: str = "Breast Cancer Detection ML Application"
+    PROJECT_NAME: str = "Breast Cancer Detection Image Application"
     API_V1_STR: str = "/api"
-    MODEL_PATH: str = os.path.join(BASE_DIR, "models", "breast_cancer_model.joblib")
-    METADATA_PATH: str = os.path.join(BASE_DIR, "models", "metadata.json")
+    IMAGE_MODEL_PATH: str = os.path.join(BASE_DIR, "models", "breast_image_classifier.keras")
+    IMAGE_METADATA_PATH: str = os.path.join(BASE_DIR, "models", "breast_image_classifier_metadata.json")
 
-    # Phase D Thresholds and Safety Configs
+    # Thresholds and Safety Configs
     CONFIDENCE_HIGH_THRESHOLD: float = 0.75
     CONFIDENCE_MODERATE_THRESHOLD: float = 0.60
     CONFIDENCE_MARGIN_THRESHOLD: float = 0.15

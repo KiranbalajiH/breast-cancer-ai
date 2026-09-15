@@ -1,15 +1,26 @@
----
-
 # ⚡ Breast Cancer AI Prediction System (Experimental Prototype)
 
 > [!WARNING]
 > **IMPORTANT CLINICAL DISCLAIMER:** This project is intended for research, education, and experimental decision-support purposes only. It is **not** a clinically approved diagnostic system, is not medically certified, and must **not** be used as a substitute for professional medical advice, diagnosis, or treatment.
 
+![Breast Cancer Ultrasound AI Studio](hero_ultrasound.jpg)
+
 This platform provides a production-grade machine learning pipeline and an interactive visual workspace to predict breast cancer risk from breast ultrasound scans using deep computer vision models (V5-B MobileNetV2 Production Model & V14 Ensemble Research Model) alongside class-specific Grad-CAM visual heatmaps.
 
 ---
 
-## 📌 Repository Architecture & Platform (RAP) Layout
+## 📌 Table of Contents
+- [Repository Architecture & Platform Layout](#-repository-architecture--platform-layout)
+- [Supported Inputs & Target Classes](#supported-inputs--target-classes)
+- [Core System Capabilities](#core-system-capabilities)
+- [Local Setup & Environment Execution](#local-setup--environment-execution)
+- [Environment Variables Configuration](#environment-variables-configuration)
+- [Production Deployment Workflow](#production-deployment-workflow)
+- [Model Limitations & Operational Boundaries](#model-limitations--operational-boundaries)
+
+---
+
+## 📌 Repository Architecture & Platform Layout
 
 ```
 breast-cancer-ai/
