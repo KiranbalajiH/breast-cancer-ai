@@ -3,7 +3,8 @@
 > **Clinical Disclaimer**
 > This project is an experimental research and educational prototype. It is **not** a clinically approved or medically certified diagnostic system and must **not** be used as a substitute for professional medical advice, diagnosis, or treatment. All predictions are probabilistic estimates and carry inherent uncertainty. Always consult a qualified healthcare professional for clinical decisions.
 
-![Breast Cancer AI Prediction System — Frontend Workspace](frontend_screenshot.png)
+<img width="1881" height="907" alt="image" src="https://github.com/user-attachments/assets/4fbbd7da-a8fa-460a-95b5-c226953f04dd" />
+
 
 ---
 
