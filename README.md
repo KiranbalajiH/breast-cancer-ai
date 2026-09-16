@@ -1,9 +1,3 @@
-Searched for "RAP"
-Viewed README.md:1-100
-Viewed README.md:100-146
-
-Here is the rephrased and updated content formatted as a **Repository Architecture & Platform (RAP)** specification document, fully aligned with your project's image-only ultrasound classification architecture:
-
 ---
 
 # ⚡ Breast Cancer AI Prediction System (Experimental Prototype)
