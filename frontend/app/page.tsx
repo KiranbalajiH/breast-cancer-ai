@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Activity, ShieldCheck, PieChart, Layers, ChevronRight } from "lucide-react";
+import { Activity, ChevronRight } from "lucide-react";
 
 export default function Home() {
   return (
@@ -73,18 +73,3 @@ export default function Home() {
   );
 }
 
-function FeatureCard({ icon, title, description }: { icon: React.ReactNode, title: string, description: string }) {
-  return (
-    <div className="bg-slate-50 rounded-2xl p-8 border border-slate-200 shadow-sm hover:shadow-md hover:border-medical-200 transition-all duration-300 flex flex-col justify-between h-full group">
-      <div>
-        <div className="bg-white border border-slate-100 w-14 h-14 rounded-2xl flex items-center justify-center mb-6 shadow-sm group-hover:scale-110 group-hover:bg-medical-50 transition-all duration-300">
-          {icon}
-        </div>
-        <h3 className="text-xl font-extrabold text-slate-900 mb-3">{title}</h3>
-      </div>
-      <p className="text-base text-slate-600 leading-relaxed font-medium">
-        {description}
-      </p>
-    </div>
-  );
-}

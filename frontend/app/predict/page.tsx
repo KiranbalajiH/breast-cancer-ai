@@ -3,7 +3,7 @@
 
 import React, { useState } from "react";
 import { predictImage, ImagePredictionResponse } from "@/lib/api";
-import { AlertCircle, PlayCircle, RefreshCw, Upload, ImageIcon, Loader2, Activity } from "lucide-react";
+import { AlertCircle, PlayCircle, Upload, ImageIcon, Loader2, Activity } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
 export default function PredictPage() {

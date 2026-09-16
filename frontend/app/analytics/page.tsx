@@ -1,7 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 
-import { Activity } from "lucide-react";
 
 export default function Analytics() {
   return (
