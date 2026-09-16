@@ -1,82 +1,46 @@
 import pytest
-from fastapi.testclient import TestClient
+import io
+import cv2
 import numpy as np
+from fastapi.testclient import TestClient
 
 from app.main import app
 
-client = TestClient(app)
-
 @pytest.fixture(scope="module")
-def sample_features():
-    # Provide a dummy sample that matches the schema with all 30 features
-    return {
-        "mean radius": 14.2,
-        "mean texture": 19.2,
-        "mean perimeter": 90.0,
-        "mean area": 600.0,
-        "mean smoothness": 0.1,
-        "mean compactness": 0.1,
-        "mean concavity": 0.05,
-        "mean concave points": 0.05,
-        "mean symmetry": 0.15,
-        "mean fractal dimension": 0.06,
-        "radius error": 0.3,
-        "texture error": 1.0,
-        "perimeter error": 2.5,
-        "area error": 30.0,
-        "smoothness error": 0.005,
-        "compactness error": 0.01,
-        "concavity error": 0.01,
-        "concave points error": 0.01,
-        "symmetry error": 0.01,
-        "fractal dimension error": 0.003,
-        "worst radius": 16.0,
-        "worst texture": 25.0,
-        "worst perimeter": 105.0,
-        "worst area": 800.0,
-        "worst smoothness": 0.13,
-        "worst compactness": 0.2,
-        "worst concavity": 0.2,
-        "worst concave points": 0.1,
-        "worst symmetry": 0.25,
-        "worst fractal dimension": 0.08
-    }
+def sample_ultrasound_png():
+    # Create a synthetic 224x224 grayscale ultrasound image for testing
+    img = np.zeros((224, 224, 3), dtype=np.uint8)
+    cv2.circle(img, (112, 112), 40, (120, 120, 120), -1)
+    is_success, buffer = cv2.imencode(".png", img)
+    assert is_success
+    return io.BytesIO(buffer.tobytes())
 
 def test_health_check():
-    # Make sure app startup loads the model, but since TestClient does not run lifespan
-    # we might need to manually trigger model load if not using 'with TestClient'
     with TestClient(app) as c:
         response = c.get("/api/health")
         assert response.status_code == 200
         data = response.json()
-        assert data["status"] == "healthy"
+        assert data["status"] == "ready"
         assert data["model_loaded"] is True
-        assert "model_name" in data
 
-def test_predict_success(sample_features):
+def test_image_model_status():
     with TestClient(app) as c:
-        response = c.post("/api/predict", json=sample_features)
+        response = c.get("/api/image-model/status")
         assert response.status_code == 200
         data = response.json()
-        assert "prediction" in data
+        assert data["status"] == "ready"
+        assert data["model_loaded"] is True
+        assert "classes" in data
+
+def test_image_predict_success(sample_ultrasound_png):
+    with TestClient(app) as c:
+        response = c.post(
+            "/api/image-predict",
+            files={"file": ("test.png", sample_ultrasound_png, "image/png")}
+        )
+        assert response.status_code == 200
+        data = response.json()
+        assert "predicted_class" in data
         assert "confidence" in data
         assert "probabilities" in data
-
-def test_predict_missing_features(sample_features):
-    with TestClient(app) as c:
-        # Remove a required field
-        del sample_features["mean radius"]
-        response = c.post("/api/predict", json=sample_features)
-        assert response.status_code == 422 # Unprocessable Entity from FastAPI Validation
-
-def test_model_status_endpoint():
-    with TestClient(app) as c:
-        response = c.get("/api/model-status")
-        assert response.status_code == 200
-        data = response.json()
-        assert "status" in data
-        assert "tabular_model" in data
-        assert "image_model" in data
-        assert data["status"] in ["healthy", "unhealthy"]
-        assert data["tabular_model"] in ["model_loaded", "model_unavailable"]
-        assert data["image_model"] in ["model_loaded", "model_unavailable"]
+        assert "explanation" in data

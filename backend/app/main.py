@@ -5,7 +5,6 @@ from contextlib import asynccontextmanager
 from app.core.config import settings
 from app.api.prediction import router as prediction_router
 from app.api.model import router as model_router
-from app.api.image_analysis import router as image_analysis_router
 from app.image_model import image_classifier
 
 @asynccontextmanager
@@ -39,4 +38,4 @@ app.add_middleware(
 
 app.include_router(prediction_router, prefix=settings.API_V1_STR)
 app.include_router(model_router, prefix=f"{settings.API_V1_STR}/model")
-app.include_router(image_analysis_router, prefix=f"{settings.API_V1_STR}/image-analysis")
+
