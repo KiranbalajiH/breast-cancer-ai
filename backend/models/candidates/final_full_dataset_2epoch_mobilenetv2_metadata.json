@@ -1,0 +1,46 @@
+{
+    "model_name": "final_full_dataset_2epoch_mobilenetv2",
+    "candidate_file": "backend/models/candidates/final_full_dataset_2epoch_mobilenetv2.keras",
+    "architecture": "MobileNetV2 Transfer Learning",
+    "input_shape": [
+        224,
+        224,
+        3
+    ],
+    "output_classes": [
+        "benign",
+        "malignant",
+        "normal"
+    ],
+    "class_mapping": {
+        "benign": 0,
+        "malignant": 1,
+        "normal": 2
+    },
+    "class_counts": {
+        "benign": 434,
+        "malignant": 209,
+        "normal": 133
+    },
+    "total_training_samples": 776,
+    "epochs_trained": 2,
+    "steps_per_epoch": 25,
+    "batch_size": 32,
+    "preprocessing": "aspect_ratio_letterbox_224x224_mnv2",
+    "epoch_metrics": [
+        {
+            "epoch": 1,
+            "loss": 1.146386742591858,
+            "accuracy": 0.4961340129375458
+        },
+        {
+            "epoch": 2,
+            "loss": 0.721261739730835,
+            "accuracy": 0.6649484634399414
+        }
+    ],
+    "file_size_bytes": 18015776,
+    "sha256": "a1a5ad9ffe063eeb83db7f5a9d889b266e504f1fb2ff89e7206cec5a4d70a994",
+    "status": "FULL-DATASET EXPERIMENTAL CANDIDATE",
+    "held_out_evaluation": "NONE - Trained on 100% of 776 eligible BUSI scans. Historical and grouped test sets cannot be used as independent benchmarks."
+}

@@ -1,4 +1,12 @@
-# Breast Cancer AI Prediction System
+# OncoAI - Breast Cancer Classification System
+
+[![Live Demo](https://img.shields.io/badge/Live_Demo-Vercel-000000?style=for-the-badge&logo=vercel&logoColor=white)](https://breast-cancer-ai-ten.vercel.app/)
+[![API Backend](https://img.shields.io/badge/API_Backend-Render-46E3B7?style=for-the-badge&logo=render&logoColor=white)](https://breast-cancer-ai-backend.onrender.com)
+[![FastAPI](https://img.shields.io/badge/FastAPI-009688?style=for-the-badge&logo=fastapi&logoColor=white)](https://fastapi.tiangolo.com/)
+[![Next.js](https://img.shields.io/badge/Next.js_14-000000?style=for-the-badge&logo=next.js&logoColor=white)](https://nextjs.org/)
+
+> 🚀 **Live Application (Vercel):** [https://breast-cancer-ai-ten.vercel.app/](https://breast-cancer-ai-ten.vercel.app/)  
+> ⚡ **Live Backend API (Render):** [https://breast-cancer-ai-backend.onrender.com](https://breast-cancer-ai-backend.onrender.com)
 
 > **Clinical Disclaimer**
 > This project is an experimental research and educational prototype. It is **not** a clinically approved or medically certified diagnostic system and must **not** be used as a substitute for professional medical advice, diagnosis, or treatment. All predictions are probabilistic estimates and carry inherent uncertainty. Always consult a qualified healthcare professional for clinical decisions.
@@ -10,7 +18,7 @@
 
 ## Overview
 
-The Breast Cancer AI Prediction System is a deep learning platform that classifies grayscale breast ultrasound scans into three diagnostic categories:
+**OncoAI** is a deep learning platform that classifies grayscale breast ultrasound scans into three diagnostic categories:
 
 | Class | Description |
 | :--- | :--- |
@@ -18,7 +26,9 @@ The Breast Cancer AI Prediction System is a deep learning platform that classifi
 | **Malignant** | High-risk or cancerous lesion requiring clinical evaluation |
 | **Normal** | Healthy breast tissue with no focal lesion identified |
 
-The system is built as a decoupled microservice architecture with a **FastAPI** backend serving TensorFlow/Keras models and a **Next.js** frontend providing an interactive visual workspace with Grad-CAM explainability overlays.
+The system is deployed in production using a decoupled microservice architecture:
+- **Frontend:** Interactive Next.js 14 Web Application hosted on **Vercel** ([Live App](https://breast-cancer-ai-ten.vercel.app/))
+- **Backend:** High-performance FastAPI Microservice hosted on **Render** ([Live API](https://breast-cancer-ai-backend.onrender.com)) serving MobileNetV2 and ensemble TensorFlow models with real-time Grad-CAM explainability heatmaps.
 
 ---
 
@@ -212,20 +222,30 @@ V14 is accessible for research comparison but all default production inference u
 
 ---
 
-## Deployment
+## Deployment & Live URLs
 
-### Backend (Render, Railway, or VPS)
-1. Set root directory to `backend/`.
-2. **Build command:** `pip install -r requirements.txt`
-3. **Start command:** `uvicorn app.main:app --host 0.0.0.0 --port $PORT`
-4. Set `BACKEND_CORS_ORIGINS` to your production frontend URL.
-5. Ensure ≥ 1 GB RAM for TensorFlow initialization and model loading.
-6. Health probe: `GET /api/health`
+### Live Production Deployments
+- 🌐 **Frontend Application (Vercel):** [https://breast-cancer-ai-ten.vercel.app/](https://breast-cancer-ai-ten.vercel.app/)
+- ⚡ **Backend API Microservice (Render):** [https://breast-cancer-ai-backend.onrender.com](https://breast-cancer-ai-backend.onrender.com)
+- 📋 **OpenAPI Interactive Documentation:** [https://breast-cancer-ai-backend.onrender.com/docs](https://breast-cancer-ai-backend.onrender.com/docs)
 
-### Frontend (Vercel)
-1. Import repository and set root directory to `frontend/`.
-2. Add environment variable: `NEXT_PUBLIC_API_URL` = your deployed backend URL.
-3. Deploy. Vercel handles build optimization automatically.
+### Backend Deployment (Render)
+The backend FastAPI microservice is deployed as a Python web service on Render, defined by [`render.yaml`](file:///c:/Users/kiran/BCD/render.yaml):
+- **Region:** Singapore
+- **Build Command:** `cd backend && pip install -r requirements.txt`
+- **Start Command:** `cd backend && uvicorn app.main:app --host 0.0.0.0 --port $PORT`
+- **Environment Variables:**
+  - `BACKEND_CORS_ORIGINS` = `https://breast-cancer-ai-ten.vercel.app,http://localhost:3000`
+- **Health Check Endpoint:** `GET /api/health`
+- **Resource Allocation:** ≥ 1 GB RAM for TensorFlow 2.x runtime and model weight initialization
+
+### Frontend Deployment (Vercel)
+The interactive Next.js 14 UI workspace is hosted on Vercel:
+- **Framework Preset:** Next.js (App Router)
+- **Root Directory:** `frontend/`
+- **Environment Variables:**
+  - `NEXT_PUBLIC_API_URL` = `https://breast-cancer-ai-backend.onrender.com`
+- **Deployment Strategy:** Git-integrated automatic builds on push to `main` branch.
 
 ---
 
