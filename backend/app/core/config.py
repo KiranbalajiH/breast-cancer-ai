@@ -28,7 +28,7 @@ class Settings(BaseSettings):
     SAFEGUARD_MAX_ASPECT_RATIO: float = 2.5
 
     # CORS Configurations
-    BACKEND_CORS_ORIGINS: str = "http://localhost:3000,http://127.0.0.1:3000"
+    BACKEND_CORS_ORIGINS: str = "http://localhost:3000,http://127.0.0.1:3000,https://breast-cancer-ai-ten.vercel.app,*"
 
     class Config:
         case_sensitive = True
