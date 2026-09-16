@@ -1,152 +1,266 @@
-# ⚡ Breast Cancer AI Prediction System (Experimental Prototype)
+# Breast Cancer AI Prediction System
 
-> [!WARNING]
-> **IMPORTANT CLINICAL DISCLAIMER:** This project is intended for research, education, and experimental decision-support purposes only. It is **not** a clinically approved diagnostic system, is not medically certified, and must **not** be used as a substitute for professional medical advice, diagnosis, or treatment.
+> **Clinical Disclaimer**
+> This project is an experimental research and educational prototype. It is **not** a clinically approved or medically certified diagnostic system and must **not** be used as a substitute for professional medical advice, diagnosis, or treatment. All predictions are probabilistic estimates and carry inherent uncertainty. Always consult a qualified healthcare professional for clinical decisions.
 
 ![Breast Cancer Ultrasound AI Studio](hero_ultrasound.jpg)
 
-This platform provides a production-grade machine learning pipeline and an interactive visual workspace to predict breast cancer risk from breast ultrasound scans using deep computer vision models (V5-B MobileNetV2 Production Model & V14 Ensemble Research Model) alongside class-specific Grad-CAM visual heatmaps.
+---
+
+## Overview
+
+The Breast Cancer AI Prediction System is a deep learning platform that classifies grayscale breast ultrasound scans into three diagnostic categories:
+
+| Class | Description |
+| :--- | :--- |
+| **Benign** | Non-cancerous tumor or normal-appearing benign lesion |
+| **Malignant** | High-risk or cancerous lesion requiring clinical evaluation |
+| **Normal** | Healthy breast tissue with no focal lesion identified |
+
+The system is built as a decoupled microservice architecture with a **FastAPI** backend serving TensorFlow/Keras models and a **Next.js** frontend providing an interactive visual workspace with Grad-CAM explainability overlays.
 
 ---
 
-## 📌 Table of Contents
-- [Repository Architecture & Platform Layout](#-repository-architecture--platform-layout)
-- [Supported Inputs & Target Classes](#supported-inputs--target-classes)
-- [Core System Capabilities](#core-system-capabilities)
-- [Local Setup & Environment Execution](#local-setup--environment-execution)
-- [Environment Variables Configuration](#environment-variables-configuration)
-- [Production Deployment Workflow](#production-deployment-workflow)
-- [Model Limitations & Operational Boundaries](#model-limitations--operational-boundaries)
+## Models
+
+### V5-B — Production Model
+- **Architecture:** MobileNetV2 transfer learning with ImageNet backbone
+- **Preprocessing:** Aspect-ratio letterbox resize to 224 × 224 × 3
+- **Head:** GlobalAveragePooling2D → Dropout(0.2) → Dense(3, softmax)
+- **Status:** Active production model used for default inference
+
+### V14 — Research Ensemble
+- **Architecture:** Frozen probability ensemble of V11-B (MobileNetV2) + V13-B0 (EfficientNetB0)
+- **Strategy:** 50/50 weighted probability averaging with fitted malignant threshold (t = 0.58)
+- **Status:** Opt-in research model available via dedicated endpoint. **Not automatically promoted to production.**
 
 ---
 
-## 📌 Repository Architecture & Platform Layout
+## Core Features
+
+1. **Deep Learning Image Classification** — Classifies breast ultrasound scans using the production V5-B MobileNetV2 model, with an opt-in V14 research ensemble (MobileNetV2 + EfficientNetB0).
+2. **Probability Distribution Reporting** — Returns softmax probability scores across all three target classes alongside the primary class confidence score.
+3. **Uncertainty & Low-Margin Safeguards** — Flags low-confidence predictions (max probability < 0.50) or close class competition (top-two margin < 0.15), transitioning status to `review_required` with a clinician alert.
+4. **Image Quality Validation** — Analyzes uploads for extreme blurriness (Laplacian variance), underexposure, overexposure, and low contrast, marking low-fidelity inputs as `"poor"` quality.
+5. **Modality & Annotation Safeguards** — Blocks non-ultrasound photographs, documents, color Doppler sweeps, burned-in calipers, or extreme aspect-ratio images, flagging status as `"unsupported_or_review_required"`.
+6. **Visual Explainability (Grad-CAM)** — Generates class-activation heatmaps from the final convolutional layer (`Conv_1`) showing image regions that most influenced the prediction.
+7. **Built-in Sample Ultrasound Scans** — Quick-load buttons (Sample Benign, Sample Malignant, Sample Normal) for immediate end-to-end platform testing.
+
+---
+
+## Dataset
+
+The system is trained and evaluated on the **BUSI (Breast Ultrasound Images)** dataset.
+
+| Class | Cleaned Count |
+| :--- | :---: |
+| Benign | 434 |
+| Malignant | 209 |
+| Normal | 133 |
+| **Total** | **776** |
+
+- **Excluded:** 2 scans (`benign (433).png` and `malignant (145).png`) removed due to exact pixel-duplicate cross-label conflict.
+- **Source:** `dataset/BUSI/`
+
+---
+
+## Repository Architecture
 
 ```
 breast-cancer-ai/
-├── backend/                       # FastAPI Backend Microservice
-│   ├── app/                       # Core service logic (lifespan, config, image pipeline, API endpoints)
-│   ├── data/                      # Dataset manifest metadata & manifest definitions
-│   ├── models/                    # Active production & candidate ML weight artifacts (.keras)
-│   │   └── evaluation_reports/    # Independent validation & audit reports
-│   └── archive/                   # Historical experiment iterations, candidate weights, & legacy reports
-├── dataset/                       # BUSI (Breast Ultrasound Images) Dataset
-│   └── BUSI/                      # Cleaned ultrasound scans (benign, malignant, normal)
-├── frontend/                      # Next.js 14 Frontend Workspace (React, TypeScript, Tailwind CSS)
-│   ├── app/                       # Application router pages (Ultrasound workspace, analytics dashboard)
-│   ├── components/                # Reusable UI widgets & visual viewers (Grad-CAM viewer, dropzone)
-│   ├── public/                    # Static assets & quick-load sample ultrasound scans
-│   └── lib/                       # API fetching layer, contract definitions, & type interfaces
-├── RMD/                           # R Markdown exploratory dataset analysis & statistical reports
-└── README.md                      # Main project documentation & RAP specification
+├── backend/                           # FastAPI backend microservice
+│   ├── app/                           # Application source (lifespan, config, API endpoints, image pipeline)
+│   │   └── api/                       # Route definitions (prediction, image analysis)
+│   ├── image_processing/              # Image quality validation and preprocessing utilities
+│   ├── data/                          # Dataset manifest metadata
+│   ├── models/                        # Production and candidate model weights (.keras)
+│   │   ├── candidates/                # Research candidate model artifacts
+│   │   └── evaluation_reports/        # Independent validation, audit, and evaluation reports
+│   ├── training/                      # Training scripts (v11, v13, v14, full-dataset experiments)
+│   ├── tests/                         # Automated unit and safety tests
+│   ├── archive/                       # Historical experiment iterations, legacy reports, and artifacts
+│   └── requirements.txt              # Python dependencies
+├── frontend/                          # Next.js frontend workspace
+│   ├── app/                           # Next.js App Router pages (workspace, analytics)
+│   ├── components/                    # Reusable UI widgets (Grad-CAM viewer, dropzone, model selector)
+│   ├── public/                        # Static assets and sample ultrasound scans
+│   └── lib/                           # API client layer, type interfaces, and contract definitions
+├── dataset/                           # BUSI breast ultrasound image dataset
+│   └── BUSI/                          # Class directories (benign/, malignant/, normal/)
+├── RMD/                               # R Markdown exploratory dataset analysis reports
+└── README.md                          # Project documentation
 ```
 
 ---
 
-## Supported Inputs & Target Classes
+## Technology Stack
 
-### 1. Supported Input Modality
-* **Image Mode:** Breast ultrasound scans (Grayscale scans only; supported formats: `.png`, `.jpeg`, `.jpg`).
-
-### 2. Mapped Output Classes
-* `benign`: Non-cancerous tumor or normal-appearing benign lesion.
-* `malignant`: High-risk or cancerous lesion requiring clinical evaluation.
-* `normal`: Healthy breast tissue scan with no focal lesion identified.
-
----
-
-## Core System Capabilities
-
-1. **Dual-Model Deep Learning Predictions:** Classifies tumor risk using our primary production MobileNetV2 classifier (**V5-B**) featuring aspect-ratio letterboxed preprocessing, with an opt-in **V14 Research Ensemble** (MobileNetV2 + EfficientNetB0).
-2. **Probability Distribution Reporting:** Returns exact Softmax probability scores across all target classes (`benign`, `malignant`, `normal`) alongside the primary class confidence score.
-3. **Uncertainty & Low-Margin Safeguard Layer:** Flags low-confidence predictions (maximum probability $< 0.50$) or close class competition (top-two class margin $< 0.15$), transitioning prediction status to `review_required` with an explicit clinician alert.
-4. **Deterministic Image Quality Validation:** Scans incoming images for extreme blurriness (Laplacian variance evaluation), underexposure, overexposure, or low contrast, marking low-fidelity uploads as `"poor"` quality.
-5. **Modality & Annotation Safeguards:** Blocks invalid uploads containing burned-in color calipers, Doppler color sweeps, non-ultrasound photographs, or abnormal aspect-ratio documents, flagging status as `"unsupported_or_review_required"`.
-6. **Visual Explainability (Grad-CAM):** Generates high-resolution class-activation heatmaps from the deep convolutional backbone (`Conv_1` layer) to highlight spatial regions influencing the network's prediction.
-7. **Quick-Load Clinician Samples:** Includes built-in sample scans (`Sample Benign Scan`, `Sample Malignant Scan`, `Sample Normal Scan`) for immediate end-to-end platform validation.
+| Layer | Technologies |
+| :--- | :--- |
+| **Backend** | Python, FastAPI, TensorFlow / Keras, NumPy, OpenCV, Uvicorn |
+| **Frontend** | Next.js, React, TypeScript, Tailwind CSS |
+| **ML Models** | MobileNetV2, EfficientNetB0, Softmax classification |
+| **Explainability** | Grad-CAM heatmap generation |
+| **Safeguards** | Image quality validation, modality verification, uncertainty alerts |
 
 ---
 
-## Local Setup & Environment Execution
+## Local Setup
 
 ### Prerequisites
-- **Python:** 3.9+
-- **Node.js:** 18+
+- Python 3.9+
+- Node.js 18+
 
-### 1. Backend Microservice (FastAPI & TensorFlow)
-Navigate to the `backend/` directory:
+### 1. Clone the Repository
 ```bash
-# Create and activate Python virtual environment
+git clone https://github.com/KiranbalajiH/breast-cancer-ai.git
+cd breast-cancer-ai
+```
+
+### 2. Backend Setup (FastAPI + TensorFlow)
+```bash
+cd backend
+
+# Create virtual environment
 python -m venv venv
 
-# Windows (PowerShell):
+# Activate — Windows PowerShell:
 .\venv\Scripts\Activate.ps1
 
-# Mac/Linux:
+# Activate — macOS / Linux:
 source venv/bin/activate
 
-# Install required packages
+# Install dependencies
 pip install -r requirements.txt
-```
 
-#### Launch Backend Server:
-```bash
+# Start the backend server
 python -m uvicorn app.main:app --reload
 ```
-* **API Root:** `http://localhost:8000`
-* **Interactive OpenAPI Docs:** `http://localhost:8000/docs`
+- **API Root:** `http://localhost:8000`
+- **OpenAPI Docs:** `http://localhost:8000/docs`
 
----
-
-### 2. Frontend Workspace (Next.js & Tailwind CSS)
-Navigate to the `frontend/` directory:
+### 3. Frontend Setup (Next.js + Tailwind CSS)
 ```bash
-# Install Node dependencies
+cd frontend
+
+# Install dependencies
 npm install
-```
 
-#### Launch Frontend Dev Server:
-```bash
+# Start the development server
 npm run dev
 ```
-* **Visual Workspace UI:** `http://localhost:3000`
+- **Workspace UI:** `http://localhost:3000`
 
 ---
 
-## Environment Variables Configuration
+## Environment Variables
 
-### Backend Environment File (`backend/.env`)
-```env
-BACKEND_CORS_ORIGINS="http://localhost:3000,https://breast-cancer-ai.vercel.app"
-```
+### Backend (`backend/.env`)
+| Variable | Description | Example |
+| :--- | :--- | :--- |
+| `BACKEND_CORS_ORIGINS` | Comma-separated allowed frontend origins | `http://localhost:3000` |
 
-### Frontend Environment File (`frontend/.env.local`)
-```env
-NEXT_PUBLIC_API_URL="http://localhost:8000"
-```
-
----
-
-## Production Deployment Workflow
-
-### 1. Backend Microservice Deployment (Render, Railway, or VPS)
-1. **Root Directory:** Set root path to `backend/`.
-2. **Build Command:** `pip install -r requirements.txt`
-3. **Start Command:** `uvicorn app.main:app --host 0.0.0.0 --port $PORT`
-4. **Environment Variables:** Set `BACKEND_CORS_ORIGINS` to match your production frontend URL.
-5. **Memory Allocation:** Ensure $\ge 1\text{GB}$ RAM to support TensorFlow initialization and model weight pre-loading.
-6. **Health Monitoring Endpoints:** Configure health probes to target `/api/health` or `/api/image-model/status`.
-
-### 2. Frontend Application Deployment (Vercel)
-1. Import repository into Vercel.
-2. Set **Root Directory** to `frontend/`.
-3. Configure Environment Variables:
-   - `NEXT_PUBLIC_API_URL`: `<your-production-backend-url>` (e.g. `https://breast-cancer-backend.onrender.com`)
-4. Trigger **Deploy**. Vercel will build, optimize static bundles, and deploy the application.
+### Frontend (`frontend/.env.local`)
+| Variable | Description | Example |
+| :--- | :--- | :--- |
+| `NEXT_PUBLIC_API_URL` | Root URL of the FastAPI backend | `http://localhost:8000` |
 
 ---
 
-## Model Limitations & Operational Boundaries
+## API Endpoints
 
-1. **Grayscale Ultrasound Requirement:** Quality heuristics expect standard B-mode ultrasound inputs. Color Doppler sweeps, burned-in graphic text, or high-saturation annotations will trigger `"unsupported_or_review_required"`.
-2. **Attribution-Only Heatmaps:** Grad-CAM displays feature importance activation zones; it does **not** generate clinical segmentations or delineate exact pathological tumor boundaries.
+All endpoints are prefixed with `/api`.
+
+| Method | Endpoint | Description |
+| :--- | :--- | :--- |
+| `GET` | `/api/health` | Health check — returns 503 if model is not loaded |
+| `GET` | `/api/image-model/status` | Returns image model loading status and metadata |
+| `POST` | `/api/image-predict` | Predict using V5-B production model (default) |
+| `POST` | `/api/image-predict?model=v14` | Predict using V14 research ensemble via query parameter |
+| `POST` | `/api/image-predict-v14` | Predict using V14 research ensemble via dedicated endpoint |
+
+### Request Format
+All prediction endpoints accept `multipart/form-data` with a single `file` field containing a JPEG or PNG breast ultrasound image.
+
+### Response
+Prediction responses include: predicted class, softmax probability distribution, confidence score, prediction status (`normal`, `review_required`, or `unsupported_or_review_required`), image quality assessment, and Grad-CAM heatmap data (base64-encoded).
+
+---
+
+## Model Evaluation
+
+Evaluation and audit reports are stored under `backend/models/evaluation_reports/`. Reports contain:
+
+- Per-class precision, recall, F1-score, and support
+- Confusion matrices
+- Model architecture and training configuration
+- SHA256 file hashes for reproducibility
+- Runtime validation and model loading tests
+- Frontend and backend integration verification (where applicable)
+
+### Production vs. Research Inference
+
+| Property | V5-B (Production) | V14 (Research) |
+| :--- | :--- | :--- |
+| **Endpoint** | `/api/image-predict` | `/api/image-predict-v14` |
+| **Architecture** | MobileNetV2 | MobileNetV2 + EfficientNetB0 Ensemble |
+| **Status** | Active production default | Opt-in research only |
+| **Promotion** | Currently deployed | Not automatically promoted |
+
+V14 is accessible for research comparison but all default production inference uses V5-B. Model promotion requires explicit validation against held-out evaluation sets and manual deployment.
+
+---
+
+## Deployment
+
+### Backend (Render, Railway, or VPS)
+1. Set root directory to `backend/`.
+2. **Build command:** `pip install -r requirements.txt`
+3. **Start command:** `uvicorn app.main:app --host 0.0.0.0 --port $PORT`
+4. Set `BACKEND_CORS_ORIGINS` to your production frontend URL.
+5. Ensure ≥ 1 GB RAM for TensorFlow initialization and model loading.
+6. Health probe: `GET /api/health`
+
+### Frontend (Vercel)
+1. Import repository and set root directory to `frontend/`.
+2. Add environment variable: `NEXT_PUBLIC_API_URL` = your deployed backend URL.
+3. Deploy. Vercel handles build optimization automatically.
+
+---
+
+## Limitations
+
+1. **Dataset Limitations:** The BUSI dataset contains 776 cleaned scans from approximately 600 patients. This is a relatively small dataset and may not capture the full diversity of breast ultrasound presentations across populations, equipment, and imaging protocols.
+2. **Ultrasound Modality Limitations:** The system expects standard grayscale B-mode breast ultrasound scans. Color Doppler overlays, burned-in graphic annotations, measurement calipers, or non-ultrasound photographs will trigger modality safeguards and may be rejected.
+3. **Model Generalization Limitations:** Models are trained on a single institutional dataset. Performance on ultrasound scans from different equipment, imaging protocols, or patient populations has not been independently validated.
+4. **Prediction Uncertainty:** All predictions are probabilistic softmax estimates. Low-confidence predictions or close class margins are flagged but may still be incorrect. No prediction should be treated as a definitive clinical diagnosis.
+5. **Grad-CAM Limitations:** Grad-CAM heatmaps display feature importance activation zones. They do not generate clinical segmentations, delineate pathological tumor boundaries, or provide pixel-level diagnostic masks.
+
+---
+
+## Research Status
+
+| Property | Value |
+| :--- | :--- |
+| **Project Status** | Experimental Prototype |
+| **Primary Model** | V5-B MobileNetV2 |
+| **Research Model** | V14 MobileNetV2 + EfficientNetB0 Ensemble |
+| **Input Modality** | Grayscale Breast Ultrasound |
+| **Classes** | Benign / Malignant / Normal |
+| **Explainability** | Grad-CAM |
+| **Backend** | FastAPI + TensorFlow |
+| **Frontend** | Next.js + React + TypeScript |
+
+---
+
+## License
+
+Add the applicable software license for this repository.
+
+The BUSI (Breast Ultrasound Images) dataset has its own licensing and usage requirements as specified by its authors (Al-Dhabyani et al., 2020). Users must respect the original dataset license terms.
+
+---
+
+## Disclaimer
+
+This system is provided strictly for research, educational, and experimental decision-support purposes. It is not a clinically validated diagnostic tool, has not received regulatory clearance or certification, and must not be relied upon for medical diagnosis or treatment decisions. Always seek the advice of qualified healthcare professionals for clinical interpretation of medical imaging.
