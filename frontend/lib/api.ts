@@ -1,5 +1,5 @@
 const getApiUrl = () => {
-  const url = process.env.NEXT_PUBLIC_API_URL || process.env.NEXT_PUBLIC_API_BASE_URL || "http://127.0.0.1:8000";
+  const url = process.env.NEXT_PUBLIC_API_URL || process.env.NEXT_PUBLIC_API_BASE_URL || "https://breast-cancer-ai-backend.onrender.com";
   return url.endsWith("/") ? url.slice(0, -1) : url;
 };
 const API_URL = getApiUrl();
