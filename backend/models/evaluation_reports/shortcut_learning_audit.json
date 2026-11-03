@@ -1,0 +1,226 @@
+{
+  "unmodified": {
+    "v5b": {
+      "accuracy": 70.09,
+      "macro_f1": 69.46,
+      "malignant_sensitivity": 80.65,
+      "malignant_specificity": 80.26,
+      "malignant_ppv": 62.5,
+      "malignant_npv": 91.04,
+      "malignant_fn": 6,
+      "malignant_fp": 15,
+      "confusion_matrix": [
+        [
+          36,
+          15,
+          8
+        ],
+        [
+          3,
+          25,
+          3
+        ],
+        [
+          3,
+          0,
+          14
+        ]
+      ]
+    },
+    "v14": {
+      "accuracy": 80.37,
+      "macro_f1": 79.12,
+      "malignant_sensitivity": 83.87,
+      "malignant_specificity": 88.16,
+      "malignant_ppv": 74.29,
+      "malignant_npv": 93.06,
+      "malignant_fn": 5,
+      "malignant_fp": 9,
+      "confusion_matrix": [
+        [
+          46,
+          9,
+          4
+        ],
+        [
+          3,
+          26,
+          2
+        ],
+        [
+          3,
+          0,
+          14
+        ]
+      ]
+    }
+  },
+  "border_crop": {
+    "v5b": {
+      "accuracy": 63.55,
+      "macro_f1": 62.19,
+      "malignant_sensitivity": 74.19,
+      "malignant_specificity": 76.32,
+      "malignant_ppv": 56.1,
+      "malignant_npv": 87.88,
+      "malignant_fn": 8,
+      "malignant_fp": 18,
+      "confusion_matrix": [
+        [
+          32,
+          16,
+          11
+        ],
+        [
+          2,
+          23,
+          6
+        ],
+        [
+          2,
+          2,
+          13
+        ]
+      ]
+    },
+    "v14": {
+      "accuracy": 71.96,
+      "macro_f1": 70.19,
+      "malignant_sensitivity": 80.65,
+      "malignant_specificity": 86.84,
+      "malignant_ppv": 71.43,
+      "malignant_npv": 91.67,
+      "malignant_fn": 6,
+      "malignant_fp": 10,
+      "confusion_matrix": [
+        [
+          38,
+          10,
+          11
+        ],
+        [
+          1,
+          25,
+          5
+        ],
+        [
+          3,
+          0,
+          14
+        ]
+      ]
+    }
+  },
+  "top_bottom_mask": {
+    "v5b": {
+      "accuracy": 68.22,
+      "macro_f1": 66.65,
+      "malignant_sensitivity": 74.19,
+      "malignant_specificity": 81.58,
+      "malignant_ppv": 62.16,
+      "malignant_npv": 88.57,
+      "malignant_fn": 8,
+      "malignant_fp": 14,
+      "confusion_matrix": [
+        [
+          37,
+          14,
+          8
+        ],
+        [
+          3,
+          23,
+          5
+        ],
+        [
+          4,
+          0,
+          13
+        ]
+      ]
+    },
+    "v14": {
+      "accuracy": 79.44,
+      "macro_f1": 77.82,
+      "malignant_sensitivity": 87.1,
+      "malignant_specificity": 86.84,
+      "malignant_ppv": 72.97,
+      "malignant_npv": 94.29,
+      "malignant_fn": 4,
+      "malignant_fp": 10,
+      "confusion_matrix": [
+        [
+          44,
+          10,
+          5
+        ],
+        [
+          1,
+          27,
+          3
+        ],
+        [
+          3,
+          0,
+          14
+        ]
+      ]
+    }
+  },
+  "high_intensity_overlay_suppression": {
+    "v5b": {
+      "accuracy": 71.03,
+      "macro_f1": 70.31,
+      "malignant_sensitivity": 77.42,
+      "malignant_specificity": 81.58,
+      "malignant_ppv": 63.16,
+      "malignant_npv": 89.86,
+      "malignant_fn": 7,
+      "malignant_fp": 14,
+      "confusion_matrix": [
+        [
+          38,
+          14,
+          7
+        ],
+        [
+          4,
+          24,
+          3
+        ],
+        [
+          3,
+          0,
+          14
+        ]
+      ]
+    },
+    "v14": {
+      "accuracy": 83.18,
+      "macro_f1": 81.28,
+      "malignant_sensitivity": 80.65,
+      "malignant_specificity": 93.42,
+      "malignant_ppv": 83.33,
+      "malignant_npv": 92.21,
+      "malignant_fn": 6,
+      "malignant_fp": 5,
+      "confusion_matrix": [
+        [
+          50,
+          5,
+          4
+        ],
+        [
+          4,
+          25,
+          2
+        ],
+        [
+          3,
+          0,
+          14
+        ]
+      ]
+    }
+  }
+}

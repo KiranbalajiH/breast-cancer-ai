@@ -30,3 +30,6 @@ backend/test_synthetic_nuclei.png
 
 # Large local datasets
 dataset/
+
+# Large local backup archives (>100MB exceeds GitHub file limit)
+BCD.zip

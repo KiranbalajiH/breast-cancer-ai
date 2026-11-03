@@ -1,0 +1,344 @@
+{
+  "timestamp": "2026-10-17T11:54:02.269745",
+  "runtime_seconds": 57.99,
+  "dataset": "BUSI",
+  "split_counts": {
+    "train": 546,
+    "val": 123,
+    "test": 107
+  },
+  "experiments": {
+    "exp_v15_mnv2_balanced_weights": {
+      "name": "Exp 1: MobileNetV2 with Balanced Class Weights",
+      "config": {
+        "id": "exp_v15_mnv2_balanced_weights",
+        "name": "Exp 1: MobileNetV2 with Balanced Class Weights",
+        "architecture": "mobilenetv2",
+        "weights": {
+          "0": 0.5947712418300654,
+          "2": 1.9361702127659575,
+          "1": 1.2465753424657535
+        },
+        "dropout": 0.2,
+        "epochs_stage1": 6,
+        "epochs_stage2": 10,
+        "seed": 42
+      },
+      "model_path": "C:\\Users\\kiran\\antigravity K\\BCD\\backend\\models\\research_phase_candidates\\exp_v15_mnv2_balanced_weights.keras",
+      "best_validation_threshold": 0.4,
+      "validation_metrics": {
+        "accuracy": 61.79,
+        "macro_f1": 60.53,
+        "malignant_sensitivity": 53.12,
+        "malignant_specificity": 87.91,
+        "malignant_ppv": 60.71,
+        "malignant_npv": 84.21,
+        "malignant_fn": 15,
+        "malignant_fp": 11,
+        "confusion_matrix": [
+          [
+            37,
+            11,
+            21
+          ],
+          [
+            2,
+            17,
+            13
+          ],
+          [
+            0,
+            0,
+            22
+          ]
+        ]
+      },
+      "history_stage1": null,
+      "history_stage2": null
+    },
+    "exp_v15_effnet_cost_sensitive": {
+      "name": "Exp 2: EfficientNetB0 with Cost-Sensitive Malignant Weight (1.35x)",
+      "config": {
+        "id": "exp_v15_effnet_cost_sensitive",
+        "name": "Exp 2: EfficientNetB0 with Cost-Sensitive Malignant Weight (1.35x)",
+        "architecture": "efficientnetb0",
+        "weights": {
+          "0": 1.0,
+          "1": 1.35,
+          "2": 1.0
+        },
+        "dropout": 0.25,
+        "epochs_stage1": 6,
+        "epochs_stage2": 10,
+        "seed": 42
+      },
+      "model_path": "C:\\Users\\kiran\\antigravity K\\BCD\\backend\\models\\research_phase_candidates\\exp_v15_effnet_cost_sensitive.keras",
+      "best_validation_threshold": 0.35,
+      "validation_metrics": {
+        "accuracy": 74.8,
+        "macro_f1": 73.67,
+        "malignant_sensitivity": 93.75,
+        "malignant_specificity": 73.63,
+        "malignant_ppv": 55.56,
+        "malignant_npv": 97.1,
+        "malignant_fn": 2,
+        "malignant_fp": 24,
+        "confusion_matrix": [
+          [
+            49,
+            20,
+            0
+          ],
+          [
+            1,
+            30,
+            1
+          ],
+          [
+            5,
+            4,
+            13
+          ]
+        ]
+      },
+      "history_stage1": null,
+      "history_stage2": null
+    },
+    "exp_v15_mnv2_seed101": {
+      "name": "Exp 3: MobileNetV2 with Seed 101 (Multi-Seed Stability Check)",
+      "config": {
+        "id": "exp_v15_mnv2_seed101",
+        "name": "Exp 3: MobileNetV2 with Seed 101 (Multi-Seed Stability Check)",
+        "architecture": "mobilenetv2",
+        "weights": null,
+        "dropout": 0.2,
+        "epochs_stage1": 6,
+        "epochs_stage2": 10,
+        "seed": 101
+      },
+      "model_path": "C:\\Users\\kiran\\antigravity K\\BCD\\backend\\models\\research_phase_candidates\\exp_v15_mnv2_seed101.keras",
+      "best_validation_threshold": 0.5,
+      "validation_metrics": {
+        "accuracy": 73.98,
+        "macro_f1": 74.64,
+        "malignant_sensitivity": 87.5,
+        "malignant_specificity": 74.73,
+        "malignant_ppv": 54.9,
+        "malignant_npv": 94.44,
+        "malignant_fn": 4,
+        "malignant_fp": 23,
+        "confusion_matrix": [
+          [
+            42,
+            22,
+            5
+          ],
+          [
+            0,
+            28,
+            4
+          ],
+          [
+            0,
+            1,
+            21
+          ]
+        ]
+      },
+      "history_stage1": null,
+      "history_stage2": null
+    },
+    "v15_ensemble": {
+      "name": "V15 Research Ensemble (Exp1 + Exp2, 50/50)",
+      "best_validation_threshold": 0.35,
+      "validation_metrics": {
+        "accuracy": 75.61,
+        "macro_f1": 75.24,
+        "malignant_sensitivity": 81.25,
+        "malignant_specificity": 82.42,
+        "malignant_ppv": 61.9,
+        "malignant_npv": 92.59,
+        "malignant_fn": 6,
+        "malignant_fp": 16,
+        "confusion_matrix": [
+          [
+            45,
+            16,
+            8
+          ],
+          [
+            1,
+            26,
+            5
+          ],
+          [
+            0,
+            0,
+            22
+          ]
+        ]
+      }
+    }
+  },
+  "test_evaluations": {
+    "V5-B Production (MobileNetV2)": {
+      "metrics": {
+        "accuracy": 70.09,
+        "macro_f1": 69.46,
+        "malignant_sensitivity": 80.65,
+        "malignant_specificity": 80.26,
+        "malignant_ppv": 62.5,
+        "malignant_npv": 91.04,
+        "malignant_fn": 6,
+        "malignant_fp": 15,
+        "confusion_matrix": [
+          [
+            36,
+            15,
+            8
+          ],
+          [
+            3,
+            25,
+            3
+          ],
+          [
+            3,
+            0,
+            14
+          ]
+        ]
+      },
+      "threshold_used": "argmax"
+    },
+    "V14 Research Benchmark (50/50, t*=0.58)": {
+      "metrics": {
+        "accuracy": 80.37,
+        "macro_f1": 79.12,
+        "malignant_sensitivity": 83.87,
+        "malignant_specificity": 88.16,
+        "malignant_ppv": 74.29,
+        "malignant_npv": 93.06,
+        "malignant_fn": 5,
+        "malignant_fp": 9,
+        "confusion_matrix": [
+          [
+            46,
+            9,
+            4
+          ],
+          [
+            3,
+            26,
+            2
+          ],
+          [
+            3,
+            0,
+            14
+          ]
+        ]
+      },
+      "threshold_used": 0.58
+    },
+    "Exp 1 (MobileNetV2 Balanced)": {
+      "metrics": {
+        "accuracy": 54.21,
+        "macro_f1": 54.08,
+        "malignant_sensitivity": 61.29,
+        "malignant_specificity": 82.89,
+        "malignant_ppv": 59.38,
+        "malignant_npv": 84.0,
+        "malignant_fn": 12,
+        "malignant_fp": 13,
+        "confusion_matrix": [
+          [
+            24,
+            11,
+            24
+          ],
+          [
+            2,
+            19,
+            10
+          ],
+          [
+            0,
+            2,
+            15
+          ]
+        ]
+      },
+      "threshold_used": 0.4
+    },
+    "Exp 2 (EfficientNetB0 Cost-Sensitive)": {
+      "metrics": {
+        "accuracy": 71.96,
+        "macro_f1": 72.23,
+        "malignant_sensitivity": 83.87,
+        "malignant_specificity": 76.32,
+        "malignant_ppv": 59.09,
+        "malignant_npv": 92.06,
+        "malignant_fn": 5,
+        "malignant_fp": 18,
+        "confusion_matrix": [
+          [
+            38,
+            18,
+            3
+          ],
+          [
+            3,
+            26,
+            2
+          ],
+          [
+            4,
+            0,
+            13
+          ]
+        ]
+      },
+      "threshold_used": 0.35
+    },
+    "V15 Research Ensemble (Exp1+Exp2)": {
+      "metrics": {
+        "accuracy": 62.62,
+        "macro_f1": 61.91,
+        "malignant_sensitivity": 70.97,
+        "malignant_specificity": 81.58,
+        "malignant_ppv": 61.11,
+        "malignant_npv": 87.32,
+        "malignant_fn": 9,
+        "malignant_fp": 14,
+        "confusion_matrix": [
+          [
+            30,
+            14,
+            15
+          ],
+          [
+            2,
+            22,
+            7
+          ],
+          [
+            2,
+            0,
+            15
+          ]
+        ]
+      },
+      "threshold_used": 0.35
+    }
+  },
+  "statistical_comparison_v14_vs_v15": {
+    "n00": 20,
+    "n01_b_only": 1,
+    "n10_a_only": 20,
+    "n11": 66,
+    "chi2_stat": 15.428571428571429,
+    "chi2_p_value": 8.568298010913633e-05,
+    "exact_binomial_p_value": 2.09808349609375e-05
+  }
+}
