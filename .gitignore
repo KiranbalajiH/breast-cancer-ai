@@ -1,35 +1,80 @@
+# Model weights, checkpoints, and binary model artifacts
+*.keras
+*.h5
+*.hdf5
+*.onnx
+*.pt
+*.pth
+*.safetensors
+*.joblib
+*.pkl
+*.bin
+*.ckpt
+backend/models/*.keras
+backend/models/candidates/
+backend/models/research_phase_candidates/
+backend/archive/models/candidates/
+
+# Large archives and backups
+*.zip
+*.tar
+*.tar.gz
+*.tgz
+*.gz
+*.rar
+*.7z
+BCD.zip
+oncoai_audit_bundle.zip
+
+# Large local datasets
+dataset/
+*.parquet
+
 # Python virtual environments
 venv/
 backend/venv/
+.venv/
+env/
+ENV/
 
-# Python cache
+# Python cache and temporary files
 __pycache__/
 *.py[cod]
+*$py.class
 .pytest_cache/
+.coverage
+htmlcov/
+.mypy_cache/
+.ruff_cache/
 
-# Node.js
+# Node.js and frontend build artifacts
 frontend/node_modules/
+node_modules/
 frontend/.next/
+.next/
+frontend/out/
+out/
+build/
+dist/
 
 # Environment variables and secrets
 .env
 .env.*
 !.env.example
+*.pem
+*.key
+*.cert
+*.crt
 
-# IDE
+# IDE and OS files
 .vscode/
-
-# OS files
+.idea/
 .DS_Store
 Thumbs.db
+*.swp
+*~
 
 # Python diagnostic/generated files
 backend/diagnostics_test_outputs/
 backend/test_nuclei_overlay.png
 backend/test_synthetic_nuclei.png
-
-# Large local datasets
-dataset/
-
-# Large local backup archives (>100MB exceeds GitHub file limit)
-BCD.zip
